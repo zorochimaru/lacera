@@ -1,2 +1,2 @@
 # .husky/pre-push
-npm --no-git-tag-version version patch && git add .
+npm --no-git-tag-version version patch && git add . && git commit -a --allow-empty-message -m ''
