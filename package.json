@@ -17,6 +17,11 @@
     "transloco:optimize": "transloco-optimize dist/lacera/browser/assets/i18n",
     "prepare": "husky install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm --no-git-tag-version version patch && git add ."
+    }
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.2.0",
