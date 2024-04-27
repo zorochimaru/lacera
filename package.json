@@ -1,6 +1,6 @@
 {
   "name": "lacera",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "start": "ng serve -o",
     "build": "ng build",
@@ -14,8 +14,7 @@
     "make-sprite": "svg-sprite -C svg-sprite.json ./web/lacera-app/src/assets/icons/svg/./*.svg",
     "i18n:extract": "transloco-keys-manager extract -u --sort",
     "i18n:find": "transloco-keys-manager find --translations-path assets/i18n",
-    "transloco:optimize": "transloco-optimize dist/lacera/browser/assets/i18n",
-    "prepare": "husky"
+    "transloco:optimize": "transloco-optimize dist/lacera/browser/assets/i18n"
   },
   "private": true,
   "dependencies": {
