@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
     this.selectedLang = this.#translocoService.getActiveLang();
   }
 
-  protected changeLanguage(lang: string) {
+  protected changeLanguage(lang: string): void {
     this.#translocoService.setActiveLang(lang);
   }
 }
