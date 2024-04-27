@@ -1,0 +1,41 @@
+.title {
+  grid-column: 2 / 4;
+
+  h1 {
+    color: #8aa3a0;
+  }
+
+  h2 {
+    color: #333;
+  }
+}
+
+.news-container {
+  grid-column: 2 / 12;
+  display: flex;
+  justify-content: space-between;
+}
+
+.news-card {
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 400px;
+  height: 200px;
+
+  .card-image {
+    clip-path: path(
+      'M300 0H0V200H300C300 200 400 200 400 100C400 0 300 0 300 0Z'
+    );
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  a {
+    color: #333;
+  }
+}

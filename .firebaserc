@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lacera-studio": {
+      "hosting": {
+        "lacera": [
+          "lacera-studio"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lacera-studio"
+  }
+}

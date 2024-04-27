@@ -1,0 +1,108 @@
+.products-header {
+  grid-column: 5 / 9;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  h2 {
+    font-size: 20px;
+  }
+}
+
+.products-content {
+  grid-column: 2 / 12;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+
+  .product-card:last-of-type {
+    position: relative;
+
+    &::after {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      bottom: 3%;
+      right: -20%;
+      height: 100px;
+      width: 200px;
+      border-radius: 0 0 150px 150px;
+      background-color: #efb78d;
+    }
+  }
+
+  .product-card:first-of-type {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: -5%;
+      left: -15%;
+      height: 100px;
+      width: 200px;
+      border-radius: 0 0 150px 150px;
+      background-color: var(--accent-fg-color);
+    }
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 200px;
+    bottom: 15%;
+    left: -8%;
+    z-index: 0;
+    background: url('/assets/images/decor-figure.svg') no-repeat bottom left;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 100px;
+    right: -100px;
+    z-index: 0;
+    background: url('/assets/images/decor-figure-2.svg') no-repeat top right;
+  }
+}
+
+.product-card {
+  margin-bottom: 30px;
+  z-index: 1;
+  background: transparent;
+  padding: 0;
+
+  &:hover {
+    img {
+      transform: scale(1.025);
+    }
+
+    .product-description {
+      color: var(--accent-fg-color);
+    }
+  }
+
+  img {
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 30px;
+    max-width: 350px;
+  }
+
+  .product-description {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+  }
+
+  .product-name {
+    color: #8aa3a0;
+    font-family: 'Montserrat-SemiBold', sans-serif;
+  }
+}

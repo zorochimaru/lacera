@@ -1,0 +1,45 @@
+<ng-container *transloco="let t; read: 'header'">
+  <nav>
+    <ul class="links-container">
+      <li>
+        <a
+          [routerLink]="routerLinks.home"
+          [fragment]="routerAnchorLinks.home.home">
+          {{ t("homeLink") }}
+        </a>
+      </li>
+      <li>
+        <a
+          [routerLink]="routerLinks.home"
+          [fragment]="routerAnchorLinks.home.aboutUs">
+          {{ t("aboutLink") }}
+        </a>
+      </li>
+      <li>
+        <a
+          [routerLink]="routerLinks.home"
+          [fragment]="routerAnchorLinks.home.products">
+          {{ t("productsLink") }}
+        </a>
+      </li>
+      <li>
+        <a
+          [routerLink]="routerLinks.home"
+          [fragment]="routerAnchorLinks.home.workshops">
+          {{ t("workshopLink") }}
+        </a>
+      </li>
+    </ul>
+    <button>{{ t("contact") }}</button>
+    <div class="lang-list">
+      <select
+        id="lang"
+        [(ngModel)]="selectedLang"
+        (change)="changeLanguage(selectedLang)">
+        <option *ngFor="let lang of langCodes" [value]="lang">
+          {{ lang }}
+        </option>
+      </select>
+    </div>
+  </nav>
+</ng-container>

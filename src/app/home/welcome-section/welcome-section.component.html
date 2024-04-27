@@ -1,0 +1,18 @@
+<ng-container *transloco="let t; read: 'home.welcome'">
+  <div class="grid">
+    <img class="logo" src="assets/images/logo.svg" />
+    <div class="description-container">
+      <h2>{{ t("subTitle") | uppercase }}</h2>
+      <h1>{{ t("title") | titlecase }}</h1>
+      <p>
+        {{ t("description") }}
+      </p>
+      <button>{{ t("explore") }}</button>
+    </div>
+
+    <img class="cups-img" src="assets/images/cups.webp" alt="" />
+    <img class="decor-img-1" src="assets/images/decor-rings.svg" alt="" />
+    <img class="decor-img-2" src="assets/images/decor-leaves.svg" alt="" />
+    <img class="decor-img-3" src="assets/images/decor-leaves-2.svg" alt="" />
+  </div>
+</ng-container>

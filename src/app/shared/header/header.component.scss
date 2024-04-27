@@ -1,0 +1,43 @@
+:host {
+  position: absolute;
+  top: 52px;
+  right: 5%;
+  z-index: 1;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 100;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  a {
+    mix-blend-mode: difference;
+  }
+}
+
+.links-container {
+  display: flex;
+  gap: 30px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.lang-list {
+  border-radius: 8px;
+  overflow: clip;
+
+  select {
+    border: none;
+    padding: 3px;
+  }
+}

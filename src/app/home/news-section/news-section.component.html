@@ -1,0 +1,27 @@
+<ng-container *transloco="let t; read: 'home.news'">
+  <div class="grid">
+    <div class="title">
+      <h2>{{ t("subTitle") | uppercase }}</h2>
+      <h1>{{ t("title") | titlecase }}</h1>
+    </div>
+
+    <div class="news-container">
+      <div class="news-card">
+        <img class="card-image" *ngIf="true" src="assets/images/cups6.webp" />
+        <time datetime="2022-09-10 19:00">September 10, 2022</time>
+        <h3>Lean take into the area of slow sculpt pans and things</h3>
+        <a>{{ t("readMore") }}</a>
+      </div>
+      <div class="news-card">
+        <time datetime="2022-09-10 19:00">September 10, 2022</time>
+        <h3>Lean take into the area of slow sculpt pans and things</h3>
+        <a>{{ t("readMore") }}</a>
+      </div>
+      <div class="news-card">
+        <time datetime="2022-09-10 19:00">September 10, 2022</time>
+        <h3>Lean take into the area of slow sculpt pans and things</h3>
+        <a>{{ t("readMore") }}</a>
+      </div>
+    </div>
+  </div>
+</ng-container>

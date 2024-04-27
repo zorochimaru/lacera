@@ -1,0 +1,64 @@
+.about-us-img-wrapper {
+  grid-column: 2 / 6;
+  position: relative;
+
+  &::before {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    top: 10%;
+    left: -15%;
+    width: 100%;
+    height: 100%;
+    background-color: #efb78d;
+    border-radius: 20%;
+  }
+}
+
+.about-us-img-container {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -35%;
+    width: 100%;
+    height: 100%;
+    background: url('/assets/images/decor-leaves-3.svg') no-repeat;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 5%;
+    right: -25%;
+    width: 100%;
+    height: 100%;
+    background: url('/assets/images/decor-leaves-4.svg') no-repeat bottom right;
+  }
+
+  .about-us-img {
+    z-index: 1;
+    position: relative;
+    max-height: 800px;
+    border-radius: 20%;
+  }
+}
+
+.about-us-content {
+  grid-column: 7 / 12;
+  place-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+
+  h2 {
+    font-size: 26px;
+  }
+
+  h1 {
+    margin-bottom: 10%;
+  }
+}

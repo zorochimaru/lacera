@@ -1,0 +1,54 @@
+footer {
+  color: #fff;
+  background-color: #8aa3a0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 200px;
+    height: 100px;
+    background: url('/assets/images/decor-figure-3.svg') no-repeat;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 50px 170px;
+    justify-content: center;
+  }
+
+  .divider {
+    width: 1px;
+    align-self: stretch;
+    background-color: #fff;
+  }
+
+  .contacts-container,
+  .working-hours-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    line-height: 30px;
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .copyright-container {
+    border-top: 1px solid #fff;
+    width: 100%;
+    padding: 20px;
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "header": {
+    "aboutLink": "About Us",
+    "contact": "Contact",
+    "homeLink": "Home",
+    "productsLink": "Products",
+    "workshopLink": "Workshop"
+  },
+  "home": {
+    "aboutUs": {
+      "aboutUsHeader": "The earth is full of harmony",
+      "aboutUsSubHeader": "About Us",
+      "aboutUsText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet.",
+      "explore": "Explore"
+    },
+    "contactUs": {
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
+      "title": "feel free to contact us"
+    },
+    "customSets": {
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
+      "explore": "Explore",
+      "title": "Custom made sets"
+    },
+    "news": {
+      "readMore": "Read more...",
+      "subTitle": "News & blog",
+      "title": "Read our blog"
+    },
+    "products": {
+      "subTitle": "Our Products",
+      "title": "New collection"
+    },
+    "welcome": {
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
+      "explore": "Explore",
+      "subTitle": "Objects of desire",
+      "title": "You will love this awesome handcraft"
+    },
+    "workshop": {
+      "description": "Cum ut patrioque complectitur, agam erat dicam cu has. No ludus timeam eligendi per ludus.",
+      "explore": "Explore",
+      "subTitle": "workshops",
+      "title": "We make it easy for you"
+    }
+  }
+}

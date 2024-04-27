@@ -1,0 +1,45 @@
+.custom-sets-cups-container {
+  color: #fff;
+  padding-top: 100px;
+  text-align: center;
+  background: rgba(69, 69, 69, 1);
+  background: linear-gradient(
+    to right,
+    rgba(69, 69, 69, 1) 0%,
+    rgba(2, 34, 49, 1) 100%
+  );
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: url('/assets/images/decor-leaves-5.svg') no-repeat;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 100%;
+    height: 320px;
+    background: url('/assets/images/decor-figure-4.svg') no-repeat right;
+  }
+
+  .content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  h1 {
+    color: #8aa3a0;
+  }
+}
