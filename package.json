@@ -1,6 +1,6 @@
 {
   "name": "lacera",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "start": "ng serve -o",
     "build": "ng build",
@@ -15,12 +15,7 @@
     "i18n:extract": "transloco-keys-manager extract -u --sort",
     "i18n:find": "transloco-keys-manager find --translations-path assets/i18n",
     "transloco:optimize": "transloco-optimize dist/lacera/browser/assets/i18n",
-    "prepare": "husky install"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm --no-git-tag-version version patch && git add ."
-    }
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
