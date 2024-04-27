@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const dir = 'src/environments';
-const prodFile = 'environment.prod.ts';
+const file = 'environment.ts';
 
 const content = `${process.env.ENVIRONMENT_FILE}`;
 
@@ -20,7 +20,7 @@ fs.access(dir, fs.constants.F_OK, err => {
   }
   // Now write to file
   try {
-    fs.writeFileSync(dir + '/' + prodFile, content);
+    fs.writeFileSync(dir + '/' + file, content);
     console.log('Created successfully in', process.cwd());
     if (fs.existsSync(dir + '/' + file)) {
       console.log('File is created', path.resolve(dir + '/' + file));
