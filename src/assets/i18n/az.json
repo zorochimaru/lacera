@@ -1,47 +1,47 @@
 {
   "header": {
-    "aboutLink": "About Us",
-    "contact": "Contact",
-    "homeLink": "Home",
-    "productsLink": "Products",
-    "workshopLink": "Workshop"
+    "aboutLink": "Haqqımızda",
+    "contact": "Əlaqə",
+    "homeLink": "Əsas",
+    "productsLink": "Məhsullar",
+    "workshopLink": "İşxana"
   },
   "home": {
     "aboutUs": {
-      "aboutUsHeader": "The earth is full of harmony",
-      "aboutUsSubHeader": "About Us",
+      "aboutUsHeader": "Yer bütövlük içərisindədir",
+      "aboutUsSubHeader": "Haqqımızda",
       "aboutUsText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet.",
-      "explore": "Explore"
+      "explore": "Ətraflı oxu"
     },
     "contactUs": {
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
-      "title": "feel free to contact us"
+      "title": "Bizimlə əlaqə saxlayın"
     },
     "customSets": {
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
-      "explore": "Explore",
-      "title": "Custom made sets"
+      "explore": "Ətraflı oxu",
+      "title": "Xüsusi dəstlər"
     },
     "news": {
-      "readMore": "Read more...",
-      "subTitle": "News & blog",
-      "title": "Read our blog"
+      "readMore": "Daha çox oxu...",
+      "subTitle": "Xəbərlər və blog",
+      "title": "Bizim blogumuzu oxu"
     },
     "products": {
-      "subTitle": "Our Products",
-      "title": "New collection"
+      "subTitle": "Bizim Məhsullar",
+      "title": "Yeni kolleksiya"
     },
     "welcome": {
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
-      "explore": "Explore",
-      "subTitle": "Objects of desire",
-      "title": "You will love this awesome handcraft"
+      "explore": "Ətraflı oxu",
+      "subTitle": "Arzuların obyektləri",
+      "title": "Sizi bu mükəmməl əl işindən məmnun qoyacağıq"
     },
     "workshop": {
       "description": "Cum ut patrioque complectitur, agam erat dicam cu has. No ludus timeam eligendi per ludus.",
-      "explore": "Explore",
-      "subTitle": "workshops",
-      "title": "We make it easy for you"
+      "explore": "Ətraflı oxu",
+      "subTitle": "İşxanalar",
+      "title": "Biz sizin üçün asanlaşdırırıq"
     }
   }
 }
