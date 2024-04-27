@@ -10,6 +10,4 @@ import { FooterComponent, HeaderComponent } from './shared';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'Lacera Ceramic Studio';
-}
+export class AppComponent {}
