@@ -17,7 +17,7 @@ jobs:
           node-version: '20'
       - run: node server.js
         env:
-          FIREBASE_DETAILS: ${{ secrets.FIREBASE_DETAILS }}
+          ENVIRONMENT_FILE: ${{ secrets.ENVIRONMENT_FILE }}
       - run: npm ci
       - run: npm run build
       - run: npm run transloco:optimize
