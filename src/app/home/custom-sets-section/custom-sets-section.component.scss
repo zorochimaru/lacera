@@ -1,33 +1,36 @@
-.custom-sets-cups-container {
-  color: #fff;
-  padding-top: 100px;
-  text-align: center;
-  background: rgba(69, 69, 69, 1);
-  background: linear-gradient(
-    to right,
-    rgba(69, 69, 69, 1) 0%,
-    rgba(2, 34, 49, 1) 100%
-  );
+:host {
   position: relative;
 
   &::before {
     content: '';
     position: absolute;
-    top: 50px;
+    top: 150px;
     left: 0;
-    width: 100%;
-    height: 200px;
+    width: 250px;
+    z-index: 1;
+    height: 300px;
     background: url('/assets/images/decor-leaves-5.svg') no-repeat;
+    background-size: cover;
   }
+}
+
+.custom-sets-cups-container {
+  grid-column: 2 / 12;
+  padding-block: 300px;
+  text-align: center;
+  background: url('/assets/images/custom-set.webp') no-repeat center center;
+  background-size: cover;
+  position: relative;
 
   &::after {
     content: '';
     position: absolute;
-    top: 20px;
+    top: 0;
     right: 0;
-    width: 100%;
-    height: 320px;
-    background: url('/assets/images/decor-figure-4.svg') no-repeat right;
+    width: 380px;
+    height: 402px;
+    background: url('/assets/images/decor-rings2.svg') no-repeat center center;
+    background-size: cover;
   }
 
   .content-wrapper {
@@ -39,7 +42,13 @@
     gap: 30px;
   }
 
+  p {
+    font-weight: 600;
+    background: #ffffff91;
+    border-radius: 8px;
+  }
+
   h1 {
-    color: #8aa3a0;
+    color: var(--accent-fg-color);
   }
 }

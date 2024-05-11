@@ -1,12 +1,13 @@
 <ng-container *transloco="let t; read: 'home.customSets'">
-  <div class="custom-sets-cups-container">
-    <div class="content-wrapper">
-      <h1>{{ t("title") | titlecase }}</h1>
-      <p>
-        {{ t("description") }}
-      </p>
-      <button type="button">{{ t("explore") }}</button>
+  <div class="grid">
+    <div class="custom-sets-cups-container">
+      <div class="content-wrapper">
+        <h1>{{ t("title") | titlecase }}</h1>
+        <p>
+          {{ t("description") }}
+        </p>
+        <!-- <button type="button">{{ t("explore") }}</button> -->
+      </div>
     </div>
-    <img class="custom-sets-cups" src="assets/images/cups3.webp" />
   </div>
 </ng-container>

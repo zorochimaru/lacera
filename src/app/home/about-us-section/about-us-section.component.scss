@@ -54,6 +54,16 @@
   gap: 30px;
   align-items: flex-start;
 
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    width: 290px;
+    height: 250px;
+    background: url('/assets/images/decor-figure-5.svg') no-repeat;
+  }
+
   h2 {
     font-size: 26px;
   }

@@ -21,10 +21,10 @@
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
-  color: #333;
+  color: var(--accent-fg-color);
 
   h1 {
-    color: #8aa3a0;
+    color: var(--accent-fg-color);
   }
 
   ul {

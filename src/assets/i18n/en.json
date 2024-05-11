@@ -1,7 +1,12 @@
 {
+  "footer": {
+    "contactUs": "Feel free to contact us",
+    "getInTouchTitle": "Get In Touch"
+  },
   "header": {
     "aboutLink": "About Us",
     "contact": "Contact",
+    "customSetsLink": "Custom Made Sets",
     "homeLink": "Home",
     "productsLink": "Products",
     "workshopLink": "Workshop"
@@ -12,10 +17,6 @@
       "aboutUsSubHeader": "About Us",
       "aboutUsText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet.",
       "explore": "Explore"
-    },
-    "contactUs": {
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
-      "title": "feel free to contact us"
     },
     "customSets": {
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
@@ -29,7 +30,7 @@
     },
     "products": {
       "subTitle": "Our Products",
-      "title": "New collection"
+      "title": "Coming Soon"
     },
     "welcome": {
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",

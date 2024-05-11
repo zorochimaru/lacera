@@ -45,25 +45,21 @@ export class HomeComponent {
       anchorLink: routerAnchorLinks.home.aboutUs,
       component: AboutUsSectionComponent
     },
-    {
-      anchorLink: routerAnchorLinks.home.products,
-      component: ProductsSectionComponent
-    },
+    // {
+    //   anchorLink: routerAnchorLinks.home.products,
+    //   component: ProductsSectionComponent
+    // },
     {
       anchorLink: routerAnchorLinks.home.customSets,
       component: CustomSetsSectionComponent
     },
     {
-      anchorLink: routerAnchorLinks.home.customSets,
-      component: ContactUsSectionComponent
-    },
-    {
       anchorLink: routerAnchorLinks.home.workshops,
       component: WorkshopsSectionComponent
-    },
-    {
-      anchorLink: routerAnchorLinks.home.news,
-      component: NewsSectionComponent
     }
+    // {
+    //   anchorLink: routerAnchorLinks.home.news,
+    //   component: NewsSectionComponent
+    // }
   ];
 }

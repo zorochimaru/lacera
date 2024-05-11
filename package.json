@@ -1,14 +1,12 @@
 {
   "name": "lacera",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "scripts": {
     "start": "ng serve -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "lint:ng": "ng lint",
-    "lint:all": "ng lint && cd functions && npm run lint",
-    "lint-fix:ng": "ng lint --fix",
-    "lint-fix:all": "ng lint --fix && cd functions && npm run lint-fix",
+    "lint": "ng lint",
+    "lint-fix": "ng lint --fix",
     "stylelint": "stylelint '**/*{.css,.scss}'",
     "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix",
     "make-sprite": "svg-sprite -C svg-sprite.json ./web/lacera-app/src/assets/icons/svg/./*.svg",

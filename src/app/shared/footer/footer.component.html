@@ -1,26 +1,44 @@
-<footer>
-  <div class="wrapper">
-    <div class="contacts-container">
-      <h2>Get In Touch</h2>
-      <a href="tel:+12-345-6789">+12-345-6789</a>
-      <a href="mailto:someemailtest.com">someemailtest.com</a>
-      <a
-        href="https://maps.app.goo.gl/Vf6DjecxQfZ39smUA"
-        target="_blank"
-        rel="noopener noreferrer">
-        1028 İzmir küçəsi, Bakı
-      </a>
+<ng-container *transloco="let t; read: 'footer'">
+  <footer>
+    <h1>{{ t("contactUs") | titlecase }}</h1>
+    <div class="wrapper">
+      <img src="/assets/images/logo-white.svg" alt="" />
+      <div class="divider"></div>
+      <div class="contact-us-container">
+        <div class="footer-data">
+          <div class="social-links">
+            <a href="http://" target="_blank" rel="noopener noreferrer">
+              <img src="assets/images/facebook.svg" />
+              <span>lacera</span>
+            </a>
+            <a href="http://" target="_blank" rel="noopener noreferrer">
+              <img src="assets/images/tiktok.svg" />
+              <span>&#64;lacera_studio</span>
+            </a>
+            <a
+              href="https://www.instagram.com/lacerastudio/"
+              target="_blank"
+              rel="noopener noreferrer">
+              <img src="assets/images/instagram.svg" />
+              <span>&#64;lacerastudio</span>
+            </a>
+          </div>
+          <div class="contacts-container">
+            <h2>{{ t("getInTouchTitle") }}</h2>
+            <a href="tel:+994 10 388 13 13">+994 10 388 13 13</a>
+            <a href="mailto:lacerastudio@gmail.com"
+              >lacerastudio&#64;gmail.com</a
+            >
+            <a
+              href="https://maps.app.goo.gl/25w1wdK35t3oLCao9"
+              target="_blank"
+              rel="noopener noreferrer">
+              4C Eldar Ağayev küçəsi, Bakı, Azərbaycan
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="divider"></div>
-    <div class="title-container">
-      <h1>Lacera ceramic studio</h1>
-    </div>
-    <div class="divider"></div>
-    <div class="working-hours-container">
-      <h2>Working Hour</h2>
-      <p>Monday/Friday 10:30–19:00</p>
-      <p>Weekend Closed</p>
-    </div>
-  </div>
-  <div class="copyright-container">Copyright All Rights Reserved</div>
-</footer>
+    <div class="copyright-container">Copyright All Rights Reserved</div>
+  </footer>
+</ng-container>

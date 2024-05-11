@@ -1,7 +1,12 @@
 {
+  "footer": {
+    "contactUs": "Feel free to contact us",
+    "getInTouchTitle": "Get In Touch"
+  },
   "header": {
     "aboutLink": "Haqqımızda",
     "contact": "Əlaqə",
+    "customSetsLink": "Xüsusi dəstlər",
     "homeLink": "Əsas",
     "productsLink": "Məhsullar",
     "workshopLink": "İşxana"

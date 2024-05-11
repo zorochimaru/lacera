@@ -1,7 +1,12 @@
 {
+  "footer": {
+    "contactUs": "Feel free to contact us",
+    "getInTouchTitle": "Get In Touch"
+  },
   "header": {
     "aboutLink": "О нас",
     "contact": "Контакты",
+    "customSetsLink": "Индивидуальные наборы",
     "homeLink": "Главная",
     "productsLink": "Продукты",
     "workshopLink": "Мастерская"

@@ -1,5 +1,5 @@
 <ng-container *transloco="let t; read: 'header'">
-  <nav>
+  <nav #nav>
     <ul class="links-container">
       <li>
         <a
@@ -18,10 +18,17 @@
       <li>
         <a
           [routerLink]="routerLinks.home"
+          [fragment]="routerAnchorLinks.home.customSets">
+          {{ t("customSetsLink") }}
+        </a>
+      </li>
+      <!-- <li>
+        <a
+          [routerLink]="routerLinks.home"
           [fragment]="routerAnchorLinks.home.products">
           {{ t("productsLink") }}
         </a>
-      </li>
+      </li> -->
       <li>
         <a
           [routerLink]="routerLinks.home"
@@ -30,7 +37,7 @@
         </a>
       </li>
     </ul>
-    <button>{{ t("contact") }}</button>
+    <!-- <button>{{ t("contact") }}</button> -->
     <div class="lang-list">
       <select
         id="lang"
