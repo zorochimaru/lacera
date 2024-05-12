@@ -1,5 +1,5 @@
 <ng-container *transloco="let t; read: 'footer'">
-  <footer>
+  <footer [id]="footerId">
     <h1>{{ t("contactUs") | titlecase }}</h1>
     <div class="wrapper">
       <img src="/assets/images/logo-white.svg" alt="" />
@@ -27,7 +27,6 @@
             </a>
           </div>
           <div class="contacts-container">
-            <h2>{{ t("getInTouchTitle") }}</h2>
             <a href="tel:+994 10 388 13 13">+994 10 388 13 13</a>
             <a href="mailto:lacerastudio@gmail.com"
               >lacerastudio&#64;gmail.com</a
@@ -36,7 +35,7 @@
               href="https://maps.app.goo.gl/25w1wdK35t3oLCao9"
               target="_blank"
               rel="noopener noreferrer">
-              4C Eldar Ağayev küçəsi, Bakı, Azərbaycan
+              {{ t("address") }}
             </a>
           </div>
         </div>

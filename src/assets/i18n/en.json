@@ -1,27 +1,28 @@
 {
   "footer": {
-    "contactUs": "Feel free to contact us",
-    "getInTouchTitle": "Get In Touch"
+    "address": "4C Eldar Agayev Street, Baku, Azerbaijan",
+    "contactUs": "Contact us"
   },
   "header": {
-    "aboutLink": "About Us",
+    "aboutLink": "About",
     "contact": "Contact",
-    "customSetsLink": "Custom Made Sets",
+    "customSetsLink": "Catalog",
+    "footerLink": "Contacts",
     "homeLink": "Home",
-    "productsLink": "Products",
+    "productsLink": "Catalog",
     "workshopLink": "Workshop"
   },
   "home": {
     "aboutUs": {
-      "aboutUsHeader": "The earth is full of harmony",
+      "aboutUsHeader": "Completely handmade",
       "aboutUsSubHeader": "About Us",
-      "aboutUsText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet.",
+      "aboutUsText": "Our workshop specializes in crafting high-quality ceramic products with distinctive designs. From vases and plates to bowls and jugs, we meticulously create each piece using premium materials and carefully selected paints. We strive for exclusivity and style to satisfy even the most sophisticated tastes of our customers",
       "explore": "Explore"
     },
     "customSets": {
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
+      "description": "COMING SOON",
       "explore": "Explore",
-      "title": "Custom made sets"
+      "title": "Catalog"
     },
     "news": {
       "readMore": "Read more...",
@@ -33,16 +34,16 @@
       "title": "Coming Soon"
     },
     "welcome": {
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
+      "description": "Explore a captivating realm of craftsmanship, where every piece narrates a distinct tale",
       "explore": "Explore",
-      "subTitle": "Objects of desire",
-      "title": "You will love this awesome handcraft"
+      "subTitle": "Unique product",
+      "title": "Experience an exclusive fusion of style and top-tier ceramics"
     },
     "workshop": {
-      "description": "Cum ut patrioque complectitur, agam erat dicam cu has. No ludus timeam eligendi per ludus.",
+      "description": "In our workshop, every item is meticulously crafted with love and precision, imbuing it with a distinct charm and character. Our commitment to excellence ensures that each product we create not only exudes quality but also evokes joy and inspiration in our customers",
       "explore": "Explore",
       "subTitle": "workshops",
-      "title": "We make it easy for you"
+      "title": "Modern and cozy workshop"
     }
   }
 }

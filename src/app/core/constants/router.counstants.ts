@@ -17,5 +17,8 @@ export const routerAnchorLinks = {
     customSets: 'custom-sets',
     news: 'news',
     workshops: 'workshops'
+  },
+  shared: {
+    footer: 'footer'
   }
 };

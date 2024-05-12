@@ -18,8 +18,6 @@
   grid-column: 2 / 12;
   padding-block: 300px;
   text-align: center;
-  background: url('/assets/images/custom-set.webp') no-repeat center center;
-  background-size: cover;
   position: relative;
 
   &::after {
@@ -40,12 +38,15 @@
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    position: relative;
+    z-index: 1;
   }
 
   p {
     font-weight: 600;
     background: #ffffff91;
     border-radius: 8px;
+    padding: 10px 20px;
   }
 
   h1 {

@@ -1,21 +1,22 @@
 {
   "footer": {
-    "contactUs": "Feel free to contact us",
-    "getInTouchTitle": "Get In Touch"
+    "address": "ул. Эльдара Агаева 4С, Баку, Азербайджан",
+    "contactUs": "Свяжитесь с нами"
   },
   "header": {
     "aboutLink": "О нас",
     "contact": "Контакты",
-    "customSetsLink": "Индивидуальные наборы",
-    "homeLink": "Главная",
-    "productsLink": "Продукты",
+    "customSetsLink": "Каталог",
+    "footerLink": "Контакты",
+    "homeLink": "Главная страница",
+    "productsLink": "Каталог",
     "workshopLink": "Мастерская"
   },
   "home": {
     "aboutUs": {
-      "aboutUsHeader": "Земля полна гармонии",
+      "aboutUsHeader": "Полностью ручная работа",
       "aboutUsSubHeader": "О нас",
-      "aboutUsText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet.",
+      "aboutUsText": "Наша мастерская специализируется на создании высококачественных изделий из керамики с уникальным дизайном. Мы создаем вазы, тарелки, чаши, кувшины и многое другое, используя только лучшие материалы и тщательно подобранные краски. Мы стремимся к эксклюзивности и стилю, чтобы удовлетворить даже самые изысканные вкусы наших клиентов.",
       "explore": "Исследовать"
     },
     "contactUs": {
@@ -23,9 +24,9 @@
       "title": "Не стесняйтесь связаться с нами"
     },
     "customSets": {
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
+      "description": "COMING SOON",
       "explore": "Исследовать",
-      "title": "Индивидуальные наборы"
+      "title": "Каталог"
     },
     "news": {
       "readMore": "Читать далее...",
@@ -37,16 +38,16 @@
       "title": "Новая коллекция"
     },
     "welcome": {
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
+      "description": "Захватывающий мир ручной работы, где каждый предмет носит в себе неповторимую историю",
       "explore": "Исследовать",
-      "subTitle": "Объекты желания",
-      "title": "Вы полюбите этот потрясающий ручной труд"
+      "subTitle": "Уникальное изделие",
+      "title": "Эксклюзивный стиль  в сочетании с первоклассной керамикой"
     },
     "workshop": {
-      "description": "Cum ut patrioque complectitur, agam erat dicam cu has. No ludus timeam eligendi per ludus.",
+      "description": "В нашей мастерской каждое изделие создается с любовью и заботой, придавая ему особый шарм и индивидуальность. Мы стремимся к созданию продукции высокого качества, которая приносит радость и вдохновляет наших клиентов",
       "explore": "Исследовать",
-      "subTitle": "Мастерские",
-      "title": "Мы облегчаем это для вас"
+      "subTitle": "Мастерская",
+      "title": "Современная и уютная мастерская"
     }
   }
 }

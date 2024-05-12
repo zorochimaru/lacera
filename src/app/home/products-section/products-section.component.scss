@@ -58,7 +58,7 @@
     bottom: 15%;
     left: -8%;
     z-index: 0;
-    background: url('/assets/images/decor-figure.svg') no-repeat bottom left;
+    background: url('/assets/images/decor-figure.webp') no-repeat bottom left;
   }
 
   &::after {
@@ -69,7 +69,7 @@
     top: 100px;
     right: -100px;
     z-index: 0;
-    background: url('/assets/images/decor-figure-2.svg') no-repeat top right;
+    background: url('/assets/images/decor-figure-2.webp') no-repeat top right;
   }
 }
 

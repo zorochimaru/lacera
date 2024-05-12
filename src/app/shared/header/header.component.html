@@ -36,8 +36,14 @@
           {{ t("workshopLink") }}
         </a>
       </li>
+      <li>
+        <a
+          [routerLink]="routerLinks.home"
+          [fragment]="routerAnchorLinks.shared.footer">
+          {{ t("footerLink") }}
+        </a>
+      </li>
     </ul>
-    <!-- <button>{{ t("contact") }}</button> -->
     <div class="lang-list">
       <select
         id="lang"

@@ -1,8 +1,8 @@
 <ng-container *transloco="let t; read: 'home.workshop'">
   <div class="grid">
     <div class="workshop-images">
-      <img src="assets/images/work1.webp" />
-      <img src="assets/images/work2.webp" />
+      <img width="400" height="635" ngSrc="assets/images/work1.webp" />
+      <img width="400" height="635" ngSrc="assets/images/work2.webp" />
     </div>
     <div class="workshop-content">
       <h2>{{ t("subTitle") | uppercase }}</h2>
@@ -10,12 +10,6 @@
       <p>
         {{ t("description") }}
       </p>
-      <ul>
-        <li>Custom Design</li>
-        <li>Tea sets</li>
-        <li>Coffee sets</li>
-        <li>Family sets</li>
-      </ul>
       <!-- <button type="button">{{ t("explore") }}</button> -->
     </div>
   </div>

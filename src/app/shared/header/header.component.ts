@@ -58,5 +58,6 @@ export class HeaderComponent implements OnInit {
 
   protected changeLanguage(lang: string): void {
     this.#translocoService.setActiveLang(lang);
+    localStorage.setItem('selectedLang', lang);
   }
 }

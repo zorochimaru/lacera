@@ -1,21 +1,22 @@
 {
   "footer": {
-    "contactUs": "Feel free to contact us",
-    "getInTouchTitle": "Get In Touch"
+    "address": "4C Eldar Ağayev küçəsi, Bakı, Azərbaycan",
+    "contactUs": "Bizimlə əlaqə saxlayın"
   },
   "header": {
     "aboutLink": "Haqqımızda",
     "contact": "Əlaqə",
-    "customSetsLink": "Xüsusi dəstlər",
-    "homeLink": "Əsas",
-    "productsLink": "Məhsullar",
-    "workshopLink": "İşxana"
+    "customSetsLink": "Kataloq",
+    "footerLink": "Bizimlə əlaqə",
+    "homeLink": "Əsas səhifə",
+    "productsLink": "Kataloq",
+    "workshopLink": "Emalatxana"
   },
   "home": {
     "aboutUs": {
-      "aboutUsHeader": "Yer bütövlük içərisindədir",
+      "aboutUsHeader": "Tamamilə əl işi",
       "aboutUsSubHeader": "Haqqımızda",
-      "aboutUsText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet.",
+      "aboutUsText": "Bizim emalatxanamız unikal dizayna malik yüksək keyfiyyətli keramika məhsulların yaradılması üzrə ixtisaslaşırıq. Yalnız yaxşı materiallardan və diqqətlə seçilmiş boyalardan istifadə edərək vazalar, boşqablar, qablar, küplər və diqər məhsullar yaradırıq. Biz müştərilərimizin ən mürəkkəb zövqlərini belə təmin etmək üçün eksklüzivlik və üslub üçün çalışırıq.",
       "explore": "Ətraflı oxu"
     },
     "contactUs": {
@@ -23,9 +24,9 @@
       "title": "Bizimlə əlaqə saxlayın"
     },
     "customSets": {
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
+      "description": "COMING SOON",
       "explore": "Ətraflı oxu",
-      "title": "Xüsusi dəstlər"
+      "title": "Kataloq"
     },
     "news": {
       "readMore": "Daha çox oxu...",
@@ -37,16 +38,16 @@
       "title": "Yeni kolleksiya"
     },
     "welcome": {
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
+      "description": "Hər bir əşyanın özünəməxsus hekayəsi olan maraqlı əl işləri dünyası",
       "explore": "Ətraflı oxu",
-      "subTitle": "Arzuların obyektləri",
-      "title": "Sizi bu mükəmməl əl işindən məmnun qoyacağıq"
+      "subTitle": "Unikal məhsul",
+      "title": "Eksklüziv tərz və yüksək keyfiyyətli keramika"
     },
     "workshop": {
-      "description": "Cum ut patrioque complectitur, agam erat dicam cu has. No ludus timeam eligendi per ludus.",
+      "description": "Bizim emalatxanada hər bir məhsul sevgi və qayğı ilə yaradılaraq ona xüsusi yaraşıq və şəxsiyyət verir. Biz müştərilərimizə sevinc və ilham gətirən yüksək keyfiyyətli məhsullar yaratmağa çalışırıq",
       "explore": "Ətraflı oxu",
-      "subTitle": "İşxanalar",
-      "title": "Biz sizin üçün asanlaşdırırıq"
+      "subTitle": "Emalatxana",
+      "title": "Müasir və rahat emalatxana"
     }
   }
 }
