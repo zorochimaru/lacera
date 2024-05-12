@@ -5,7 +5,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'app-news-section',
   standalone: true,
-  imports: [NgIf, TranslocoModule, TitleCasePipe, UpperCasePipe],
+  imports: [NgIf, TranslocoModule],
   templateUrl: './news-section.component.html',
   styleUrl: './news-section.component.scss'
 })

@@ -9,7 +9,6 @@ import { TranslocoModule } from '@jsverse/transloco';
 
 import { routerAnchorLinks } from '../core';
 import { AboutUsSectionComponent } from './about-us-section/about-us-section.component';
-import { ContactUsSectionComponent } from './contact-us-section/contact-us-section.component';
 import { CustomSetsSectionComponent } from './custom-sets-section/custom-sets-section.component';
 import { NewsSectionComponent } from './news-section/news-section.component';
 import { ProductsSectionComponent } from './products-section/products-section.component';
@@ -28,7 +27,6 @@ import { WorkshopsSectionComponent } from './workshops-section/workshops-section
     WelcomeSectionComponent,
     AboutUsSectionComponent,
     ProductsSectionComponent,
-    ContactUsSectionComponent,
     NewsSectionComponent,
     WorkshopsSectionComponent
   ],

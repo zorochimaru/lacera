@@ -5,7 +5,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'app-custom-sets-section',
   standalone: true,
-  imports: [TranslocoModule, TitleCasePipe, NgOptimizedImage],
+  imports: [TranslocoModule, NgOptimizedImage],
   templateUrl: './custom-sets-section.component.html',
   styleUrl: './custom-sets-section.component.scss'
 })

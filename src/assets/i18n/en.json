@@ -14,8 +14,8 @@
   },
   "home": {
     "aboutUs": {
-      "aboutUsHeader": "Completely handmade",
-      "aboutUsSubHeader": "About Us",
+      "aboutUsHeader": "Completely Handmade",
+      "aboutUsSubHeader": "ABOUT US",
       "aboutUsText": "Our workshop specializes in crafting high-quality ceramic products with distinctive designs. From vases and plates to bowls and jugs, we meticulously create each piece using premium materials and carefully selected paints. We strive for exclusivity and style to satisfy even the most sophisticated tastes of our customers",
       "explore": "Explore"
     },
@@ -26,24 +26,24 @@
     },
     "news": {
       "readMore": "Read more...",
-      "subTitle": "News & blog",
-      "title": "Read our blog"
+      "subTitle": "NEWS & BLOG",
+      "title": "Read Our Blog"
     },
     "products": {
-      "subTitle": "Our Products",
+      "subTitle": "OUR PRODUCTS",
       "title": "Coming Soon"
     },
     "welcome": {
       "description": "Explore a captivating realm of craftsmanship, where every piece narrates a distinct tale",
       "explore": "Explore",
-      "subTitle": "Unique product",
-      "title": "Experience an exclusive fusion of style and top-tier ceramics"
+      "subTitle": "UNIQUE PRODUCT",
+      "title": "Experience An Exclusive Fusion Of Style And Top-Tier Ceramics"
     },
     "workshop": {
       "description": "In our workshop, every item is meticulously crafted with love and precision, imbuing it with a distinct charm and character. Our commitment to excellence ensures that each product we create not only exudes quality but also evokes joy and inspiration in our customers",
       "explore": "Explore",
-      "subTitle": "workshops",
-      "title": "Modern and cozy workshop"
+      "subTitle": "WORKSHOPS",
+      "title": "Modern And Cozy Workshop"
     }
   }
 }

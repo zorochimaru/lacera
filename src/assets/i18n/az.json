@@ -14,40 +14,40 @@
   },
   "home": {
     "aboutUs": {
-      "aboutUsHeader": "Tamamilə əl işi",
-      "aboutUsSubHeader": "Haqqımızda",
+      "aboutUsHeader": "Tamamilə Əl İşi",
+      "aboutUsSubHeader": "HAQQIMIZDA",
       "aboutUsText": "Bizim emalatxanamız unikal dizayna malik yüksək keyfiyyətli keramika məhsulların yaradılması üzrə ixtisaslaşırıq. Yalnız yaxşı materiallardan və diqqətlə seçilmiş boyalardan istifadə edərək vazalar, boşqablar, qablar, küplər və diqər məhsullar yaradırıq. Biz müştərilərimizin ən mürəkkəb zövqlərini belə təmin etmək üçün eksklüzivlik və üslub üçün çalışırıq.",
-      "explore": "Ətraflı oxu"
+      "explore": "Ətraflı Oxu"
     },
     "contactUs": {
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In commodo enim sit amet magna semper lacinia. Lorem ipsum dolor sit amet",
-      "title": "Bizimlə əlaqə saxlayın"
+      "title": "Bizimlə Əlaqə Saxlayın"
     },
     "customSets": {
       "description": "COMING SOON",
-      "explore": "Ətraflı oxu",
+      "explore": "Ətraflı Oxu",
       "title": "Kataloq"
     },
     "news": {
       "readMore": "Daha çox oxu...",
-      "subTitle": "Xəbərlər və blog",
-      "title": "Bizim blogumuzu oxu"
+      "subTitle": "Xəbərlər Və Blog",
+      "title": "BİZİM BLOGUMUZU OXU"
     },
     "products": {
-      "subTitle": "Bizim Məhsullar",
-      "title": "Yeni kolleksiya"
+      "subTitle": "BİZİM MƏHSULLAR",
+      "title": "Yeni Kolleksiya"
     },
     "welcome": {
       "description": "Hər bir əşyanın özünəməxsus hekayəsi olan maraqlı əl işləri dünyası",
       "explore": "Ətraflı oxu",
-      "subTitle": "Unikal məhsul",
-      "title": "Eksklüziv tərz və yüksək keyfiyyətli keramika"
+      "subTitle": "UNİKAL MƏHSUL",
+      "title": "Eksklüziv Tərz Və Yüksək Keyfiyyətli Keramika"
     },
     "workshop": {
       "description": "Bizim emalatxanada hər bir məhsul sevgi və qayğı ilə yaradılaraq ona xüsusi yaraşıq və şəxsiyyət verir. Biz müştərilərimizə sevinc və ilham gətirən yüksək keyfiyyətli məhsullar yaratmağa çalışırıq",
       "explore": "Ətraflı oxu",
-      "subTitle": "Emalatxana",
-      "title": "Müasir və rahat emalatxana"
+      "subTitle": "EMALATXANA",
+      "title": "Müasir Və Rahat Emalatxana"
     }
   }
 }
