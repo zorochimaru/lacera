@@ -53,3 +53,10 @@
     color: var(--accent-fg-color);
   }
 }
+
+@media (max-width: 768px) {
+  .custom-sets-cups-container {
+    padding-block: 100px;
+    overflow: clip;
+  }
+}

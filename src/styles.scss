@@ -74,6 +74,8 @@ button {
   min-height: 100dvh;
   color: var(--accent-fg-color);
   display: grid;
+  align-items: center;
+  place-content: center;
   column-gap: 20px;
   row-gap: 70px;
   grid-template-columns: repeat(12, 1fr);
@@ -97,5 +99,26 @@ p {
 
   &:active {
     background: transparent;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    row-gap: 20px;
+  }
+
+  h1 {
+    font-size: 45px;
+  }
+
+  h2 {
+    font-size: 22px;
+    line-height: 27px;
+  }
+}
+
+@media (max-width: 425px) {
+  .grid {
+    row-gap: 10px;
   }
 }

@@ -46,3 +46,9 @@ ul {
     padding: 3px;
   }
 }
+
+@media (max-width: 768px) {
+  .links-container {
+    display: none;
+  }
+}

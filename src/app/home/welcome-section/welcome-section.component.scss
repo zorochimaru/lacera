@@ -42,3 +42,17 @@
   right: 0;
   max-height: 200px;
 }
+
+@media (max-width: 768px) {
+  .logo {
+    z-index: 1;
+    grid-area: 1/2/2/7;
+  }
+
+  .description-container {
+    grid-area: 2/2/3/7;
+    background: #ffffff6c;
+    padding: 10px;
+    border-radius: 8px;
+  }
+}

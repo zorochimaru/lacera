@@ -35,3 +35,10 @@
     font-weight: bold;
   }
 }
+
+@media (max-width: 768px) {
+  .workshop-images {
+    flex-direction: column;
+    grid-column: 2 / 8;
+  }
+}
