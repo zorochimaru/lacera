@@ -45,8 +45,10 @@ ul {
 }
 
 @media (max-width: 768px) {
-  :host .scrolled {
-    background-color: none;
+  :host {
+    .scrolled {
+      background-color: none;
+    }
   }
 
   .links-container {

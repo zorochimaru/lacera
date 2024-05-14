@@ -1,3 +1,5 @@
+@use 'animations';
+
 :host {
   position: relative;
 
@@ -19,6 +21,7 @@
   padding-block: 300px;
   text-align: center;
   position: relative;
+  overflow: clip;
 
   &::after {
     content: '';
@@ -29,6 +32,8 @@
     height: 402px;
     background: url('/assets/images/decor-rings2.svg') no-repeat center center;
     background-size: cover;
+
+    @include animations.pulse(3s);
   }
 
   .content-wrapper {
@@ -57,7 +62,6 @@
 @media (max-width: 768px) {
   .custom-sets-cups-container {
     padding-block: 100px;
-    overflow: clip;
 
     &::after {
       width: 180px;

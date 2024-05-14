@@ -1,3 +1,5 @@
+@use 'animations';
+
 .grid {
   background: url('/assets/images/bg-template-accent.png');
 }
@@ -20,6 +22,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  @include animations.move-left(2s);
 }
 
 .decor-img-1 {
@@ -27,6 +30,7 @@
   bottom: 0;
   left: 0;
   max-height: 600px;
+  @include animations.pulse(4s);
 }
 
 .decor-img-2 {
