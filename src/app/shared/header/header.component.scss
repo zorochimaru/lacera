@@ -2,7 +2,7 @@
   position: fixed;
   top: 5%;
   right: 5%;
-  z-index: 1;
+  z-index: 2;
   padding: 10px;
   border-radius: 8px;
   transition: background-color 200ms ease-in-out;
@@ -45,6 +45,10 @@ ul {
 }
 
 @media (max-width: 768px) {
+  :host .scrolled {
+    background-color: none;
+  }
+
   .links-container {
     display: none;
   }

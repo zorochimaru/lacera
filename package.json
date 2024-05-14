@@ -1,6 +1,6 @@
 {
   "name": "lacera",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "scripts": {
     "start": "ng serve -o",
     "build": "ng build",
