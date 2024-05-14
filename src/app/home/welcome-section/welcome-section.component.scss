@@ -56,3 +56,13 @@
     border-radius: 8px;
   }
 }
+
+@media (max-width: 576px) {
+  .logo {
+    grid-area: 1/2/2/12;
+  }
+
+  .description-container {
+    grid-area: 2/2/3/12;
+  }
+}

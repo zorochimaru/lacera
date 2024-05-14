@@ -58,5 +58,27 @@
   .custom-sets-cups-container {
     padding-block: 100px;
     overflow: clip;
+
+    &::after {
+      width: 180px;
+      height: 302px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  :host::before {
+    top: 150px;
+    width: 150px;
+    background-size: contain;
+  }
+
+  .custom-sets-img {
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .custom-sets-cups-container {
+    grid-area: 1/2/2/12;
   }
 }

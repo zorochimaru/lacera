@@ -43,6 +43,7 @@ export class HomeComponent {
       anchorLink: routerAnchorLinks.home.aboutUs,
       component: AboutUsSectionComponent
     },
+    // TODO: add later
     // {
     //   anchorLink: routerAnchorLinks.home.products,
     //   component: ProductsSectionComponent
@@ -55,6 +56,7 @@ export class HomeComponent {
       anchorLink: routerAnchorLinks.home.workshops,
       component: WorkshopsSectionComponent
     }
+    // TODO: add later
     // {
     //   anchorLink: routerAnchorLinks.home.news,
     //   component: NewsSectionComponent

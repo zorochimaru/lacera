@@ -42,3 +42,17 @@
     grid-column: 2 / 8;
   }
 }
+
+@media (max-width: 576px) {
+  .workshop-images {
+    grid-area: 2/3/3/11;
+
+    img {
+      height: auto;
+    }
+  }
+
+  .workshop-content {
+    grid-area: 1/3/2/11;
+  }
+}
