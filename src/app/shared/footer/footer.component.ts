@@ -1,5 +1,5 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 
 import { routerAnchorLinks } from '../../core';
@@ -9,7 +9,8 @@ import { routerAnchorLinks } from '../../core';
   standalone: true,
   imports: [TranslocoModule, TitleCasePipe],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
   protected footerId = routerAnchorLinks.shared.footer;

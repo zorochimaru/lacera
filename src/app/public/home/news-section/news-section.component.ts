@@ -1,5 +1,5 @@
 import { NgIf, TitleCasePipe, UpperCasePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -7,6 +7,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [NgIf, TranslocoModule],
   templateUrl: './news-section.component.html',
-  styleUrl: './news-section.component.scss'
+  styleUrl: './news-section.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsSectionComponent {}

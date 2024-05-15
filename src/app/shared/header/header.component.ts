@@ -1,5 +1,6 @@
 import { NgFor, NgStyle } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostBinding,
@@ -18,7 +19,8 @@ import { LangCodes, routerAnchorLinks, routerLinks } from '../../core';
   standalone: true,
   imports: [TranslocoModule, RouterModule, FormsModule, NgFor, NgStyle],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
   #translocoService = inject(TranslocoService);

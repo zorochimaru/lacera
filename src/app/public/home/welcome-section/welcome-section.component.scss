@@ -10,19 +10,20 @@
 
 .description-container {
   grid-area: 2 / 3 / 3 / 7;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
+  z-index: 2;
 }
 
 .cups-img {
   max-height: 500px;
+  z-index: 1;
   position: absolute;
   bottom: 0;
   right: 0;
-  @include animations.move-left(2s);
+  @include animations.move-left(2s, 200px);
 }
 
 .decor-img-1 {
@@ -68,5 +69,14 @@
 
   .description-container {
     grid-area: 2/2/3/12;
+  }
+
+  .cups-img {
+    max-height: 500px;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    @include animations.move-left(2s, 5px);
   }
 }

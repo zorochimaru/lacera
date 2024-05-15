@@ -16,10 +16,10 @@
   animation: pulse $duration infinite alternate;
 }
 
-@mixin move-left($args...) {
+@mixin move-left($duration, $value) {
   @keyframes move-left {
     0% {
-      transform: translateX(200px);
+      transform: translateX($value);
     }
 
     100% {
@@ -27,5 +27,5 @@
     }
   }
 
-  animation: move-left $args;
+  animation: move-left $duration;
 }

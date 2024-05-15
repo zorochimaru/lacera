@@ -4,10 +4,10 @@ import {
   TitleCasePipe,
   UpperCasePipe
 } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { routerAnchorLinks } from '@core';
 import { TranslocoModule } from '@jsverse/transloco';
 
-import { routerAnchorLinks } from '../core';
 import { AboutUsSectionComponent } from './about-us-section/about-us-section.component';
 import { CustomSetsSectionComponent } from './custom-sets-section/custom-sets-section.component';
 import { NewsSectionComponent } from './news-section/news-section.component';
@@ -31,7 +31,8 @@ import { WorkshopsSectionComponent } from './workshops-section/workshops-section
     WorkshopsSectionComponent
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
   protected homeSections = [

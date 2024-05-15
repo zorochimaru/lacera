@@ -32,7 +32,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, inMemoryScrollingFeature),
     importProvidersFrom(HttpClientModule),
-
     importProvidersFrom(
       provideFirebaseApp(() => initializeApp(environment.firebase))
     ),

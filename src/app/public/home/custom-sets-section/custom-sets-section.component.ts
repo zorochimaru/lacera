@@ -1,5 +1,5 @@
-import { NgOptimizedImage, TitleCasePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -7,6 +7,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule, NgOptimizedImage],
   templateUrl: './custom-sets-section.component.html',
-  styleUrl: './custom-sets-section.component.scss'
+  styleUrl: './custom-sets-section.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomSetsSectionComponent {}
