@@ -1,13 +1,12 @@
 export const routerLinks = {
-  home: '/',
-  about: '/about',
-  contact: '/contact',
-  login: '/login',
-  register: '/register',
-  profile: '/profile',
-  settings: '/settings',
-  notFound: '/not-found'
+  public: '/',
+  private: 'private',
+  adminPanel: 'admin-panel',
+  productList: 'product-list',
+  productPanel: 'product-panel',
+  login: 'login'
 };
+
 export const routerAnchorLinks = {
   home: {
     home: 'home',

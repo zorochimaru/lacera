@@ -14,6 +14,7 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 
 import { LangCodes, routerAnchorLinks, routerLinks } from '../../core';
 
+// TODO: Make navbar links dynamically
 @Component({
   selector: 'app-header',
   standalone: true,

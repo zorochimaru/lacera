@@ -1,8 +1,16 @@
 <div class="login-container">
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <h3>Login to the admin panel</h3>
-    <input type="text" formControlName="email" placeholder="Email" />
-    <input type="password" formControlName="password" placeholder="Password" />
+    <input
+      type="text"
+      autocomplete="email"
+      formControlName="email"
+      placeholder="Email" />
+    <input
+      type="password"
+      autocomplete="current-password"
+      formControlName="password"
+      placeholder="Password" />
     <button type="submit">Login</button>
   </form>
 </div>
