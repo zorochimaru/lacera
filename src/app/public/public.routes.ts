@@ -4,6 +4,13 @@ export const publicRoutes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./home/home.component').then(c => c.HomeComponent)
+      import('./public.component').then(c => c.PublicComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./home/home.component').then(c => c.HomeComponent)
+      }
+    ]
   }
 ];
