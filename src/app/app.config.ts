@@ -1,4 +1,4 @@
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   importProvidersFrom,
@@ -32,7 +32,6 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, inMemoryScrollingFeature),
-    importProvidersFrom(HttpClientModule),
     importProvidersFrom(
       provideFirebaseApp(() => initializeApp(environment.firebase))
     ),
