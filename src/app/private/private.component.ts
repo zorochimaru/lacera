@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { routerLinks } from '@core';
+import { RouterOutlet } from '@angular/router';
+
+import { PrivateHeaderComponent } from './private-header/private-header.component';
 
 @Component({
   selector: 'app-private',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, PrivateHeaderComponent],
   templateUrl: './private.component.html',
   styleUrl: './private.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PrivateComponent {
-  protected routerLinks = routerLinks;
-}
+export class PrivateComponent {}

@@ -1,0 +1,27 @@
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h3>News admin panel</h3>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="title"
+      placeholder="Title" />
+    <div class="gallary-container" formArrayName="images">
+      <button class="thumbnail" (click)="showImage(image)">
+        <img src="" alt="" />
+        <button
+          type="button"
+          class="delete-btn"
+          (click)="$event.stopPropagation(); deleteImage(image)">
+          X
+        </button>
+      </button>
+    </div>
+
+    <textarea
+      formControlName="text"
+      class="form-control"
+      placeholder="Text"></textarea>
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</div>

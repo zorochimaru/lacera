@@ -52,7 +52,6 @@ a {
   text-decoration: none;
 }
 
-button,
 .btn {
   background-color: var(--btn-bg);
   border: none;
@@ -66,7 +65,7 @@ button,
     background-color 0.3s ease-in-out,
     color 0.3s ease-in-out;
 
-  &:active {
+  &:active:not(:disabled) {
     background-color: var(--btn-bg-active);
     transform: scale(0.97);
   }
@@ -88,6 +87,18 @@ button,
   h2 {
     letter-spacing: 10px;
   }
+}
+
+.form-control {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-default);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 p {

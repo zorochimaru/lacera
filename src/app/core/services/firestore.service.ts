@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import {
   addDoc,
   collection,
@@ -32,7 +31,6 @@ import {
 } from '@angular/fire/firestore';
 import chunk from 'lodash-es/chunk';
 import {
-  BehaviorSubject,
   filter,
   forkJoin,
   from,
@@ -53,6 +51,7 @@ import {
   Operations,
   PartialSubtype
 } from '../interfaces';
+import { AuthService } from './auth.service';
 
 export type FirestoreRecord = Partial<CommonFirestore>;
 export type CustomQuery = [string | FieldPath, WhereFilterOp, unknown];
@@ -76,11 +75,10 @@ export const MAX_IN_QUERY_SIZE = 30;
 })
 export class FirestoreService {
   // Need to auth to update/create/delete
-  readonly #fbAuth = inject(Auth);
+  readonly #authService = inject(AuthService);
   readonly #fbFirestore = inject(Firestore);
 
-  readonly #signedIn$ = new BehaviorSubject(false);
-  #userId?: string;
+  readonly #signedUser$ = this.#authService.currentUser$;
 
   public static getIdChunks<T>(items: T[], idKey: keyof T): string[][] {
     // Get unique non empty ids
@@ -151,24 +149,17 @@ export class FirestoreService {
     ids: string[],
     idFieldName?: Extract<keyof T, string>
   ): Observable<T[]> {
-    return this.#signedIn$.pipe(
-      filter(Boolean),
-      take(1),
-      switchMap(() => {
-        const idChunks = chunk(ids, MAX_IN_QUERY_SIZE);
-        if (!idChunks.length) {
-          return of([]);
-        }
-        return forkJoin(
-          idChunks.map(idChunk =>
-            this.getList<T>(collectionName, {
-              customQuery: [[idFieldName || documentId(), 'in', idChunk]]
-            })
-          )
-        );
-      }),
-      map(res => res.flat())
-    );
+    const idChunks = chunk(ids, MAX_IN_QUERY_SIZE);
+    if (!idChunks.length) {
+      return of([]);
+    }
+    return forkJoin(
+      idChunks.map(idChunk =>
+        this.getList<T>(collectionName, {
+          customQuery: [[idFieldName || documentId(), 'in', idChunk]]
+        })
+      )
+    ).pipe(map(res => res.flat()));
   }
 
   /**
@@ -215,17 +206,17 @@ export class FirestoreService {
     data: PartialSubtype<T, FirestoreRecord>,
     customId?: string
   ): Observable<string> {
-    return this.#signedIn$.pipe(
+    return this.#signedUser$.pipe(
       filter(Boolean),
       take(1),
-      switchMap(() => {
+      switchMap(currUser => {
         const { id, ...rest } = data;
         const copy: Record<string, unknown> = {
           ...rest,
           createdAt: serverTimestamp(),
-          createdBy: this.#userId!,
+          createdBy: currUser.uid,
           updatedAt: serverTimestamp(),
-          updatedBy: this.#userId!
+          updatedBy: currUser.uid
         };
 
         try {
@@ -252,15 +243,15 @@ export class FirestoreService {
     data: Partial<T>,
     merge = true
   ): Observable<void> {
-    return this.#signedIn$.pipe(
+    return this.#signedUser$.pipe(
       filter(Boolean),
       take(1),
-      switchMap(() => {
+      switchMap(currUser => {
         const { id, ...rest } = data;
         const copy: Record<string, unknown> = {
           ...rest,
           updatedAt: serverTimestamp(),
-          updatedBy: this.#userId
+          updatedBy: currUser.uid
         };
 
         try {
@@ -277,7 +268,7 @@ export class FirestoreService {
     collectionName: FirestoreCollections,
     docId: string
   ): Observable<void> {
-    return this.#signedIn$.pipe(
+    return this.#signedUser$.pipe(
       filter(Boolean),
       take(1),
       switchMap(() =>
@@ -289,10 +280,10 @@ export class FirestoreService {
   public batchSave<T extends FirestoreRecord>(
     items: readonly (FirestoreBatchWriteItem<T> | FirestoreBatchDeleteItem)[]
   ): Observable<void> {
-    return this.#signedIn$.pipe(
+    return this.#signedUser$.pipe(
       filter(Boolean),
       take(1),
-      switchMap(() => {
+      switchMap(currUser => {
         if (items.length > MAX_BATCH_SIZE) {
           throw new Error(
             `Max batch size limit is ${MAX_BATCH_SIZE} operations`
@@ -312,9 +303,9 @@ export class FirestoreService {
               const copy: Record<string, unknown> = {
                 ...rest,
                 createdAt: serverTimestamp(),
-                createdBy: this.#userId!,
+                createdBy: currUser.uid,
                 updatedAt: serverTimestamp(),
-                updatedBy: this.#userId!
+                updatedBy: currUser.uid
               };
               batch.set(docRef, copy);
               break;
@@ -324,7 +315,7 @@ export class FirestoreService {
               const copy: Record<string, unknown> = {
                 ...rest,
                 updatedAt: serverTimestamp(),
-                updatedBy: this.#userId
+                updatedBy: currUser.uid
               };
               batch.set(docRef, copy, { merge: true });
               break;

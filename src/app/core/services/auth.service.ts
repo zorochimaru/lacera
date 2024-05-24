@@ -1,21 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { from, map, Observable, Subject } from 'rxjs';
+import { from, map, Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   readonly #afAuth = inject(AngularFireAuth);
 
-  #currentUserSubject = new Subject<firebase.default.User | null>();
-  public currentUser$ = this.#currentUserSubject.asObservable();
-
+  public currentUser$ = this.#afAuth.authState;
   public isAuthenticated$ = this.currentUser$.pipe(map(Boolean));
-
-  constructor() {
-    this.#afAuth.authState.subscribe(user => {
-      this.#currentUserSubject.next(user);
-    });
-  }
 
   public signUp(email: string, password: string): Observable<void> {
     return from(

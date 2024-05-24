@@ -1,0 +1,62 @@
+@use 'typography';
+
+:host {
+  display: flex;
+  flex-grow: 1;
+}
+
+.create-news-btn {
+  color: var(--fg-color-dark);
+}
+
+.filters-container {
+  padding: 24px 16px;
+  border-right: 1px solid var(--accent-color);
+  background-color: var(--bg-surface);
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-inline: auto;
+  margin-block: 20px;
+}
+
+.news-card {
+  display: flex;
+  min-width: 500px;
+  background-color: var(--bg-surface);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.card-image {
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.card-header {
+  display: flex;
+
+  h3 {
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  time {
+    margin-left: auto;
+  }
+
+  p {
+    font-size: 16px;
+    @include typography.line-clamp(3);
+  }
+}

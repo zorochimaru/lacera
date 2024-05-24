@@ -1,6 +1,7 @@
 export * from './environment.interface';
 export * from './firestore';
 export * from './language-codes.enum';
+export * from './news';
 export * from './operations.enum';
 export * from './product';
 export * from './typed-forms.type';

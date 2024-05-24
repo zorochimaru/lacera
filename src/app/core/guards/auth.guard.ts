@@ -5,5 +5,6 @@ import { Observable } from 'rxjs';
 
 export const authGuard: CanMatchFn = (): Observable<boolean> => {
   const auth = inject(AuthService);
+
   return auth.isAuthenticated$;
 };

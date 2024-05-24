@@ -20,6 +20,20 @@ export const privateRoutes: Routes = [
           import('./product-list/product-list.component').then(
             c => c.ProductListComponent
           )
+      },
+      {
+        path: routerLinks.newsList,
+        loadComponent: () =>
+          import('./news-list/news-list.component').then(
+            c => c.NewsListComponent
+          )
+      },
+      {
+        path: routerLinks.newsPanel,
+        loadComponent: () =>
+          import('./news-panel/news-panel.component').then(
+            c => c.NewsPanelComponent
+          )
       }
     ]
   }
