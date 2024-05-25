@@ -17,6 +17,7 @@ h3 {
 .gallary-container {
   display: flex;
   align-self: flex-start;
+  width: 100%;
 
   &.disabled {
     cursor: not-allowed;
@@ -26,6 +27,19 @@ h3 {
       pointer-events: none;
     }
   }
+}
+
+.upload-action-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.link {
+  color: var(--fg-color-dark);
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .thumbnail-container {

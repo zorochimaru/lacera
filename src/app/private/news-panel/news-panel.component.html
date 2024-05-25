@@ -1,6 +1,6 @@
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h3>News admin panel</h3>
+    <h3>News edit panel</h3>
     <div class="gallary-container" [class.disabled]="loading()">
       <div>
         <label for="coverInput" class="btn">
@@ -27,7 +27,7 @@
       class="form-control"
       placeholder="Text"></textarea>
     <div class="gallary-container" [class.disabled]="loading()">
-      <div>
+      <div class="upload-action-container">
         <label for="uploadInput" class="btn">
           {{ files().length ? "Change images" : "Upload images" }}
         </label>
@@ -39,6 +39,14 @@
           multiple
           #fileInput
           (change)="onFileChange()" />
+
+        <a
+          href="https://squoosh.app/"
+          target="_blank"
+          class="link"
+          rel="noopener noreferrer">
+          👉Squoosh to webp!👈
+        </a>
       </div>
     </div>
     <div class="thumbnail-container">
