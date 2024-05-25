@@ -24,6 +24,7 @@ import {
   QueryConstraint,
   serverTimestamp,
   setDoc,
+  startAfter,
   Timestamp,
   where,
   WhereFilterOp,
@@ -59,12 +60,18 @@ export interface GetListOptions {
   customQuery?: CustomQuery[];
   orderBy?: string;
   limit?: number;
+  startAfter?: DocumentReference | Timestamp | string | null;
   orderDirection?: OrderByDirection;
   withParentId?: boolean;
 }
 export interface LiveChangesResponse<T> {
   data: T;
   operation: DocumentChangeType;
+}
+
+export interface CustomListWithPagination<T> {
+  items: T[];
+  last: DocumentReference<T> | null;
 }
 
 export const MAX_BATCH_SIZE = 500;
@@ -141,6 +148,30 @@ export class FirestoreService {
             this.#mapDocSnapshot<T>(docSnapshot)
           ) as T[]
       )
+    );
+  }
+
+  public getListWithPagination<T extends FirestoreRecord>(
+    collectionName: FirestoreCollections,
+    queryOptions: GetListOptions
+  ): Observable<{
+    items: T[];
+    last: DocumentReference | null;
+  }> {
+    const queryConstraints = this.#getQueryConstraints(queryOptions);
+    const collectionQuery = query(
+      this.#getCollectionRef<T>(collectionName),
+      ...queryConstraints
+    );
+    return from(getDocs(collectionQuery)).pipe(
+      map(snapshot => ({
+        items: snapshot.docs.map(docSnapshot =>
+          this.#mapDocSnapshot<T>(docSnapshot)
+        ) as T[],
+        last: !snapshot.empty
+          ? this.getDocRef(collectionName, snapshot.docs.at(-1)!.id)
+          : null
+      }))
     );
   }
 
@@ -346,6 +377,17 @@ export class FirestoreService {
     if (options?.limit) {
       queryConstraints.push(limit(options.limit));
     }
+
+    if (options?.startAfter) {
+      if (!options?.orderBy) {
+        queryConstraints.push(
+          orderBy('updatedAt', options?.orderDirection || 'asc')
+        );
+      }
+
+      queryConstraints.push(startAfter(options.startAfter));
+    }
+
     return queryConstraints;
   }
 

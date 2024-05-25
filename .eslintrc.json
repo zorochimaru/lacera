@@ -27,7 +27,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "upl",
+            "prefix": "app",
             "style": "camelCase"
           }
         ],

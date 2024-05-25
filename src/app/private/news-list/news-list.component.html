@@ -1,39 +1,55 @@
 <aside class="filters-container">
+  <h2>Filters</h2>
   <div class="form-container">
-    <label for="date-filter">Date filter</label>
-    <input type="date" id="date-filter" />
+    <label for="date-filter">Start date</label>
+    <input
+      type="date"
+      id="date-filter"
+      class="form-control"
+      [value]="startDate"
+      [max]="maxDate"
+      (change)="setDateFilters($event, 'start')" />
   </div>
+  <div class="form-container">
+    <label for="date-filter">End date</label>
+    <input
+      type="date"
+      id="date-filter"
+      class="form-control"
+      [min]="minDate"
+      (change)="setDateFilters($event, 'end')" />
+  </div>
+  <button type="button" class="btn" (click)="searchByFilters()">Search</button>
 </aside>
-<div class="list-container">
+<div class="list-container wrapper">
   <a [routerLink]="['../', routerLinks.newsPanel]" class="btn create-news-btn">
     Create new
   </a>
-  <input
-    [formControl]="searchControl"
-    type="search"
-    placeholder="Search"
-    class="form-control" />
 
-  @for (item of news$ | async; track item.id) {
-    <a
-      class="news-card"
-      [routerLink]="['../', routerLinks.newsPanel]"
-      [queryParams]="{ id: item.id }">
-      <img
-        class="card-image"
-        height="100"
-        width="100"
-        ngSrc="https://placehold.co/100"
-        alt="" />
-      <div class="card-content">
-        <div class="card-header">
-          <h3>{{ item.title }}</h3>
-          <time>{{ item.createdAt | date }}</time>
+  <div class="list-container">
+    @for (item of news$ | async; track item.id; let last = $last) {
+      <a
+        class="news-card"
+        [routerLink]="['../', routerLinks.newsPanel]"
+        [queryParams]="{ id: item.id }">
+        <img
+          (appIntersectionListener)="loadMore(last)"
+          class="card-image"
+          height="100"
+          width="100"
+          priority
+          [ngSrc]="item.coverImgUrl"
+          alt="" />
+        <div class="card-content">
+          <div class="card-header">
+            <h3>{{ item.title }}</h3>
+            <time>{{ item.createdAt | date }}</time>
+          </div>
+          <p>{{ item.text }}</p>
         </div>
-        <p>{{ item.text }}</p>
-      </div>
-    </a>
-  } @empty {
-    Empty list of news
-  }
+      </a>
+    } @empty {
+      No data added yet
+    }
+  </div>
 </div>

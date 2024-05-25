@@ -1,30 +1,57 @@
-import { inject, Injectable } from '@angular/core';
-import { FirestoreCollections, News, NewsFirestore } from '@core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { DestroyRef, inject, Injectable, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Timestamp } from '@angular/fire/firestore';
+import { DateRange, FirestoreCollections, News, NewsFirestore } from '@core';
+import { endOfDay, startOfDay } from 'date-fns';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { FirestoreService } from './firestore.service';
 
 @Injectable()
 export class NewsService {
   readonly #fireStoreService = inject(FirestoreService);
-  readonly #cache = new BehaviorSubject<NewsFirestore[]>([]);
+  readonly #dr = inject(DestroyRef);
 
-  public loadNextData(): Observable<void> {
-    return this.getNews().pipe(
-      tap(news => {
-        this.#cache.next([...this.#cache.value, ...news]);
-      }),
-      map(() => void 0)
-    );
+  readonly #sourceData$ = new BehaviorSubject<NewsFirestore[]>([]);
+  public sourceData$ = this.#sourceData$.asObservable();
+
+  #dateRange = signal<DateRange>({
+    start: startOfDay(new Date()),
+    end: endOfDay(new Date())
+  });
+
+  #hasMore = true;
+
+  public setDateRange(dateRange: DateRange): void {
+    this.#dateRange.set(dateRange);
   }
 
-  public getNews(): Observable<NewsFirestore[]> {
-    return this.#fireStoreService.getList<NewsFirestore>(
-      FirestoreCollections.news,
-      {
-        limit: 5
-      }
-    );
+  public getDateRange(): DateRange | null {
+    return this.#dateRange();
+  }
+
+  public loadNextData(reset?: boolean) {
+    if (this.#hasMore) {
+      this.#fireStoreService
+        .getListWithPagination<NewsFirestore>(FirestoreCollections.news, {
+          limit: 10,
+          orderDirection: 'desc',
+          orderBy: 'createdAt',
+          startAfter:
+            !reset && this.#sourceData$.value.at(-1)
+              ? Timestamp.fromDate(this.#sourceData$.value.at(-1)!.createdAt)
+              : null
+        })
+        .pipe(takeUntilDestroyed(this.#dr))
+        .subscribe(res => {
+          if (reset) {
+            this.#sourceData$.next(res.items);
+          } else {
+            this.#sourceData$.next([...this.#sourceData$.value, ...res.items]);
+          }
+          this.#hasMore = !!res.last;
+        });
+    }
   }
 
   public getNewsById(id: string): Observable<NewsFirestore | null> {
@@ -47,5 +74,20 @@ export class NewsService {
       id,
       news
     );
+  }
+
+  public searchNewsByDate(): void {
+    this.#hasMore = true;
+    this.#fireStoreService
+      .getList<NewsFirestore>(FirestoreCollections.news, {
+        customQuery: [
+          ['createdAt', '>', this.#dateRange().start],
+          ['createdAt', '<', this.#dateRange().end]
+        ]
+      })
+      .pipe(takeUntilDestroyed(this.#dr))
+      .subscribe(res => {
+        this.#sourceData$.next(res);
+      });
   }
 }

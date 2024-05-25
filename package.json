@@ -1,6 +1,6 @@
 {
   "name": "lacera",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "scripts": {
     "start": "ng serve -o",
     "build": "ng build",
@@ -30,6 +30,7 @@
     "@jsverse/transloco-optimize": "^7.0.0",
     "@jsverse/transloco-persist-lang": "^7.0.0",
     "@types/lodash-es": "^4.17.12",
+    "date-fns": "^3.6.0",
     "lodash-es": "^4.17.21",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

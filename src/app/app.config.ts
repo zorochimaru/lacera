@@ -1,8 +1,8 @@
 import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
-  importProvidersFrom,
-  isDevMode
+  isDevMode,
+  provideExperimentalZonelessChangeDetection
 } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -31,14 +31,13 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideExperimentalZonelessChangeDetection(),
     provideRouter(routes, inMemoryScrollingFeature),
-    importProvidersFrom(
-      provideFirebaseApp(() => initializeApp(environment.firebase))
-    ),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
-    importProvidersFrom(provideAuth(() => getAuth())),
-    importProvidersFrom(provideFirestore(() => getFirestore())),
-    importProvidersFrom(provideStorage(() => getStorage())),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
     provideHttpClient(),
     provideTransloco({
       config: {

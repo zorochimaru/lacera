@@ -65,9 +65,17 @@ a {
     background-color 0.3s ease-in-out,
     color 0.3s ease-in-out;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   &:active:not(:disabled) {
     background-color: var(--btn-bg-active);
     transform: scale(0.97);
+  }
+
+  &.btn-danger {
+    background-color: var(--btn-danger-bg);
   }
 }
 
@@ -99,6 +107,10 @@ a {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.visually-hidden {
+  display: none;
 }
 
 p {
