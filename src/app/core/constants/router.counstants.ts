@@ -3,6 +3,7 @@ export const routerLinks = {
   private: 'private',
   adminPanel: 'admin-panel',
   productList: 'product-list',
+  news: 'news',
   newsList: 'news-list',
   newsPanel: 'news-panel',
   productPanel: 'product-panel',

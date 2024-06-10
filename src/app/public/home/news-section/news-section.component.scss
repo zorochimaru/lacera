@@ -1,5 +1,5 @@
 .title {
-  grid-column: 2 / 4;
+  grid-column: 2 / 6;
   color: var(--accent-fg-color);
 }
 
@@ -7,15 +7,21 @@
   color: var(--accent-fg-color);
   grid-column: 2 / 12;
   display: flex;
+  gap: 30px;
+  padding-bottom: 20px;
+  overflow-x: auto;
   align-items: center;
-  justify-content: space-between;
+  scrollbar-width: thin;
 }
 
 .news-card {
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   gap: 24px;
   max-width: 400px;
+  color: var(--fg-color-dark);
+  text-decoration: none;
 
   .card-image {
     min-height: 400px;
@@ -34,5 +40,11 @@
   h3 {
     font-weight: bold;
     font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    grid-column: 2 / 12;
   }
 }

@@ -35,13 +35,16 @@
 
 .news-card {
   display: flex;
+  align-items: center;
   min-width: 500px;
+  max-width: 600px;
   background-color: var(--bg-surface);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .card-image {
   flex-shrink: 0;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -51,6 +54,11 @@
   flex-direction: column;
   padding: 10px;
   color: var(--fg-color-dark);
+
+  p {
+    font-size: 16px;
+    @include typography.line-clamp(3);
+  }
 }
 
 .card-header {
@@ -64,10 +72,8 @@
 
   time {
     margin-left: auto;
-  }
-
-  p {
-    font-size: 16px;
-    @include typography.line-clamp(3);
+    font-size: 14px;
+    color: var(--fg-color-muted);
   }
 }
+

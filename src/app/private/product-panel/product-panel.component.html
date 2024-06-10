@@ -1,1 +1,54 @@
-<p>product-panel works!</p>
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h3>Product edit panel</h3>
+    <div class="gallary-container" [class.disabled]="loading()">
+      <div>
+        <label for="coverInput" class="btn">
+          {{ coverFile() ? "Change image" : "Select image" }}
+        </label>
+        <input
+          id="coverInput"
+          type="file"
+          class="visually-hidden"
+          [accept]="accept"
+          multiple
+          #fileInput
+          (change)="onCoverFileChange()" />
+      </div>
+      <a
+        href="https://squoosh.app/"
+        target="_blank"
+        class="link"
+        rel="noopener noreferrer">
+        👉Squoosh to webp!👈
+      </a>
+    </div>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="title"
+      placeholder="Name " />
+    <input
+      type="text"
+      class="form-control"
+      formControlName="title"
+      placeholder="Price ₼" />
+
+    <textarea
+      formControlName="text"
+      class="form-control"
+      placeholder="Description"></textarea>
+
+    <button type="submit" class="btn" [disabled]="loading() || form.invalid">
+      Submit
+    </button>
+    <button
+      *ngIf="newsId"
+      type="button"
+      class="btn btn-danger"
+      (click)="deleteNews()"
+      [disabled]="loading()">
+      Delete
+    </button>
+  </form>
+</div>

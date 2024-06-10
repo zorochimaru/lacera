@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <div *ngIf="newsItem$ | async as newsItem">
+    <img class="cover" [src]="newsItem.coverImgUrl" alt="" />
+    <div class="header-container">
+      <h3>{{ newsItem.title }}</h3>
+      <time>{{ newsItem.createdAt | date }}</time>
+    </div>
+    <p>{{ newsItem.text }}</p>
+  </div>
+  <a [routerLink]="routerLinks.public" class="btn back-btn">Back</a>
+</div>

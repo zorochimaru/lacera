@@ -3,8 +3,5 @@ export interface Product {
   amount: number;
   description: string;
   imageUrl: string;
-  price: {
-    amount: number;
-    currency: string;
-  }[];
+  price: number;
 }

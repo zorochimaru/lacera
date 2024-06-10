@@ -1,3 +1,4 @@
+<app-header />
 <section *ngFor="let section of homeSections" [id]="section.anchorLink">
   <ng-container *ngComponentOutlet="section.component"></ng-container>
 </section>

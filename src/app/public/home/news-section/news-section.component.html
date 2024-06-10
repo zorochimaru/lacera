@@ -6,28 +6,22 @@
     </div>
 
     <div class="news-container">
-      <div class="news-card">
-        <img class="card-image" *ngIf="true" src="assets/images/cups6.webp" />
-        <div class="card-info">
-          <time datetime="2022-09-10 19:00">September 10, 2022</time>
-          <h3>Lean take into the area of slow sculpt pans and things</h3>
-          <a>{{ t("readMore") }}</a>
-        </div>
-      </div>
-      <div class="news-card">
-        <div class="card-info">
-          <time datetime="2022-09-10 19:00">September 10, 2022</time>
-          <h3>Lean take into the area of slow sculpt pans and things</h3>
-          <a>{{ t("readMore") }}</a>
-        </div>
-      </div>
-      <div class="news-card">
-        <div class="card-info">
-          <time datetime="2022-09-10 19:00">September 10, 2022</time>
-          <h3>Lean take into the area of slow sculpt pans and things</h3>
-          <a>{{ t("readMore") }}</a>
-        </div>
-      </div>
+      @for (item of sourceData$ | async; track item.id; let last = $last) {
+        <a [routerLink]="[routerLinks.news, item.id]" class="news-card">
+          <img
+            class="card-image"
+            height="400"
+            width="600"
+            [ngSrc]="item.coverImgUrl" />
+          <div class="card-info">
+            <time>{{ item.createdAt | date }}</time>
+            <h3>{{ item.title }}</h3>
+            <a>{{ t("readMore") }}</a>
+          </div>
+        </a>
+      } @empty {
+        No data added yet
+      }
     </div>
   </div>
 </ng-container>

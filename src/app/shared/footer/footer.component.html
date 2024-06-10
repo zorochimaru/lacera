@@ -1,8 +1,13 @@
 <ng-container *transloco="let t; read: 'footer'">
-  <footer [id]="footerId">
+  <footer [id]="routerAnchorLinks.shared.footer">
     <h1>{{ t("contactUs") | titlecase }}</h1>
     <div class="wrapper">
-      <img class="logo" src="/assets/images/logo-white.svg" alt="" />
+      <a
+        [routerLink]="routerLinks.public"
+        [fragment]="routerAnchorLinks.home.home">
+        <img class="logo" src="/assets/images/logo-white.svg" alt="" />
+      </a>
+
       <div class="divider"></div>
       <div class="contact-us-container">
         <div class="footer-data">

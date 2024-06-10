@@ -1,7 +1,9 @@
 <aside class="filters-container">
   <h2>Filters</h2>
+
   <div class="form-container">
     <label for="date-filter">Start date</label>
+
     <input
       type="date"
       id="date-filter"
@@ -10,8 +12,10 @@
       [max]="maxDate"
       (change)="setDateFilters($event, 'start')" />
   </div>
+
   <div class="form-container">
     <label for="date-filter">End date</label>
+
     <input
       type="date"
       id="date-filter"
@@ -19,8 +23,10 @@
       [min]="minDate"
       (change)="setDateFilters($event, 'end')" />
   </div>
+
   <button type="button" class="btn" (click)="searchByFilters()">Search</button>
 </aside>
+
 <div class="list-container wrapper">
   <a [routerLink]="['../', routerLinks.newsPanel]" class="btn create-news-btn">
     Create new
@@ -40,11 +46,14 @@
           priority
           [ngSrc]="item.coverImgUrl"
           alt="" />
+
         <div class="card-content">
           <div class="card-header">
             <h3>{{ item.title }}</h3>
+
             <time>{{ item.createdAt | date }}</time>
           </div>
+
           <p>{{ item.text }}</p>
         </div>
       </a>

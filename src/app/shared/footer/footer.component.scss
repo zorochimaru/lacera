@@ -20,6 +20,12 @@ footer {
   z-index: 1;
 }
 
+a {
+  color: var(--fg-color-light);
+  cursor: pointer;
+  text-decoration: none;
+}
+
 h1 {
   color: var(--accent-fg-color);
 }

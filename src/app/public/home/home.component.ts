@@ -7,6 +7,7 @@ import {
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { routerAnchorLinks } from '@core';
 import { TranslocoModule } from '@jsverse/transloco';
+import { HeaderComponent } from '@shared';
 
 import { AboutUsSectionComponent } from './about-us-section/about-us-section.component';
 import { CustomSetsSectionComponent } from './custom-sets-section/custom-sets-section.component';
@@ -28,7 +29,8 @@ import { WorkshopsSectionComponent } from './workshops-section/workshops-section
     AboutUsSectionComponent,
     ProductsSectionComponent,
     NewsSectionComponent,
-    WorkshopsSectionComponent
+    WorkshopsSectionComponent,
+    HeaderComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -57,7 +59,6 @@ export class HomeComponent {
       anchorLink: routerAnchorLinks.home.workshops,
       component: WorkshopsSectionComponent
     }
-    // TODO: add later
     // {
     //   anchorLink: routerAnchorLinks.home.news,
     //   component: NewsSectionComponent

@@ -1,18 +1,23 @@
 import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Timestamp } from '@angular/fire/firestore';
-import { DateRange, FirestoreCollections, News, NewsFirestore } from '@core';
+import {
+  DateRange,
+  FirestoreCollections,
+  Product,
+  ProductFirestore
+} from '@core';
 import { endOfDay, startOfDay } from 'date-fns';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { FirestoreService } from './firestore.service';
 
 @Injectable()
-export class NewsService {
+export class ProductsService {
   readonly #fireStoreService = inject(FirestoreService);
   readonly #dr = inject(DestroyRef);
 
-  readonly #sourceData$ = new BehaviorSubject<NewsFirestore[]>([]);
+  readonly #sourceData$ = new BehaviorSubject<ProductFirestore[]>([]);
   public sourceData$ = this.#sourceData$.asObservable();
 
   #dateRange = signal<DateRange>({
@@ -33,15 +38,18 @@ export class NewsService {
   public loadNextData(reset?: boolean) {
     if (this.#hasMore) {
       this.#fireStoreService
-        .getListWithPagination<NewsFirestore>(FirestoreCollections.news, {
-          limit: 10,
-          orderDirection: 'desc',
-          orderBy: 'createdAt',
-          startAfter:
-            !reset && this.#sourceData$.value.at(-1)
-              ? Timestamp.fromDate(this.#sourceData$.value.at(-1)!.createdAt)
-              : null
-        })
+        .getListWithPagination<ProductFirestore>(
+          FirestoreCollections.products,
+          {
+            limit: 10,
+            orderDirection: 'desc',
+            orderBy: 'createdAt',
+            startAfter:
+              !reset && this.#sourceData$.value.at(-1)
+                ? Timestamp.fromDate(this.#sourceData$.value.at(-1)!.createdAt)
+                : null
+          }
+        )
         .pipe(takeUntilDestroyed(this.#dr))
         .subscribe(res => {
           if (reset) {
@@ -54,32 +62,32 @@ export class NewsService {
     }
   }
 
-  public getNewsById(id: string): Observable<NewsFirestore | null> {
-    return this.#fireStoreService.get<NewsFirestore>(
-      FirestoreCollections.news,
+  public getProductById(id: string): Observable<ProductFirestore | null> {
+    return this.#fireStoreService.get<ProductFirestore>(
+      FirestoreCollections.products,
       id
     );
   }
 
-  public createNews(news: News): Observable<string> {
-    return this.#fireStoreService.create<NewsFirestore>(
-      FirestoreCollections.news,
+  public createProduct(news: Product): Observable<string> {
+    return this.#fireStoreService.create<ProductFirestore>(
+      FirestoreCollections.products,
       news
     );
   }
 
-  public updateNews(id: string, news: NewsFirestore): Observable<void> {
-    return this.#fireStoreService.update<NewsFirestore>(
-      FirestoreCollections.news,
+  public updateProduct(id: string, news: ProductFirestore): Observable<void> {
+    return this.#fireStoreService.update<ProductFirestore>(
+      FirestoreCollections.products,
       id,
       news
     );
   }
 
-  public searchNewsByDate(): void {
+  public searchProductsByDate(): void {
     this.#hasMore = true;
     this.#fireStoreService
-      .getList<NewsFirestore>(FirestoreCollections.news, {
+      .getList<ProductFirestore>(FirestoreCollections.products, {
         customQuery: [
           ['createdAt', '>', this.#dateRange().start],
           ['createdAt', '<', this.#dateRange().end]
