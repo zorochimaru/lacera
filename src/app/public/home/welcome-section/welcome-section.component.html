@@ -1,20 +1,22 @@
 <ng-container *transloco="let t; read: 'home.welcome'">
-  <div class="grid">
-    <img class="logo" src="assets/images/logo.svg" />
-    <div class="description-container">
-      <h2>{{ t("subTitle") }}</h2>
-      <h1>{{ t("title") }}</h1>
-      <p>
-        {{ t("description") }}
-      </p>
-    </div>
+  <app-stared-overlay>
+    <div class="grid">
+      <img class="logo" src="assets/images/logo.svg" />
+      <div class="description-container">
+        <h2>{{ t("subTitle") }}</h2>
+        <h1>{{ t("title") }}</h1>
+        <p>
+          {{ t("description") }}
+        </p>
+      </div>
 
-    <img class="cups-img" src="assets/images/cups.webp" alt="" />
-    <img
-      class="decor-img-1 pulsating-element"
-      src="assets/images/decor-rings.svg"
-      alt="" />
-    <img class="decor-img-2" src="assets/images/decor-leaves.webp" alt="" />
-    <img class="decor-img-3" src="assets/images/decor-leaves-2.webp" alt="" />
-  </div>
+      <img class="cups-img" src="assets/images/cups.webp" alt="" />
+      <img
+        class="decor-img-1 pulsating-element"
+        src="assets/images/decor-rings.svg"
+        alt="" />
+      <img class="decor-img-2" src="assets/images/decor-leaves.webp" alt="" />
+      <img class="decor-img-3" src="assets/images/decor-leaves-2.webp" alt="" />
+    </div>
+  </app-stared-overlay>
 </ng-container>
