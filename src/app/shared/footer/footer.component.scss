@@ -18,6 +18,7 @@ footer {
 
 .logo {
   z-index: 1;
+  position: relative;
 }
 
 a {
@@ -57,6 +58,10 @@ h1 {
   flex-shrink: 0;
   line-height: 30px;
   font-size: 20px;
+
+  img {
+    height: 30px;
+  }
 }
 
 .title-container {
@@ -100,6 +105,7 @@ h1 {
     font-size: 20px;
 
     img {
+      height: 30px;
       flex-shrink: 0;
     }
 
@@ -128,6 +134,8 @@ h1 {
 
     .social-links {
       gap: 25px;
+      align-items: flex-start;
+      margin: 0 auto;
 
       a {
         justify-content: center;

@@ -2,7 +2,7 @@
   position: fixed;
   top: 5%;
   right: 5%;
-  z-index: 2;
+  z-index: 3;
   padding: 10px;
   border-radius: 8px;
   transition: background-color 200ms ease-in-out;
@@ -42,8 +42,14 @@ ul {
 
 @media (max-width: 768px) {
   :host {
-    .scrolled {
-      background-color: none;
+    &.scrolled {
+      background-color: transparent;
+    }
+  }
+
+  .lang-list {
+    select {
+      padding: 10px 15px;
     }
   }
 
