@@ -19,6 +19,7 @@ import { provideTransloco } from '@jsverse/transloco';
 
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
+import { LangCodes } from './core/interfaces';
 import { TranslocoHttpLoader } from './transloco-loader';
 
 const scrollConfig: InMemoryScrollingOptions = {
@@ -41,8 +42,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideTransloco({
       config: {
-        availableLangs: ['en', 'az', 'ru'],
-        defaultLang: localStorage.getItem('selectedLang') || 'az',
+        availableLangs: [LangCodes.en, LangCodes.az, LangCodes.ru],
+        defaultLang: localStorage.getItem('selectedLang') || LangCodes.az,
         reRenderOnLangChange: true,
         prodMode: !isDevMode()
       },

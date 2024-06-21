@@ -9,5 +9,6 @@
       "style": "scss",
       "externalTemplate": true
     }
-  }
+  },
+  "prettier.endOfLine": "crlf"
 }

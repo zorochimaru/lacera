@@ -1,6 +1,8 @@
+import { LangCodes } from '../language-codes.enum';
+
 export interface News {
-  title: string;
-  text: string;
+  title: Record<LangCodes, string>;
+  text: Record<LangCodes, string>;
   coverImgUrl: string;
   imageUrls: string[];
 }

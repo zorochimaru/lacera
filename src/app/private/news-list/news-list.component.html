@@ -49,12 +49,12 @@
 
         <div class="card-content">
           <div class="card-header">
-            <h3>{{ item.title }}</h3>
+            <h3>{{ item.title | currLang }}</h3>
 
             <time>{{ item.createdAt | date }}</time>
           </div>
 
-          <p>{{ item.text }}</p>
+          <p>{{ item.text | currLang }}</p>
         </div>
       </a>
     } @empty {

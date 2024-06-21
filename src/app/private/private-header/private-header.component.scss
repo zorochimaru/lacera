@@ -25,6 +25,7 @@ nav ul {
 
 nav {
   display: flex;
+  align-items: center;
   border-bottom: 1px solid #eee;
 }
 
@@ -47,3 +48,4 @@ nav {
 .active {
   font-weight: 600;
 }
+

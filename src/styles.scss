@@ -76,6 +76,20 @@ a {
   &.btn-danger {
     background-color: var(--btn-danger-bg);
   }
+
+  &.btn-success {
+    background-color: var(--btn-success-bg);
+  }
+}
+
+.lang-list {
+  border-radius: 8px;
+  overflow: clip;
+
+  select {
+    border: none;
+    padding: 3px;
+  }
 }
 
 .grid {
@@ -97,6 +111,7 @@ a {
 }
 
 .form-control {
+  width: 100%;
   padding: 10px 20px;
   border-radius: 8px;
   border: 1px solid var(--border-default);

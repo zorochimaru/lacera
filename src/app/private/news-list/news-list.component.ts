@@ -7,7 +7,12 @@ import {
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { DateRange, IntersectionListenerDirective, routerLinks } from '@core';
+import {
+  CurrentLanguagePipe,
+  DateRange,
+  IntersectionListenerDirective,
+  routerLinks
+} from '@core';
 import { endOfDay, startOfDay } from 'date-fns';
 
 import { NewsService } from '../../core/services/news.service';
@@ -20,7 +25,8 @@ import { NewsService } from '../../core/services/news.service';
     NgOptimizedImage,
     ReactiveFormsModule,
     RouterLink,
-    IntersectionListenerDirective
+    IntersectionListenerDirective,
+    CurrentLanguagePipe
   ],
   providers: [NewsService],
   templateUrl: './news-list.component.html',

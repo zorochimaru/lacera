@@ -2,10 +2,21 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h3>News edit panel</h3>
     <div class="gallary-container" [class.disabled]="loading()">
+      <img width="100px" [src]="form.controls.coverImgUrl.value" />
+
       <div>
         <label for="coverInput" class="btn">
-          {{ coverFile() ? "Change cover" : "Select cover" }}
+          {{
+            coverFile() || form.controls.coverImgUrl.value
+              ? "Change cover"
+              : "Select cover"
+          }}
         </label>
+
+        <label class="cover-name" *ngIf="coverFile()">
+          {{ coverFile()?.name }}
+        </label>
+
         <input
           id="coverInput"
           type="file"
@@ -16,20 +27,45 @@
           (change)="onCoverFileChange()" />
       </div>
     </div>
-    <input
-      type="text"
-      class="form-control"
-      formControlName="title"
-      placeholder="Title" />
-
-    <textarea
-      formControlName="text"
-      class="form-control"
-      placeholder="Text"></textarea>
+    <div class="title-container" formGroupName="title">
+      <input
+        type="text"
+        class="form-control"
+        formControlName="az"
+        placeholder="Title az" />
+      <input
+        type="text"
+        class="form-control"
+        formControlName="ru"
+        placeholder="Title ru" />
+      <input
+        type="text"
+        class="form-control"
+        formControlName="en"
+        placeholder="Title en" />
+    </div>
+    <div formGroupName="text" class="text-container">
+      <textarea
+        formControlName="az"
+        class="form-control"
+        placeholder="Text az"></textarea>
+      <textarea
+        formControlName="ru"
+        class="form-control"
+        placeholder="Text ru"></textarea>
+      <textarea
+        formControlName="en"
+        class="form-control"
+        placeholder="Text en"></textarea>
+    </div>
     <div class="gallary-container" [class.disabled]="loading()">
       <div class="upload-action-container">
         <label for="uploadInput" class="btn">
-          {{ files().length ? "Change images" : "Upload images" }}
+          {{
+            files().length
+              ? files().length + " new images selected"
+              : "Upload images"
+          }}
         </label>
         <input
           id="uploadInput"
@@ -37,7 +73,7 @@
           class="visually-hidden"
           [accept]="accept"
           multiple
-          #fileInput
+          #filesInput
           (change)="onFileChange()" />
 
         <a
@@ -61,7 +97,10 @@
         <img width="100" height="100" [src]="imageUrl" alt="" />
       </div>
     </div>
-    <button type="submit" class="btn" [disabled]="loading() || form.invalid">
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="loading() || form.invalid">
       Submit
     </button>
     <button

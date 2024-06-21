@@ -8,16 +8,39 @@ h3 {
   text-align: center;
 }
 
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  & * {
+    flex: 300px 1 1;
+  }
+}
+
+.text-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  & * {
+    flex: 300px 1 1;
+  }
+}
+
 .form-container {
-  max-width: 800px;
   margin-block: 50px;
-  margin-inline: auto;
+  margin-inline: 5%;
 }
 
 .gallary-container {
   display: flex;
+  flex-direction: column;
   align-self: flex-start;
   width: 100%;
+  gap: 20px;
 
   &.disabled {
     cursor: not-allowed;
@@ -27,6 +50,14 @@ h3 {
       pointer-events: none;
     }
   }
+}
+
+.btn {
+  align-self: flex-start;
+}
+
+.cover-name {
+  margin-left: 10px;
 }
 
 .upload-action-container {
@@ -76,3 +107,4 @@ textarea {
   min-height: 100px;
   resize: vertical;
 }
+

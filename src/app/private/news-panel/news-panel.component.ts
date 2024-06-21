@@ -10,7 +10,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   FirestoreCollections,
@@ -19,7 +19,6 @@ import {
   NewsFirestore,
   routerLinks,
   StorageFolders,
-  UploadResult,
   UploadService
 } from '@core';
 import {
@@ -49,6 +48,7 @@ export class NewsPanelComponent implements OnInit {
   readonly #upload = inject(UploadService);
 
   @ViewChild('fileInput') protected fileInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('filesInput') protected filesInput!: ElementRef<HTMLInputElement>;
 
   protected coverFile = signal<File | null>(null);
   protected files = signal<File[]>([]);
@@ -60,8 +60,8 @@ export class NewsPanelComponent implements OnInit {
 
   protected form = this.#fb.nonNullable.group({
     coverImgUrl: [''],
-    title: ['', [Validators.required]],
-    text: ['', [Validators.required]],
+    title: this.#fb.nonNullable.group({ az: '', ru: '', en: '' }),
+    text: this.#fb.nonNullable.group({ az: '', ru: '', en: '' }),
     imageUrls: this.#fb.nonNullable.control<string[]>([])
   });
 
@@ -78,14 +78,14 @@ export class NewsPanelComponent implements OnInit {
   }
 
   protected onFileChange(): void {
-    const files = this.fileInput.nativeElement.files
-      ? Array.from(this.fileInput.nativeElement.files)
+    const files = this.filesInput.nativeElement.files
+      ? Array.from(this.filesInput.nativeElement.files)
       : [];
 
     /**
      * Reset the file input value to allow the same file to be selected again
      */
-    this.fileInput.nativeElement.value = '';
+    this.filesInput.nativeElement.value = '';
 
     if (!files.length) {
       return;
@@ -95,7 +95,6 @@ export class NewsPanelComponent implements OnInit {
       console.error('File type not supported or size not supported');
       return;
     }
-
     this.files.set(files);
   }
 
@@ -162,35 +161,36 @@ export class NewsPanelComponent implements OnInit {
       alert('cover not found');
       return;
     }
-    const imageRequests = [];
-    let mainRequest: Observable<void>;
+    const imageRequests$ = [];
+    let mainRequest$: Observable<void>;
     this.form.disable();
     this.loading.set(true);
 
     if (this.coverFile()) {
-      imageRequests.push(
+      imageRequests$.push(
         this.#upload.upload(this.coverFile()!, StorageFolders.news)
       );
     }
 
     for (const file of this.files()) {
-      imageRequests.push(this.#upload.upload(file, StorageFolders.news));
+      imageRequests$.push(this.#upload.upload(file, StorageFolders.news));
     }
 
-    if (imageRequests.length) {
-      mainRequest = forkJoin(imageRequests).pipe(
-        switchMap((res: UploadResult[]) => {
+    if (imageRequests$.length) {
+      mainRequest$ = forkJoin(imageRequests$).pipe(
+        switchMap(imageRes => {
           return this.#upsertNews(
             values,
-            res.map(x => x.url)
+            this.coverFile() ? imageRes[0]?.url : values.coverImgUrl,
+            this.files().length ? imageRes?.slice(1).map(x => x.url) : undefined
           );
         })
       );
     } else {
-      mainRequest = this.#upsertNews(values);
+      mainRequest$ = this.#upsertNews(values);
     }
 
-    mainRequest
+    mainRequest$
       .pipe(
         finalize(() => {
           this.form.disable();
@@ -201,25 +201,29 @@ export class NewsPanelComponent implements OnInit {
       .subscribe(() => this.#backToList());
   }
 
-  #upsertNews(values: News, imageUrls?: string[]): Observable<void> {
+  #upsertNews(
+    values: News,
+    coverUrl?: string,
+    imageUrls?: string[]
+  ): Observable<void> {
     if (this.newsId) {
       return this.#firebaseService.update<NewsFirestore>(
         FirestoreCollections.news,
         this.newsId,
         {
           ...values,
-          coverImgUrl: imageUrls?.[0] || values.coverImgUrl,
-          imageUrls: [...values.imageUrls, ...(imageUrls?.slice(1) || [])]
+          coverImgUrl: coverUrl || values.coverImgUrl,
+          imageUrls: [...values.imageUrls, ...(imageUrls || [])]
         }
       );
     } else {
-      if (!imageUrls?.[0]) {
+      if (!coverUrl) {
         return of(void 0);
       }
       return this.#firebaseService
         .create<NewsFirestore>(FirestoreCollections.news, {
           ...values,
-          coverImgUrl: imageUrls?.[0],
+          coverImgUrl: coverUrl,
           imageUrls: imageUrls || []
         })
         .pipe(map(() => void 0));

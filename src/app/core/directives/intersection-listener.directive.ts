@@ -13,6 +13,7 @@ import {
 })
 export class IntersectionListenerDirective implements OnInit, AfterViewInit {
   @Output() appIntersectionListener = new EventEmitter<boolean>();
+
   observer!: IntersectionObserver; //  It will be used to observe changes in the intersection of an element with its parent container.
 
   constructor(private element: ElementRef) {}
@@ -31,6 +32,7 @@ export class IntersectionListenerDirective implements OnInit, AfterViewInit {
       rootMargin: '0px',
       threshold: 0.5
     };
+
     this.observer = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         this.appIntersectionListener.emit(true);

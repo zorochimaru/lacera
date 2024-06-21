@@ -7,13 +7,13 @@ export const privateRoutes: Routes = [
     loadComponent: () =>
       import('./private.component').then(c => c.PrivateComponent),
     children: [
-      {
-        path: routerLinks.productPanel,
-        loadComponent: () =>
-          import('./product-panel/product-panel.component').then(
-            c => c.ProductPanelComponent
-          )
-      },
+      // {
+      //   path: routerLinks.productPanel,
+      //   loadComponent: () =>
+      //     import('./product-panel/product-panel.component').then(
+      //       c => c.ProductPanelComponent
+      //     )
+      // },
       {
         path: routerLinks.productList,
         loadComponent: () =>
