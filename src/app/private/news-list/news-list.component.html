@@ -35,17 +35,13 @@
   <div class="list-container">
     @for (item of news$ | async; track item.id; let last = $last) {
       <a
+        (appIntersectionListener)="loadMore(last)"
         class="news-card"
         [routerLink]="['../', routerLinks.newsPanel]"
         [queryParams]="{ id: item.id }">
-        <img
-          (appIntersectionListener)="loadMore(last)"
-          class="card-image"
-          height="100"
-          width="100"
-          priority
-          [ngSrc]="item.coverImgUrl"
-          alt="" />
+        <div class="card-image">
+          <img [ngSrc]="item.coverImgUrl" priority fill alt="" />
+        </div>
 
         <div class="card-content">
           <div class="card-header">

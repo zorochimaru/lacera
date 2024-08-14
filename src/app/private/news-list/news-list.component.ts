@@ -48,21 +48,21 @@ export class NewsListComponent implements OnInit {
 
   protected setDateFilters(e: Event, type: 'start' | 'end'): void {
     const isoDate = (e.target as HTMLInputElement).valueAsDate!.toISOString();
-    const result: DateRange = {
+    const payload: DateRange = {
       start: this.#newsService.getDateRange()?.start || startOfDay(new Date()),
       end: this.#newsService.getDateRange()?.end || endOfDay(new Date())
     };
 
     if (type === 'start') {
-      result.start = startOfDay((e.target as HTMLInputElement).valueAsDate!);
+      payload.start = startOfDay((e.target as HTMLInputElement).valueAsDate!);
       this.minDate = isoDate.split('T')[0];
     }
     if (type === 'end') {
-      result.end = endOfDay((e.target as HTMLInputElement).valueAsDate!);
+      payload.end = endOfDay((e.target as HTMLInputElement).valueAsDate!);
       this.maxDate = isoDate.split('T')[0];
     }
 
-    this.#newsService.setDateRange(result);
+    this.#newsService.setDateRange(payload);
   }
 
   protected searchByFilters(): void {

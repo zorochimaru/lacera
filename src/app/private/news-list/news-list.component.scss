@@ -43,9 +43,14 @@
 }
 
 .card-image {
-  flex-shrink: 0;
-  height: 100%;
   object-fit: cover;
+  height: 100px;
+  width: 100px;
+  position: relative;
+
+  img {
+    object-fit: cover;
+  }
 }
 
 .card-content {
