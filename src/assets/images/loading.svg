@@ -1,0 +1,38 @@
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="200"
+      height="200"
+      viewBox="0 0 200 200">
+      <!-- First Dot -->
+      <circle cx="100" cy="70" r="40" fill="#E4AB81">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 100 100"
+          to="360 100 100"
+          dur="4s"
+          repeatCount="indefinite" />
+      </circle>
+
+      <!-- Second Dot -->
+      <circle cx="150" cy="100" r="20" fill="#5B1F29">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 100 100"
+          to="360 100 100"
+          dur="3s"
+          repeatCount="indefinite" />
+      </circle>
+
+      <!-- Third Dot -->
+      <circle cx="100" cy="150" r="30" fill="#FF6F61">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 100 100"
+          to="360 100 100"
+          dur="5s"
+          repeatCount="indefinite" />
+      </circle>
+    </svg>

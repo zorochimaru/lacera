@@ -1,11 +1,23 @@
 <div class="wrapper">
-  <div *ngIf="newsItem$ | async as newsItem">
+  @if (newsItem$ | async; as newsItem) {
     <img class="cover" [src]="newsItem.coverImgUrl" alt="" />
     <div class="header-container">
-      <h3>{{ newsItem.title }}</h3>
       <time>{{ newsItem.createdAt | date }}</time>
+      <h3>{{ newsItem.title | currLang }}</h3>
     </div>
-    <p>{{ newsItem.text }}</p>
-  </div>
+    <div class="content-container">
+      <p>{{ newsItem.text | currLang }}</p>
+    </div>
+    <div class="image-gallery">
+      @for (imageUrl of newsItem.imageUrls; track $index) {
+        <img [src]="imageUrl" alt="" />
+      }
+    </div>
+  } @else {
+    <div class="loading-state">
+      <img src="assets/images/loading.svg" alt="" />
+    </div>
+  }
+
   <a [routerLink]="routerLinks.public" class="btn back-btn">Back</a>
 </div>

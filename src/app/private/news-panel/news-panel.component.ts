@@ -19,6 +19,7 @@ import {
   NewsFirestore,
   routerLinks,
   StorageFolders,
+  UploadResult,
   UploadService
 } from '@core';
 import {
@@ -161,34 +162,37 @@ export class NewsPanelComponent implements OnInit {
       alert('cover not found');
       return;
     }
-    const imageRequests$ = [];
-    let mainRequest$: Observable<void>;
     this.form.disable();
     this.loading.set(true);
 
+    let coverRequest$: Observable<UploadResult> = of({
+      url: this.form.value.coverImgUrl || '',
+      progress: 100
+    });
+    // Update cover if new file exists
     if (this.coverFile()) {
-      imageRequests$.push(
-        this.#upload.upload(this.coverFile()!, StorageFolders.news)
+      coverRequest$ = this.#upload.upload(
+        this.coverFile()!,
+        StorageFolders.news
       );
     }
 
+    // Gallery images
+    const imageRequests$ = [];
     for (const file of this.files()) {
       imageRequests$.push(this.#upload.upload(file, StorageFolders.news));
     }
 
-    if (imageRequests$.length) {
-      mainRequest$ = forkJoin(imageRequests$).pipe(
-        switchMap(imageRes => {
-          return this.#upsertNews(
-            values,
-            this.coverFile() ? imageRes[0]?.url : values.coverImgUrl,
-            this.files().length ? imageRes?.slice(1).map(x => x.url) : undefined
-          );
-        })
-      );
-    } else {
-      mainRequest$ = this.#upsertNews(values);
-    }
+    // Main request
+    const mainRequest$ = forkJoin([coverRequest$, ...imageRequests$]).pipe(
+      switchMap(([coverRes, ...imagesRes]) => {
+        return this.#upsertNews(
+          values,
+          coverRes?.url ?? values.coverImgUrl,
+          imagesRes?.map(x => x.url)
+        );
+      })
+    );
 
     mainRequest$
       .pipe(

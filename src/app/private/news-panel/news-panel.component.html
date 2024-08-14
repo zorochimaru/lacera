@@ -13,10 +13,10 @@
           }}
         </label>
 
-        <label class="cover-name" *ngIf="coverFile()">
+        <label class="notation" *ngIf="coverFile()">
           {{ coverFile()?.name }}
         </label>
-
+        <span class="notation">Better height 300px</span>
         <input
           id="coverInput"
           type="file"
