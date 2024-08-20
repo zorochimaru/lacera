@@ -1,6 +1,5 @@
 <div class="wrapper">
-  @if (newsItem$ | async; as newsItem) {
-    <img class="cover" [src]="newsItem.coverImgUrl" alt="" />
+  @if (newsItem(); as newsItem) {
     <div class="header-container">
       <time>{{ newsItem.createdAt | date }}</time>
       <h3>{{ newsItem.title | currLang }}</h3>
@@ -8,11 +7,7 @@
     <div class="content-container">
       <p>{{ newsItem.text | currLang }}</p>
     </div>
-    <div class="image-gallery">
-      @for (imageUrl of newsItem.imageUrls; track $index) {
-        <img [src]="imageUrl" alt="" />
-      }
-    </div>
+    <gallery thumbs [items]="galleryItems()"></gallery>
   } @else {
     <div class="loading-state">
       <img src="assets/images/loading.svg" alt="" />

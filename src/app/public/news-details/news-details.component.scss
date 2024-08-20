@@ -30,16 +30,7 @@
   object-fit: cover;
 }
 
-.image-gallery {
-  display: flex;
-  gap: 20px;
-
-  img {
-    height: 100px;
-    object-fit: cover;
-    cursor: pointer;
-  }
-}
+ 
 
 .header-container {
   display: flex;

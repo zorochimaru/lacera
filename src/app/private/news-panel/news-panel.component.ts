@@ -19,7 +19,6 @@ import {
   NewsFirestore,
   routerLinks,
   StorageFolders,
-  UploadResult,
   UploadService
 } from '@core';
 import {
@@ -32,6 +31,7 @@ import {
   switchMap
 } from 'rxjs';
 
+// TODO: add thumbnails urls for gallery images
 @Component({
   selector: 'app-news-panel',
   standalone: true,
@@ -51,7 +51,6 @@ export class NewsPanelComponent implements OnInit {
   @ViewChild('fileInput') protected fileInput!: ElementRef<HTMLInputElement>;
   @ViewChild('filesInput') protected filesInput!: ElementRef<HTMLInputElement>;
 
-  protected coverFile = signal<File | null>(null);
   protected files = signal<File[]>([]);
   protected loading = signal<boolean>(false);
 
@@ -60,7 +59,6 @@ export class NewsPanelComponent implements OnInit {
   #limitFileSizeBytes = 100 * 1024 * 1024;
 
   protected form = this.#fb.nonNullable.group({
-    coverImgUrl: [''],
     title: this.#fb.nonNullable.group({ az: '', ru: '', en: '' }),
     text: this.#fb.nonNullable.group({ az: '', ru: '', en: '' }),
     imageUrls: this.#fb.nonNullable.control<string[]>([])
@@ -99,26 +97,6 @@ export class NewsPanelComponent implements OnInit {
     this.files.set(files);
   }
 
-  protected onCoverFileChange(): void {
-    const file = this.fileInput.nativeElement.files?.[0];
-
-    /**
-     * Reset the file input value to allow the same file to be selected again
-     */
-    this.fileInput.nativeElement.value = '';
-
-    if (!file) {
-      return;
-    }
-
-    if (!this.#isAcceptableType([file]) || !this.#isAcceptableSize([file])) {
-      console.error('File type not supported or size not supported');
-      return;
-    }
-
-    this.coverFile.set(file);
-  }
-
   protected deleteImage(url: string): void {
     this.form.patchValue({
       imageUrls: this.form.value.imageUrls?.filter(imageUrl => imageUrl !== url)
@@ -155,27 +133,9 @@ export class NewsPanelComponent implements OnInit {
 
   protected onSubmit(): void {
     const values = this.form.getRawValue();
-    if (
-      (!this.newsId && !this.coverFile()) ||
-      (this.newsId && !values.coverImgUrl && !this.coverFile())
-    ) {
-      alert('cover not found');
-      return;
-    }
+
     this.form.disable();
     this.loading.set(true);
-
-    let coverRequest$: Observable<UploadResult> = of({
-      url: this.form.value.coverImgUrl || '',
-      progress: 100
-    });
-    // Update cover if new file exists
-    if (this.coverFile()) {
-      coverRequest$ = this.#upload.upload(
-        this.coverFile()!,
-        StorageFolders.news
-      );
-    }
 
     // Gallery images
     const imageRequests$ = [];
@@ -184,11 +144,10 @@ export class NewsPanelComponent implements OnInit {
     }
 
     // Main request
-    const mainRequest$ = forkJoin([coverRequest$, ...imageRequests$]).pipe(
-      switchMap(([coverRes, ...imagesRes]) => {
+    const mainRequest$ = forkJoin([...imageRequests$]).pipe(
+      switchMap(([...imagesRes]) => {
         return this.#upsertNews(
           values,
-          coverRes?.url ?? values.coverImgUrl,
           imagesRes?.map(x => x.url)
         );
       })
@@ -205,29 +164,20 @@ export class NewsPanelComponent implements OnInit {
       .subscribe(() => this.#backToList());
   }
 
-  #upsertNews(
-    values: News,
-    coverUrl?: string,
-    imageUrls?: string[]
-  ): Observable<void> {
+  #upsertNews(values: News, imageUrls?: string[]): Observable<void> {
     if (this.newsId) {
       return this.#firebaseService.update<NewsFirestore>(
         FirestoreCollections.news,
         this.newsId,
         {
           ...values,
-          coverImgUrl: coverUrl || values.coverImgUrl,
           imageUrls: [...values.imageUrls, ...(imageUrls || [])]
         }
       );
     } else {
-      if (!coverUrl) {
-        return of(void 0);
-      }
       return this.#firebaseService
         .create<NewsFirestore>(FirestoreCollections.news, {
           ...values,
-          coverImgUrl: coverUrl,
           imageUrls: imageUrls || []
         })
         .pipe(map(() => void 0));

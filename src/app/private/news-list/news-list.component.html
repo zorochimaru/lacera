@@ -27,7 +27,7 @@
   <button type="button" class="btn" (click)="searchByFilters()">Search</button>
 </aside>
 
-<div class="list-container wrapper">
+<main class="wrapper">
   <a [routerLink]="['../', routerLinks.newsPanel]" class="btn create-news-btn">
     Create new
   </a>
@@ -39,10 +39,6 @@
         class="news-card"
         [routerLink]="['../', routerLinks.newsPanel]"
         [queryParams]="{ id: item.id }">
-        <div class="card-image">
-          <img [ngSrc]="item.coverImgUrl" priority fill alt="" />
-        </div>
-
         <div class="card-content">
           <div class="card-header">
             <h3>{{ item.title | currLang }}</h3>
@@ -57,4 +53,4 @@
       No data added yet
     }
   </div>
-</div>
+</main>

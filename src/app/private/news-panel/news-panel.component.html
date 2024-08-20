@@ -1,32 +1,7 @@
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h3>News edit panel</h3>
-    <div class="gallary-container" [class.disabled]="loading()">
-      <img width="100px" [src]="form.controls.coverImgUrl.value" />
 
-      <div>
-        <label for="coverInput" class="btn">
-          {{
-            coverFile() || form.controls.coverImgUrl.value
-              ? "Change cover"
-              : "Select cover"
-          }}
-        </label>
-
-        <label class="notation" *ngIf="coverFile()">
-          {{ coverFile()?.name }}
-        </label>
-        <span class="notation">Better height 300px</span>
-        <input
-          id="coverInput"
-          type="file"
-          class="visually-hidden"
-          [accept]="accept"
-          multiple
-          #fileInput
-          (change)="onCoverFileChange()" />
-      </div>
-    </div>
     <div class="title-container" formGroupName="title">
       <input
         type="text"

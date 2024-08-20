@@ -35,6 +35,7 @@
 
 .news-card {
   display: flex;
+  padding: 16px;
   align-items: center;
   min-width: 500px;
   max-width: 600px;
@@ -42,27 +43,15 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.card-image {
-  object-fit: cover;
-  height: 100px;
-  width: 100px;
-  position: relative;
-
-  img {
-    object-fit: cover;
-  }
-}
-
 .card-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding: 10px;
   color: var(--fg-color-dark);
 
   p {
     font-size: 16px;
-    @include typography.line-clamp(3);
+    @include typography.line-clamp(2);
   }
 }
 
@@ -71,13 +60,16 @@
 
   h3 {
     flex-grow: 1;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
+    margin-bottom: 8px;
+    @include typography.line-clamp(1);
   }
 
   time {
     margin-left: auto;
     font-size: 14px;
+    flex-shrink: 0;
     color: var(--fg-color-muted);
   }
 }
