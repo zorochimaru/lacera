@@ -1,5 +1,8 @@
 @use 'styles/theme';
 @use 'styles/fonts';
+@use '@angular/cdk' as cdk;
+
+@include cdk.overlay();
 
 *,
 *::before,
@@ -49,6 +52,11 @@ h2 {
 a {
   cursor: pointer;
   text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
 }
 
 .btn {

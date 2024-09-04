@@ -21,6 +21,7 @@ jobs:
         env:
           ENVIRONMENT_FILE: ${{ secrets.ENVIRONMENT_FILE }}
       - run: npm ci
+      - run: npm run make-sprite
       - run: npm run build
       - run: npm run transloco:optimize
       - uses: FirebaseExtended/action-hosting-deploy@v0
@@ -31,3 +32,4 @@ jobs:
           projectId: lacera-studio
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
+

@@ -8,11 +8,6 @@
     <div class="news-container">
       @for (item of sourceData$ | async; track item.id; let last = $last) {
         <a [routerLink]="[routerLinks.news, item.id]" class="news-card">
-          <img
-            class="card-image"
-            height="400"
-            width="600"
-            [ngSrc]="item.coverImgUrl" />
           <div class="card-info">
             <time>{{ item.createdAt | date }}</time>
             <h3>{{ item.title }}</h3>

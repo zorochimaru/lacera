@@ -1,0 +1,4 @@
+<div
+  [innerHTML]="(icons$ | async) || '' | sanitize: 'html'"
+  class="visually-hidden"></div>
+

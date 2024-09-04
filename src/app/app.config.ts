@@ -1,7 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
-  importProvidersFrom,
   isDevMode,
   provideExperimentalZonelessChangeDetection
 } from '@angular/core';
@@ -18,7 +17,7 @@ import {
   withInMemoryScrolling
 } from '@angular/router';
 import { provideTransloco } from '@jsverse/transloco';
-import { GalleryModule } from 'ng-gallery';
+
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import { LangCodes } from './core/interfaces';
@@ -43,7 +42,6 @@ export const appConfig: ApplicationConfig = {
     provideStorage(() => getStorage()),
     provideHttpClient(),
     provideAnimations(),
-    importProvidersFrom(GalleryModule),
     provideTransloco({
       config: {
         availableLangs: [LangCodes.en, LangCodes.az, LangCodes.ru],

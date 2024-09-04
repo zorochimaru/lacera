@@ -1,18 +1,31 @@
 <div class="wrapper">
   @if (newsItem(); as newsItem) {
     <div class="header-container">
-      <time>{{ newsItem.createdAt | date }}</time>
+      <div style="display: flex">
+        <a [routerLink]="routerLinks.public" class="btn back-btn">Back</a>
+        <time>{{ newsItem.createdAt | date }}</time>
+      </div>
       <h3>{{ newsItem.title | currLang }}</h3>
     </div>
     <div class="content-container">
       <p>{{ newsItem.text | currLang }}</p>
     </div>
-    <gallery thumbs [items]="galleryItems()"></gallery>
+    <div class="gallery-container">
+      @for (item of galleryItems(); track $index; let i = $index) {
+        <img
+          [src]="item"
+          (click)="openDialog(item)"
+          class="gallery-item"
+          alt="" />
+      }
+    </div>
   } @else {
     <div class="loading-state">
       <img src="assets/images/loading.svg" alt="" />
     </div>
   }
+
+  <hr class="divider" />
 
   <a [routerLink]="routerLinks.public" class="btn back-btn">Back</a>
 </div>

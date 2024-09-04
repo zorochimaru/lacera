@@ -2,14 +2,14 @@
   "name": "lacera",
   "version": "0.0.37",
   "scripts": {
-    "start": "ng serve -o",
+    "start": "npm run make-sprite && ng serve -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "lint-fix": "ng lint --fix",
     "stylelint": "stylelint '**/*{.css,.scss}'",
     "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix",
-    "make-sprite": "svg-sprite -C svg-sprite.json ./web/lacera-app/src/assets/icons/svg/./*.svg",
+    "make-sprite": "svg-sprite -C svg-sprite.json ./src/assets/icons/svg/./**/*.svg",
     "i18n:extract": "transloco-keys-manager extract -u --sort",
     "i18n:find": "transloco-keys-manager find --translations-path assets/i18n",
     "transloco:optimize": "transloco-optimize dist/lacera/browser/assets/i18n"
@@ -33,7 +33,6 @@
     "@types/lodash-es": "^4.17.12",
     "date-fns": "^3.6.0",
     "lodash-es": "^4.17.21",
-    "ng-gallery": "^12.0.0-beta.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
@@ -77,3 +76,4 @@
     "*.scss": "stylelint --fix"
   }
 }
+

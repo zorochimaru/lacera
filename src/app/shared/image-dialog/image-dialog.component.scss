@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  max-width: 1000px;
+  animation: custom-dialog-enter 0.5s ease;
+  position: relative;
+
+  .close-icon {
+    position: absolute;
+    border-radius: 50%;
+    top: -30px;
+    right: 0;
+
+    &:hover app-icon {
+      color: var(--fg-color-muted);
+    }
+  }
+}
+
+@keyframes custom-dialog-enter {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: none;
+  }
+}
+

@@ -1,10 +1,12 @@
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { AsyncPipe, DatePipe, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CurrentLanguagePipe, NewsService, routerLinks } from '@core';
-import { GalleryModule, ImageItem } from 'ng-gallery';
 import { switchMap } from 'rxjs';
+
+import { ImageDialogComponent } from '../../shared';
 
 @Component({
   selector: 'app-news-details',
@@ -16,7 +18,7 @@ import { switchMap } from 'rxjs';
     CurrentLanguagePipe,
     DatePipe,
     NgOptimizedImage,
-    GalleryModule
+    DialogModule
   ],
   providers: [NewsService],
   templateUrl: './news-details.component.html',
@@ -25,6 +27,7 @@ import { switchMap } from 'rxjs';
 export class NewsDetailsComponent {
   readonly #route = inject(ActivatedRoute);
   readonly #newsService = inject(NewsService);
+  readonly #dialog = inject(Dialog);
 
   protected newsItem = toSignal(
     this.#route.params.pipe(
@@ -35,14 +38,18 @@ export class NewsDetailsComponent {
   );
 
   protected galleryItems = computed(() => {
-    return (this.newsItem()?.imageUrls || []).map(
-      imageUrl =>
-        new ImageItem({
-          src: imageUrl,
-          thumb: imageUrl
-        })
-    );
+    return this.newsItem()?.imageUrls || [];
   });
 
   protected routerLinks = routerLinks;
+
+  openDialog(src: string): void {
+    const dialogRef = this.#dialog.open<string>(ImageDialogComponent, {
+      data: { src }
+    });
+
+    dialogRef.closed.subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }

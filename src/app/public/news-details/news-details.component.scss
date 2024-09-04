@@ -21,16 +21,21 @@
   min-height: 30svh;
 }
 
-.cover {
-  height: 300px;
-  width: 100%;
-  overflow: clip;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  object-fit: cover;
+.divider {
+  margin-block: 16px;
 }
 
- 
+.gallery-container {
+  display: flex;
+  gap: 10px;
+}
+
+.gallery-item {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  cursor: pointer;
+}
 
 .header-container {
   display: flex;
@@ -38,9 +43,10 @@
   justify-content: center;
   width: 100%;
   text-align: center;
-  padding: 15px;
 
   time {
+    flex: 1;
+    text-align: end;
     align-self: flex-end;
     color: var(--fg-color-muted);
   }
