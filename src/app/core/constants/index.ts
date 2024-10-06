@@ -1,1 +1,2 @@
-export * from './router.counstants';
+export * from './common.const';
+export * from './router.const';

@@ -32,10 +32,11 @@ h3 {
 
 .form-container {
   margin-block: 50px;
-  margin-inline: 5%;
+  margin-inline: auto;
+  max-width: 1000px;
 }
 
-.gallary-container {
+.gallery-container {
   display: flex;
   flex-direction: column;
   align-self: flex-start;

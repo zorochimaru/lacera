@@ -1,7 +1,9 @@
+import { LangCodes } from '../language-codes.enum';
+
 export interface Product {
-  name: string;
+  name: Record<LangCodes, string>;
   amount: number;
-  description: string;
-  imageUrl: string;
+  description: Record<LangCodes, string>;
+  imageUrls: string[];
   price: number;
 }

@@ -13,6 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
+  commonConstants,
   FirestoreCollections,
   FirestoreService,
   News,
@@ -56,7 +57,7 @@ export class NewsPanelComponent implements OnInit {
 
   protected accept = 'image/webp';
   protected newsId = '';
-  #limitFileSizeBytes = 100 * 1024 * 1024;
+  #limitFileSizeBytes = commonConstants.imageFileSizeLimit;
 
   protected form = this.#fb.nonNullable.group({
     title: this.#fb.nonNullable.group({ az: '', ru: '', en: '' }),
@@ -136,22 +137,26 @@ export class NewsPanelComponent implements OnInit {
 
     this.form.disable();
     this.loading.set(true);
-
+    commonConstants.imageFileSizeLimit;
     // Gallery images
-    const imageRequests$ = [];
+    const imageRequests = [];
     for (const file of this.files()) {
-      imageRequests$.push(this.#upload.upload(file, StorageFolders.news));
+      imageRequests.push(this.#upload.upload(file, StorageFolders.news));
     }
-
     // Main request
-    const mainRequest$ = forkJoin([...imageRequests$]).pipe(
-      switchMap(([...imagesRes]) => {
-        return this.#upsertNews(
-          values,
-          imagesRes?.map(x => x.url)
-        );
-      })
-    );
+    let mainRequest$!: Observable<void>;
+    if (imageRequests.length) {
+      mainRequest$ = forkJoin([...imageRequests]).pipe(
+        switchMap(([...imagesRes]) => {
+          return this.#upsertNews(
+            values,
+            imagesRes?.map(x => x.url)
+          );
+        })
+      );
+    } else {
+      mainRequest$ = this.#upsertNews(values);
+    }
 
     mainRequest$
       .pipe(

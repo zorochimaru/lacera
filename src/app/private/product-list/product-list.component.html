@@ -29,23 +29,18 @@
   <div class="list-container">
     @for (item of products$ | async; track item.id; let last = $last) {
       <a
-        class="card"
+        (appIntersectionListener)="loadMore(last)"
+        class="news-card"
         [routerLink]="['../', routerLinks.productPanel]"
         [queryParams]="{ id: item.id }">
-        <img
-          (appIntersectionListener)="loadMore(last)"
-          class="card-image"
-          height="100"
-          width="100"
-          priority
-          [ngSrc]="item.imageUrl"
-          alt="" />
         <div class="card-content">
           <div class="card-header">
-            <h3>{{ item.name }}</h3>
+            <h3>{{ item.name | currLang }}</h3>
+
             <time>{{ item.createdAt | date }}</time>
           </div>
-          <p>{{ item.description }}</p>
+
+          <p>{{ item.description | currLang }}</p>
         </div>
       </a>
     } @empty {
@@ -53,3 +48,4 @@
     }
   </div>
 </div>
+

@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,7 +22,6 @@ import { NewsService } from '../../core/services/news.service';
   standalone: true,
   imports: [
     CommonModule,
-    NgOptimizedImage,
     ReactiveFormsModule,
     RouterLink,
     IntersectionListenerDirective,

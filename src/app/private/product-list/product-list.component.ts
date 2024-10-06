@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,6 +8,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import {
+  CurrentLanguagePipe,
   DateRange,
   IntersectionListenerDirective,
   ProductsService,
@@ -20,10 +21,10 @@ import { endOfDay, startOfDay } from 'date-fns';
   standalone: true,
   imports: [
     CommonModule,
-    NgOptimizedImage,
     ReactiveFormsModule,
     RouterLink,
-    IntersectionListenerDirective
+    IntersectionListenerDirective,
+    CurrentLanguagePipe
   ],
   providers: [ProductsService],
   templateUrl: './product-list.component.html',

@@ -44,12 +44,8 @@ export class NewsDetailsComponent {
   protected routerLinks = routerLinks;
 
   openDialog(src: string): void {
-    const dialogRef = this.#dialog.open<string>(ImageDialogComponent, {
+    this.#dialog.open<string>(ImageDialogComponent, {
       data: { src }
-    });
-
-    dialogRef.closed.subscribe(result => {
-      console.log('The dialog was closed');
     });
   }
 }

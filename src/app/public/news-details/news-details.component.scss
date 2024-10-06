@@ -7,7 +7,7 @@
   margin-inline: auto;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-block: 10vh;
 
   .back-btn {
     display: block;
@@ -45,7 +45,6 @@
   text-align: center;
 
   time {
-    flex: 1;
     text-align: end;
     align-self: flex-end;
     color: var(--fg-color-muted);
@@ -55,7 +54,7 @@
 h3 {
   font-weight: 600;
   font-size: 25px;
-  margin-block: 20px;
+  margin-bottom: 20px;
 }
 
 .loading-state {

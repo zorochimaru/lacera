@@ -1,10 +1,7 @@
 <div class="wrapper">
   @if (newsItem(); as newsItem) {
     <div class="header-container">
-      <div style="display: flex">
-        <a [routerLink]="routerLinks.public" class="btn back-btn">Back</a>
-        <time>{{ newsItem.createdAt | date }}</time>
-      </div>
+      <time>{{ newsItem.createdAt | date }}</time>
       <h3>{{ newsItem.title | currLang }}</h3>
     </div>
     <div class="content-container">

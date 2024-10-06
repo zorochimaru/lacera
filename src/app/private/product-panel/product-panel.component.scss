@@ -8,16 +8,40 @@ h3 {
   text-align: center;
 }
 
-.form-container {
-  max-width: 800px;
-  margin-block: 50px;
-  margin-inline: auto;
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  & * {
+    flex: 300px 1 1;
+  }
 }
 
-.gallary-container {
+.text-container {
   display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  & * {
+    flex: 300px 1 1;
+  }
+}
+
+.form-container {
+  margin-block: 50px;
+  margin-inline: auto;
+  max-width: 1000px;
+}
+
+.gallery-container {
+  display: flex;
+  flex-direction: column;
   align-self: flex-start;
   width: 100%;
+  gap: 20px;
 
   &.disabled {
     cursor: not-allowed;
@@ -29,6 +53,14 @@ h3 {
   }
 }
 
+.btn {
+  align-self: flex-start;
+}
+
+.notation {
+  margin-left: 10px;
+}
+
 .upload-action-container {
   display: flex;
   width: 100%;
@@ -37,7 +69,6 @@ h3 {
 }
 
 .link {
-  margin-left: auto;
   color: var(--fg-color-dark);
   font-size: 18px;
   font-weight: 600;
@@ -77,3 +108,4 @@ textarea {
   min-height: 100px;
   resize: vertical;
 }
+
