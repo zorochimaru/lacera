@@ -27,9 +27,9 @@
   <button type="button" class="btn" (click)="searchByFilters()">Search</button>
 </aside>
 
-<div class="wrapper">
-  <a [routerLink]="['../', routerLinks.newsPanel]" class="btn create-news-btn">
-    Create new
+<div class="list-container wrapper">
+  <a [routerLink]="[routerLinks.newsPanel]" class="btn create-news-btn">
+    Create new article
   </a>
 
   <div class="list-container">
@@ -37,7 +37,7 @@
       <a
         (appIntersectionListener)="loadMore(last)"
         class="news-card"
-        [routerLink]="['../', routerLinks.newsPanel]"
+        [routerLink]="[routerLinks.newsPanel]"
         [queryParams]="{ id: item.id }">
         <div class="card-content">
           <div class="card-header">

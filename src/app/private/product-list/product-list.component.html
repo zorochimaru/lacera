@@ -22,25 +22,30 @@
   <button type="button" class="btn" (click)="searchByFilters()">Search</button>
 </aside>
 <div class="list-container wrapper">
-  <a [routerLink]="['../', routerLinks.productPanel]" class="btn create-btn">
-    Create new
+  <a [routerLink]="[routerLinks.productPanel]" class="btn create-btn">
+    Create new product
   </a>
 
   <div class="list-container">
     @for (item of products$ | async; track item.id; let last = $last) {
       <a
-        (appIntersectionListener)="loadMore(last)"
-        class="news-card"
-        [routerLink]="['../', routerLinks.productPanel]"
+        class="card"
+        [routerLink]="[routerLinks.productPanel]"
         [queryParams]="{ id: item.id }">
+        <img
+          (appIntersectionListener)="loadMore(last)"
+          class="card-image"
+          height="100"
+          width="100"
+          priority
+          [ngSrc]="item.imageUrls[0]"
+          alt="" />
         <div class="card-content">
           <div class="card-header">
-            <h3>{{ item.name | currLang }}</h3>
-
+            <h3>{{ item.name }}</h3>
             <time>{{ item.createdAt | date }}</time>
           </div>
-
-          <p>{{ item.description | currLang }}</p>
+          <p>{{ item.description }}</p>
         </div>
       </a>
     } @empty {
@@ -48,4 +53,3 @@
     }
   </div>
 </div>
-

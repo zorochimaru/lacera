@@ -11,12 +11,6 @@
       </a>
     </li>
   </ul>
-  <div class="lang-list">
-    <select [(ngModel)]="selectedLang" (change)="changeLanguage(selectedLang)">
-      <option *ngFor="let lang of langCodes" [value]="lang">
-        {{ lang }}
-      </option>
-    </select>
-  </div>
+
   <button class="logout-btn" (click)="logOut()">Log out</button>
 </nav>

@@ -1,11 +1,12 @@
 {
   "name": "lacera",
-  "version": "0.0.37",
+  "version": "0.0.40",
   "scripts": {
     "start": "npm run make-sprite && ng serve -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
+    "format": "prettier --write .",
     "lint-fix": "ng lint --fix",
     "stylelint": "stylelint '**/*{.css,.scss}'",
     "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix",
@@ -33,7 +34,9 @@
     "@types/lodash-es": "^4.17.12",
     "date-fns": "^3.6.0",
     "lodash-es": "^4.17.21",
+    "ngx-mask": "^18.0.0",
     "rxjs": "~7.8.0",
+    "swiper": "^11.1.14",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },

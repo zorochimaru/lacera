@@ -17,6 +17,7 @@ import {
   withInMemoryScrolling
 } from '@angular/router';
 import { provideTransloco } from '@jsverse/transloco';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
@@ -33,6 +34,7 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideEnvironmentNgxMask(),
     provideExperimentalZonelessChangeDetection(),
     provideRouter(routes, inMemoryScrollingFeature),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

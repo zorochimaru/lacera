@@ -1,14 +1,9 @@
 import { NgFor } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthService, LangCodes, routerLinks } from '@core';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { AuthService, routerLinks } from '@core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-private-header',
@@ -18,22 +13,11 @@ import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
   styleUrl: './private-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PrivateHeaderComponent implements OnInit {
+export class PrivateHeaderComponent {
   readonly #authService = inject(AuthService);
   readonly #router = inject(Router);
-  readonly #translocoService = inject(TranslocoService);
+
   protected routerLinks = routerLinks;
-  protected langCodes = Object.values(LangCodes);
-  protected selectedLang = '';
-
-  public ngOnInit(): void {
-    this.selectedLang = this.#translocoService.getActiveLang();
-  }
-
-  protected changeLanguage(lang: string): void {
-    this.#translocoService.setActiveLang(lang);
-    localStorage.setItem('selectedLang', lang);
-  }
 
   protected logOut(): void {
     this.#authService.signOut().subscribe(() => {
