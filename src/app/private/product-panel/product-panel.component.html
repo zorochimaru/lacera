@@ -1,108 +1,156 @@
-<div class="form-container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h3>Product edit panel</h3>
-
-    <div class="title-container" formGroupName="name">
-      <input
-        type="text"
-        class="form-control"
-        formControlName="az"
-        placeholder="Name az" />
-      <input
-        type="text"
-        class="form-control"
-        formControlName="ru"
-        placeholder="Name ru" />
-      <input
-        type="text"
-        class="form-control"
-        formControlName="en"
-        placeholder="Name en" />
-    </div>
-    <div formGroupName="description" class="text-container">
-      <textarea
-        formControlName="az"
-        class="form-control"
-        placeholder="Description az"></textarea>
-      <textarea
-        formControlName="ru"
-        class="form-control"
-        placeholder="Description ru"></textarea>
-      <textarea
-        formControlName="en"
-        class="form-control"
-        placeholder="Description en"></textarea>
-    </div>
-    <div>
-      <label for="amount"> Amount </label>
-      <input
-        id="amount"
-        type="number"
-        class="form-control"
-        formControlName="amount"
-        placeholder="Amount" />
-    </div>
-    <div>
-      <label for="price">Price AZN</label>
-      <input
-        id="price"
-        type="number"
-        class="form-control"
-        formControlName="price"
-        placeholder="Price" />
-    </div>
-    <div class="gallery-container" [class.disabled]="loading()">
-      <div class="upload-action-container">
-        <label for="uploadInput" class="btn">
-          {{
-            files().length
-              ? files().length + " new images selected"
-              : "Upload images"
-          }}
-        </label>
+<div class="container">
+  <div class="wrapper" [class.disabled]="loading()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-control-container">
+        <label class="required">Name</label>
+        <input type="text" class="form-control" formControlName="name" />
+      </div>
+      <div class="form-control-container">
+        <label>Price ₼</label>
         <input
-          id="uploadInput"
-          type="file"
-          class="visually-hidden"
-          [accept]="accept"
-          multiple
-          #filesInput
-          (change)="onFileChange()" />
+          type="text"
+          class="form-control"
+          mask="00000"
+          [validation]="false"
+          formControlName="price" />
+      </div>
+      <div class="form-control-container">
+        <label>Quantity</label>
+        <input
+          type="text"
+          class="form-control"
+          mask="000"
+          [validation]="false"
+          formControlName="quantity" />
+      </div>
+      <div class="form-control-container">
+        <div class="dimensions-inputs">
+          <div class="form-control-container">
+            <label>Length sm</label>
+            <input
+              [formControl]="lengthControl"
+              type="text"
+              mask="000"
+              [validation]="false"
+              class="form-control" />
+          </div>
 
-        <a
-          href="https://squoosh.app/"
-          target="_blank"
-          class="link"
-          rel="noopener noreferrer">
-          👉Squoosh to webp!👈
-        </a>
+          <div class="form-control-container">
+            <label>Width sm</label>
+            <input
+              type="text"
+              mask="000"
+              [formControl]="widthControl"
+              class="form-control" />
+          </div>
+          <div class="form-control-container">
+            <label>Height sm</label>
+            <input
+              type="text"
+              mask="000"
+              [formControl]="heightControl"
+              class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="form-control-container">
+        <label>Material</label>
+        <select class="form-control" formControlName="materialId">
+          <option value="1">Abkhazia</option>
+          <option value="2">Afghanistan</option>
+        </select>
+      </div>
+      <div class="form-control-container">
+        <label>Category</label>
+        <select class="form-control" formControlName="categoryId">
+          <option value="1">Abkhazia</option>
+          <option value="2">Afghanistan</option>
+        </select>
+      </div>
+      <div class="form-control-container">
+        <label>Description</label>
+        <textarea
+          class="form-control"
+          placeholder="Optional"
+          formControlName="description"></textarea>
+      </div>
+      <button type="submit" [disabled]="loading()" class="btn">Submit</button>
+    </form>
+    <div class="image-upload-container">
+      <div class="image-preview-container">
+        @if (showSetCoverButton()) {
+          <button
+            type="button"
+            [disabled]="loading()"
+            class="btn set-as-cover-btn"
+            (click)="setAsCover()">
+            Set as cover
+          </button>
+        }
+        @if (previewImage()) {
+          <img class="image-preview" [src]="previewImage()" />
+        } @else {
+          <label class="upload-image-label" for="file">
+            <app-icon
+              icon="google_upload_file"
+              width="48px"
+              height="48px"></app-icon>
+          </label>
+        }
+      </div>
+
+      <a
+        href="https://squoosh.app/"
+        target="_blank"
+        class="link"
+        rel="noopener noreferrer">
+        👉Squoosh to webp!👈
+      </a>
+
+      <div class="image-upload-footer">
+        <div class="image-upload">
+          <input
+            [accept]="accept"
+            type="file"
+            id="file"
+            hidden
+            multiple
+            (change)="onFileChange($event)"
+            accept="image/*" />
+          @if (previewImage()) {
+            <label class="upload-image-label" for="file">
+              <app-icon
+                width="48px"
+                height="48px"
+                icon="google_upload_file"></app-icon>
+            </label>
+          }
+        </div>
+        <div class="swiper-wrapper">
+          <swiper-container slides-per-view="5.5">
+            @for (item of images(); track $index; let i = $index) {
+              <swiper-slide>
+                <div
+                  [class.is-cover]="item.isCover"
+                  [class.new-image]="item.file"
+                  class="thumbnail-image-card">
+                  <button
+                    [disabled]="loading()"
+                    type="button"
+                    class="delete-image-btn"
+                    (click)="deleteImage(i)">
+                    <app-icon icon="google_delete"></app-icon>
+                  </button>
+                  <img
+                    class="thumbnail-image"
+                    (click)="setPreviewImage(i)"
+                    [src]="item.preview" />
+                </div>
+              </swiper-slide>
+            }
+          </swiper-container>
+        </div>
       </div>
     </div>
-    <div class="thumbnail-container">
-      <div
-        *ngFor="let imageUrl of form.controls.imageUrls.valueChanges | async">
-        <button
-          type="button"
-          class="delete-thumbnail-btn"
-          (click)="deleteImage(imageUrl)">
-          Delete
-        </button>
-        <img width="100" height="100" [src]="imageUrl" alt="" />
-      </div>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-success"
-      [disabled]="loading() || form.invalid">
-      Submit
-    </button>
-    <button
-      *ngIf="id"
-      type="button"
-      class="btn btn-danger"
-      (click)="delete()"
-      [disabled]="loading()">
-      Delete
-    </button>
-  </form>
+  </div>
 </div>

@@ -8,7 +8,7 @@ export const privateRoutes: Routes = [
       import('./private.component').then(c => c.PrivateComponent),
     children: [
       {
-        path: routerLinks.productPanel,
+        path: `${routerLinks.productList}/${routerLinks.productPanel}`,
         loadComponent: () =>
           import('./product-panel/product-panel.component').then(
             c => c.ProductPanelComponent
@@ -29,7 +29,7 @@ export const privateRoutes: Routes = [
           )
       },
       {
-        path: routerLinks.newsPanel,
+        path: `${routerLinks.newsList}/${routerLinks.newsPanel}`,
         loadComponent: () =>
           import('./news-panel/news-panel.component').then(
             c => c.NewsPanelComponent

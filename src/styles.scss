@@ -1,6 +1,8 @@
 @use 'styles/theme';
 @use 'styles/fonts';
 @use '@angular/cdk' as cdk;
+@use 'styles/container';
+@use 'styles/animations';
 
 @include cdk.overlay();
 
@@ -118,8 +120,16 @@ button {
   }
 }
 
+.form-control-container {
+  & label {
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+}
+
 .form-control {
   width: 100%;
+  max-width: 300px;
   padding: 10px 20px;
   border-radius: 8px;
   border: 1px solid var(--border-default);
