@@ -18,4 +18,3 @@ export class ImageDialogComponent {
     this.dialogRef.close();
   }
 }
-

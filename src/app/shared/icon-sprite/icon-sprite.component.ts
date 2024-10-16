@@ -18,4 +18,3 @@ export class IconSpriteComponent {
     responseType: 'text'
   });
 }
-

@@ -91,7 +91,10 @@
           <img class="image-preview" [src]="previewImage()" />
         } @else {
           <label class="upload-image-label" for="file">
-            <app-icon icon="google_upload_file"></app-icon>
+            <app-icon
+              icon="google_upload_file"
+              width="48px"
+              height="48px"></app-icon>
           </label>
         }
       </div>
@@ -116,7 +119,10 @@
             accept="image/*" />
           @if (previewImage()) {
             <label class="upload-image-label" for="file">
-              <img src="assets/icons/upload_file.svg" alt="upload" />
+              <app-icon
+                width="48px"
+                height="48px"
+                icon="google_upload_file"></app-icon>
             </label>
           }
         </div>

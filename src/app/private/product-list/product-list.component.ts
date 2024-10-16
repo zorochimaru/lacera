@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -22,6 +22,7 @@ import { endOfDay, startOfDay } from 'date-fns';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NgOptimizedImage,
     RouterLink,
     IntersectionListenerDirective,
     CurrentLanguagePipe

@@ -12,4 +12,3 @@ export class IconComponent {
   public width = input('24px');
   public icon = input.required<string>();
 }
-

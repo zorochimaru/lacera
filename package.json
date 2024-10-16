@@ -79,4 +79,3 @@
     "*.scss": "stylelint --fix"
   }
 }
-

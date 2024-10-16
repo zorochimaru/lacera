@@ -122,17 +122,11 @@ h3 {
   align-items: center;
   justify-content: center;
   flex: 1;
+  cursor: pointer;
+  transition: transform 0.2s;
 
-  & img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    cursor: pointer;
-    transition: transform 0.2s;
-
-    &:hover {
-      transform: scale(1.2);
-    }
+  &:hover {
+    transform: scale(1.2);
   }
 }
 

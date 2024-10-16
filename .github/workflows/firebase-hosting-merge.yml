@@ -30,4 +30,3 @@ jobs:
           projectId: lacera-studio
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
-
