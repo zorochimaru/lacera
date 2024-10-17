@@ -1,6 +1,6 @@
 {
   "name": "lacera",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "scripts": {
     "start": "npm run make-sprite && ng serve -o",
     "build": "ng build",
@@ -10,7 +10,7 @@
     "lint-fix": "ng lint --fix",
     "stylelint": "stylelint '**/*{.css,.scss}'",
     "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix",
-    "make-sprite": "svg-sprite -C svg-sprite.json ./src/assets/icons/svg/./**/*.svg",
+    "make-sprite": "svg-sprite -C svg-sprite.json src/assets/icons/svg/**/*.svg",
     "i18n:extract": "transloco-keys-manager extract -u --sort",
     "i18n:find": "transloco-keys-manager find --translations-path assets/i18n",
     "transloco:optimize": "transloco-optimize dist/lacera/browser/assets/i18n"

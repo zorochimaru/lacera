@@ -91,10 +91,7 @@
           <img class="image-preview" [src]="previewImage()" />
         } @else {
           <label class="upload-image-label" for="file">
-            <app-icon
-              icon="google_upload_file"
-              width="48px"
-              height="48px"></app-icon>
+            <app-icon icon="upload_file" width="48px" height="48px"></app-icon>
           </label>
         }
       </div>
@@ -122,7 +119,7 @@
               <app-icon
                 width="48px"
                 height="48px"
-                icon="google_upload_file"></app-icon>
+                icon="upload_file"></app-icon>
             </label>
           }
         </div>
@@ -139,7 +136,7 @@
                     type="button"
                     class="delete-image-btn"
                     (click)="deleteImage(i)">
-                    <app-icon icon="google_delete"></app-icon>
+                    <app-icon icon="delete"></app-icon>
                   </button>
                   <img
                     class="thumbnail-image"
