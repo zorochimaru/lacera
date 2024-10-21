@@ -5,6 +5,8 @@
 
 .wrapper {
   display: flex;
+  gap: 20px;
+  justify-content: center;
 
   .image-upload-container {
     display: flex;
@@ -17,8 +19,9 @@
     max-height: 500px;
     width: 600px;
     flex-grow: 1;
-    margin: 20px;
+    margin-bottom: 20px;
     border-radius: 8px;
+    background-color: var(--bg-surface);
     border: 1px solid var(--border-default);
   }
 
@@ -99,12 +102,6 @@
   }
 }
 
-h3 {
-  font-size: 600;
-  font-size: 20px;
-  text-align: center;
-}
-
 .dimensions-inputs {
   display: flex;
   gap: 20px;
@@ -115,6 +112,24 @@ h3 {
   max-width: 800px;
   margin-block: 50px;
   margin-inline: auto;
+}
+
+.description-inputs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.description-language-select {
+  padding: 5px 10px;
+  text-align: end;
+  max-width: 120px;
+  margin-bottom: 10px;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .upload-image-label {

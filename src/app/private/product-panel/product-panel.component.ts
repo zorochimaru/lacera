@@ -16,10 +16,12 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxMaskDirective } from 'ngx-mask';
 import {
   combineLatest,
+  debounceTime,
+  distinctUntilChanged,
   filter,
   finalize,
   forkJoin,
@@ -32,20 +34,16 @@ import { register } from 'swiper/element/bundle';
 import {
   FirestoreCollections,
   FirestoreService,
+  LangCodes,
   Product,
   ProductFirestore,
   StorageFolders,
   TypedForm,
+  UploadResult,
   UploadService
 } from '../../core';
 import { IconComponent } from '../../shared';
 
-/**
- * TODO: Add description
- * Save photos on product save only
- * Add image preview before save
- * Order images by drag and drop
- */
 register();
 
 interface ProductImage {
@@ -75,7 +73,7 @@ export class ProductPanelComponent implements OnInit {
   readonly #firebaseService = inject(FirestoreService);
   readonly #route = inject(ActivatedRoute);
   readonly #dr = inject(DestroyRef);
-  // readonly #router = inject(Router);
+  readonly #router = inject(Router);
 
   protected accept = 'image/webp';
   #limitFileSizeBytes = 2 * 1024 * 1024; // Max file size 2MB
@@ -84,6 +82,7 @@ export class ProductPanelComponent implements OnInit {
   protected previewImage = signal('');
   protected loading = signal(false);
   protected productId = signal('');
+  protected activeDescriptionLanguage = signal<LangCodes>(LangCodes.az);
 
   protected showSetCoverButton = computed(
     () =>
@@ -96,10 +95,18 @@ export class ProductPanelComponent implements OnInit {
   });
   protected widthControl = new FormControl(0);
   protected heightControl = new FormControl(0);
+  protected descriptionLang = new FormControl<LangCodes>(LangCodes.az, {
+    nonNullable: true
+  });
+  protected descriptionControl = new FormControl('', { nonNullable: true });
 
   protected form: TypedForm<Product> = this.#fb.nonNullable.group({
     name: this.#fb.nonNullable.control('', Validators.required),
-    description: this.#fb.nonNullable.control('', Validators.required),
+    description: this.#fb.nonNullable.control({
+      az: '',
+      ru: '',
+      en: ''
+    }),
     imageUrls: this.#fb.nonNullable.control([] as string[]),
     categoryId: this.#fb.nonNullable.control('', Validators.required),
     price: this.#fb.nonNullable.control(0, [
@@ -114,8 +121,10 @@ export class ProductPanelComponent implements OnInit {
     size: this.#fb.nonNullable.control('', Validators.required)
   });
 
+  protected langCodes = LangCodes;
+  #imagesToRemove: string[] = [];
+
   public ngOnInit(): void {
-    // TODO: Add fetch method to set init values if has query id param
     this.productId.set(this.#route.snapshot.queryParams['id']);
     if (this.productId()) {
       this.#firebaseService
@@ -134,6 +143,9 @@ export class ProductPanelComponent implements OnInit {
           this.lengthControl.setValue(Number(length));
           this.widthControl.setValue(Number(width) || 0);
           this.heightControl.setValue(Number(height) || 0);
+          this.descriptionControl.setValue(
+            res.description[this.activeDescriptionLanguage()]
+          );
         });
     }
 
@@ -148,10 +160,43 @@ export class ProductPanelComponent implements OnInit {
         this.form.controls.size.setValue(res.join(' x '));
       }
     });
+
+    this.descriptionControl.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        takeUntilDestroyed(this.#dr)
+      )
+      .subscribe(value => {
+        this.form.controls.description.patchValue({
+          ...this.form.controls.description.getRawValue(),
+          [this.activeDescriptionLanguage()]: value
+        });
+      });
+  }
+
+  protected onChangeDescriptionLanguage(e: Event): void {
+    const newLang = (e.target as HTMLSelectElement).value as LangCodes;
+    const descriptionControlValue = this.descriptionControl.getRawValue();
+    this.form.controls.description.patchValue({
+      ...this.form.controls.description.getRawValue(),
+      [this.activeDescriptionLanguage()]: descriptionControlValue
+    });
+
+    this.activeDescriptionLanguage.set(newLang);
+
+    this.descriptionControl.setValue(
+      this.form.controls.description.getRawValue()[newLang]
+    );
   }
 
   protected deleteImage(index: number): void {
     const images = [...this.images()];
+    const deletedImage = images[index];
+    if (!deletedImage.file && !confirm('Do you really want to delete?')) {
+      return;
+    }
+    this.#imagesToRemove.push(deletedImage.preview);
     images.splice(index, 1);
     this.images.set(images);
     this.previewImage.set(images[0]?.preview);
@@ -164,6 +209,7 @@ export class ProductPanelComponent implements OnInit {
     );
     const cover = images.splice(coverIndex, 1)[0];
     images.unshift(cover);
+    images.forEach((img, i) => (img.isCover = i === 0));
     this.images.set(images);
   }
 
@@ -213,19 +259,27 @@ export class ProductPanelComponent implements OnInit {
     }
 
     const payloadForm = this.form.getRawValue();
+    payloadForm.name = payloadForm.name.trim().toLocaleUpperCase();
     this.form.disable();
     this.loading.set(true);
-
+    console.log(payloadForm);
     const imageRequests = this.images().map(img =>
       img.file
         ? this.#upload.upload(img.file, StorageFolders.products)
         : of({ progress: 100, url: img.preview })
     );
 
-    forkJoin(imageRequests)
+    const removeImageRequests = this.#imagesToRemove.map(url =>
+      this.#upload.remove(url)
+    );
+
+    forkJoin([...removeImageRequests, ...imageRequests])
       .pipe(
         switchMap(res => {
-          const uploadedUrls = res.map(x => x.url);
+          const uploadedUrls = res
+            .slice(removeImageRequests.length)
+            .filter((x): x is UploadResult => x !== undefined)
+            .map(x => x.url);
           payloadForm.imageUrls = uploadedUrls;
 
           if (this.productId()) {
@@ -243,84 +297,31 @@ export class ProductPanelComponent implements OnInit {
         }),
         finalize(() => this.loading.set(false))
       )
-      .subscribe();
+      .subscribe(() =>
+        this.#router.navigate(['../'], { relativeTo: this.#route })
+      );
+  }
+
+  protected deleteProduct(): void {
+    if (!confirm('Do you really want to delete?')) {
+      return;
+    }
+    this.loading.set(true);
+    const removeImageRequests = this.images()
+      .filter(img => !img.file)
+      .map(img => this.#upload.remove(img.preview));
+    const removeProductRequest = this.#firebaseService.delete(
+      FirestoreCollections.products,
+      this.productId()
+    );
+    forkJoin([...removeImageRequests, removeProductRequest])
+      .pipe(finalize(() => this.loading.set(false)))
+      .subscribe(() =>
+        this.#router.navigate(['../'], { relativeTo: this.#route })
+      );
   }
 
   #isAcceptableSize(files: File[]): boolean {
     return files.every(file => file.size <= this.#limitFileSizeBytes);
   }
-
-  // public ngOnInit(): void {
-  //   this.productId = this.#route.snapshot.queryParams['id'];
-  //   if (this.productId) {
-  //     this.#firebaseService
-  //       .get<ProductFirestore>(FirestoreCollections.products, this.productId)
-  //       .pipe(filter(Boolean), takeUntilDestroyed(this.#dr))
-  //       .subscribe(res => {
-  //         this.form.patchValue(res);
-  //       });
-  //   }
-  // }
-  // protected onFileChange(): void {
-  //   const files = this.fileInput.nativeElement.files
-  //     ? Array.from(this.fileInput.nativeElement.files)
-  //     : [];
-  //   /**
-  //    * Reset the file input value to allow the same file to be selected again
-  //    */
-  //   this.fileInput.nativeElement.value = '';
-  //   if (!files.length) {
-  //     return;
-  //   }
-  //   if (!this.#isAcceptableType(files) || !this.#isAcceptableSize(files)) {
-  //     console.error('File type not supported or size not supported');
-  //     return;
-  //   }
-  //   this.files.set(files);
-  // }
-  // protected onCoverFileChange(): void {
-  //   const file = this.fileInput.nativeElement.files?.[0];
-  //   /**
-  //    * Reset the file input value to allow the same file to be selected again
-  //    */
-  //   this.fileInput.nativeElement.value = '';
-  //   if (!file) {
-  //     return;
-  //   }
-  //   if (!this.#isAcceptableType([file]) || !this.#isAcceptableSize([file])) {
-  //     console.error('File type not supported or size not supported');
-  //     return;
-  //   }
-  //   this.coverFile.set(file);
-  // }
-  // protected deleteImage(url: string): void {
-  //   this.form.patchValue({
-  //     imageUrl: this.form.value.imageUrl?.filter(imageUrl => imageUrl !== url)
-  //   });
-  // }
-  // protected deleteProduct(): void {
-  //   if (confirm('Do you really want to delete?')) {
-  //     this.form.disable();
-  //     this.loading.set(true);
-  //     this.#firebaseService
-  //       .delete(FirestoreCollections.news, this.productId)
-  //       .pipe(
-  //         switchMap(() => {
-  //           if (this.form.value.imageUrls?.length) {
-  //             const storageRequests = this.form.value.imageUrls?.map(imageUrl =>
-  //               this.#upload.remove(imageUrl)
-  //             );
-  //             return forkJoin(storageRequests);
-  //           }
-  //           return of(void 0);
-  //         }),
-  //         finalize(() => {
-  //           this.form.disable();
-  //           this.loading.set(false);
-  //         }),
-  //         takeUntilDestroyed(this.#dr)
-  //       )
-  //       .subscribe(() => this.#backToList());
-  //   }
-  // }
 }

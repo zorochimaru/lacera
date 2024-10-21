@@ -3,7 +3,11 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-control-container">
         <label class="required">Name</label>
-        <input type="text" class="form-control" formControlName="name" />
+        <input
+          placeholder="WRITE PRODUCT NAME"
+          type="text"
+          class="form-control"
+          formControlName="name" />
       </div>
       <div class="form-control-container">
         <label>Price ₼</label>
@@ -67,14 +71,33 @@
           <option value="2">Plates</option>
         </select>
       </div>
+
       <div class="form-control-container">
-        <label>Description</label>
+        <div class="description-inputs-header">
+          <label>Description</label>
+          <select
+            class="form-control description-language-select"
+            (change)="onChangeDescriptionLanguage($event)">
+            <option [value]="langCodes.az" selected>Azerbaijani</option>
+            <option [value]="langCodes.en">English</option>
+            <option [value]="langCodes.ru">Russian</option>
+          </select>
+        </div>
         <textarea
           class="form-control"
           placeholder="Optional"
-          formControlName="description"></textarea>
+          [formControl]="descriptionControl"></textarea>
       </div>
       <button type="submit" [disabled]="loading()" class="btn">Submit</button>
+      @if (productId()) {
+        <button
+          type="button"
+          [disabled]="loading()"
+          (click)="deleteProduct()"
+          class="btn btn-danger">
+          Delete
+        </button>
+      }
     </form>
     <div class="image-upload-container">
       <div class="image-preview-container">

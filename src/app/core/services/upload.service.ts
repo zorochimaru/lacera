@@ -13,11 +13,6 @@ import { from, Observable } from 'rxjs';
 
 export type UploadResult = { progress: number; url: string };
 
-/**
- * We need scale the progress to 90% because the last 10% is reserved for the download URL generation or preview URL generation
- */
-const PROGRESS_SCALE_FACTOR = 0.9;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -50,11 +45,11 @@ export class UploadService {
           'state_changed',
           snapshot => {
             const progress = Math.round(
-              (snapshot.bytesTransferred / snapshot.totalBytes) *
-                100 *
-                PROGRESS_SCALE_FACTOR
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             );
-            subscriber.next({ progress, url: '' });
+            if (progress < 100) {
+              subscriber.next({ progress, url: '' });
+            }
           },
           error => subscriber.error(error),
           () => {
