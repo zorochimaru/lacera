@@ -1,0 +1,23 @@
+<div>
+  <div class="form-control-container">
+    <div class="description-inputs-header">
+      <select
+        class="form-control language-select"
+        (change)="onChangeDescriptionLanguage($event)">
+        <option [value]="langCodes.az" selected>Azerbaijani</option>
+        <option [value]="langCodes.en">English</option>
+        <option [value]="langCodes.ru">Russian</option>
+      </select>
+    </div>
+    <input
+      placeholder="Value"
+      type="text"
+      class="form-control"
+      [formControl]="inputControl" />
+  </div>
+
+  <div class="actions">
+    <button class="btn" (click)="dialogRef.close(value())">OK</button>
+    <button class="btn" (click)="dialogRef.close()">Cancel</button>
+  </div>
+</div>

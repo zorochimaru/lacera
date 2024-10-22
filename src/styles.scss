@@ -56,9 +56,25 @@ a {
   text-decoration: none;
 }
 
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+
+  .btn,
+  label,
+  a {
+    pointer-events: none;
+  }
+}
+
 button {
   cursor: pointer;
   border: none;
+}
+
+.btn-unstyled {
+  border: none;
+  background: transparent;
 }
 
 .btn {

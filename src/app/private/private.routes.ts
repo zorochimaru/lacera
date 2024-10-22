@@ -22,6 +22,13 @@ export const privateRoutes: Routes = [
           )
       },
       {
+        path: routerLinks.datasetList,
+        loadComponent: () =>
+          import('./dataset-list/dataset-list.component').then(
+            c => c.DatasetListComponent
+          )
+      },
+      {
         path: routerLinks.newsList,
         loadComponent: () =>
           import('./news-list/news-list.component').then(

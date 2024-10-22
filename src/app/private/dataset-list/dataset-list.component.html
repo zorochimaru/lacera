@@ -1,0 +1,48 @@
+<div class="wrapper" [class.disabled]="loading()">
+  <aside class="filters-container">
+    <button type="button" class="btn create-btn" (click)="createNew()">
+      Create new
+    </button>
+
+    <nav>
+      <ul>
+        @for (item of datasetList(); track $index) {
+          <li [class.active]="item.collection === activeDataset()">
+            <button
+              type="button"
+              class="btn-unstyled"
+              (click)="selectActiveSource(item.collection)">
+              {{ item.label }}
+            </button>
+          </li>
+        }
+      </ul>
+    </nav>
+  </aside>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Created at</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of dataset(); track $index; let i = $index) {
+        <tr>
+          <td>{{ item.name | currLang }}</td>
+          <td>{{ item.createdAt | date }}</td>
+          <td class="actions-cell">
+            <button type="button" class="btn" (click)="editDataset(item, i)">
+              Edit
+            </button>
+            <button type="button" class="btn" (click)="deleteDataset(item.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

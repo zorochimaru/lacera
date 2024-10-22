@@ -1,3 +1,4 @@
+export * from './dataset-item';
 export * from './date-range.interface';
 export * from './environment.interface';
 export * from './firestore';

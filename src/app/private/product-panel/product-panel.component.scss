@@ -145,17 +145,6 @@ select {
   }
 }
 
-.disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-
-  .btn,
-  label,
-  a {
-    pointer-events: none;
-  }
-}
-
 .upload-action-container {
   display: flex;
   width: 100%;
