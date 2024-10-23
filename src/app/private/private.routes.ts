@@ -10,14 +10,14 @@ export const privateRoutes: Routes = [
       {
         path: `${routerLinks.productList}/${routerLinks.productPanel}`,
         loadComponent: () =>
-          import('./product-panel/product-panel.component').then(
+          import('./product/product-panel/product-panel.component').then(
             c => c.ProductPanelComponent
           )
       },
       {
         path: routerLinks.productList,
         loadComponent: () =>
-          import('./product-list/product-list.component').then(
+          import('./product/product-list/product-list.component').then(
             c => c.ProductListComponent
           )
       },
@@ -31,14 +31,14 @@ export const privateRoutes: Routes = [
       {
         path: routerLinks.newsList,
         loadComponent: () =>
-          import('./news-list/news-list.component').then(
+          import('./news/news-list/news-list.component').then(
             c => c.NewsListComponent
           )
       },
       {
         path: `${routerLinks.newsList}/${routerLinks.newsPanel}`,
         loadComponent: () =>
-          import('./news-panel/news-panel.component').then(
+          import('./news/news-panel/news-panel.component').then(
             c => c.NewsPanelComponent
           )
       }

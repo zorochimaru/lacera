@@ -60,6 +60,8 @@ table {
     padding: 16px;
     border-bottom: 1px solid var(--accent-color);
     flex: 1;
+    display: flex;
+    align-items: center;
   }
 
   th {

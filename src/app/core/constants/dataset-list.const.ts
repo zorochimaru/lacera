@@ -8,5 +8,9 @@ export const datasetList = [
   {
     label: 'Materials',
     collection: FirestoreCollections.materials
+  },
+  {
+    label: 'Collections',
+    collection: FirestoreCollections.collections
   }
 ];

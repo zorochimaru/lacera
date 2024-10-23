@@ -2,15 +2,16 @@ import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Timestamp } from '@angular/fire/firestore';
 import {
+  DatasetItemFirestore,
+  datasetList,
   DateRange,
   FirestoreCollections,
+  FirestoreService,
   Product,
   ProductFirestore
 } from '@core';
 import { endOfDay, startOfDay } from 'date-fns';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-import { FirestoreService } from './firestore.service';
+import { BehaviorSubject, forkJoin, map, Observable } from 'rxjs';
 
 @Injectable()
 export class ProductsService {
@@ -97,5 +98,24 @@ export class ProductsService {
       .subscribe(res => {
         this.#sourceData$.next(res);
       });
+  }
+
+  public getDatasets(): Observable<
+    Record<FirestoreCollections, DatasetItemFirestore[]>
+  > {
+    return forkJoin(
+      datasetList.map(dataset =>
+        this.#fireStoreService.getList<DatasetItemFirestore>(dataset.collection)
+      )
+    ).pipe(
+      map(res => {
+        const result: Record<FirestoreCollections, DatasetItemFirestore[]> =
+          {} as Record<FirestoreCollections, DatasetItemFirestore[]>;
+        datasetList.forEach((dataset, index) => {
+          result[dataset.collection] = res[index];
+        });
+        return result;
+      })
+    );
   }
 }

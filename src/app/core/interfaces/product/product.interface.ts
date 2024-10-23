@@ -5,6 +5,7 @@ export interface Product {
   quantity: number;
   description: Record<LangCodes, string>;
   categoryId: string;
+  collectionId: string;
   imageUrls: string[];
   price: number;
   materialId: string;

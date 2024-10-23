@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { PrivateHeaderComponent } from './private-header/private-header.component';
+import { PrivateHeaderComponent } from './shared';
 
 @Component({
   selector: 'app-private',
