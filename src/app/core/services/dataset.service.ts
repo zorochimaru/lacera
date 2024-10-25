@@ -45,6 +45,12 @@ export class DatasetService {
     }
   }
 
+  public getAllDataset(datasetCollection: FirestoreCollections) {
+    return this.#fireStoreService.getList<DatasetItemFirestore>(
+      datasetCollection
+    );
+  }
+
   public createValue(
     datasetCollection: FirestoreCollections,
     value: DatasetItem
@@ -59,7 +65,15 @@ export class DatasetService {
   ) {
     return this.#fireStoreService.update(datasetCollection, id, value);
   }
+
   public deleteValue(datasetCollection: FirestoreCollections, id: string) {
     return this.#fireStoreService.delete(datasetCollection, id);
+  }
+
+  public getDatasetById(datasetCollection: FirestoreCollections, id: string) {
+    return this.#fireStoreService.get<DatasetItemFirestore>(
+      datasetCollection,
+      id
+    );
   }
 }

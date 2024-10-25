@@ -1,0 +1,107 @@
+.product-card {
+  margin-bottom: 30px;
+  z-index: 1;
+  flex-grow: 0;
+  flex-basis: 20%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  transition: transform 0.3s ease-in-out;
+  color: var(--fg-muted);
+  max-width: 300px;
+
+  &:hover {
+    transform: scale(1.025);
+
+    .product-description {
+      color: var(--accent-fg-color);
+    }
+  }
+
+  img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    flex: 4;
+    object-fit: cover;
+    min-height: 80%;
+  }
+
+  .product-name {
+    color: #8aa3a0;
+    font-family: 'Montserrat-SemiBold', sans-serif;
+  }
+}
+
+.products-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-block: 40px;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.product-name {
+  font-size: 1.2em;
+  margin: 8px 0;
+}
+
+.product-price {
+  color: #888;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 1.2em;
+  background-color: #fff;
+  color: #333;
+  transition:
+    border-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+
+  &:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+
+  &:hover {
+    border-color: var(--accent-color);
+  }
+}
+
+.filter-container {
+  margin-block: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.filter {
+  display: flex;
+  gap: 20px;
+}
+
+.filter-title {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.filter-item {
+  margin-bottom: 10px;
+}
+
+.filter-item label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}

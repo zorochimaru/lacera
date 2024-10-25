@@ -1,6 +1,6 @@
 footer {
   background-color: var(--accent-color);
-  color: var(--fg-color-light);
+  color: var(--fg-light);
   text-align: center;
   position: relative;
   padding-top: 20px;
@@ -22,7 +22,7 @@ footer {
 }
 
 a {
-  color: var(--fg-color-light);
+  color: var(--fg-light);
   cursor: pointer;
   text-decoration: none;
 }

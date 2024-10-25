@@ -4,10 +4,8 @@ import { routerLinks } from '@core';
 export const publicRoutes: Routes = [
   {
     path: '',
-
     loadComponent: () =>
       import('./public.component').then(c => c.PublicComponent),
-
     children: [
       {
         path: '',
@@ -20,6 +18,10 @@ export const publicRoutes: Routes = [
           import('./news-details/news-details.component').then(
             c => c.NewsDetailsComponent
           )
+      },
+      {
+        path: routerLinks.productList,
+        loadChildren: () => import('./products/products.routes')
       }
     ]
   }

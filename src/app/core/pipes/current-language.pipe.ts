@@ -22,9 +22,12 @@ export class CurrentLanguagePipe implements PipeTransform, OnDestroy {
   readonly #asyncPipe: AsyncPipe = new AsyncPipe(this.#cdr);
 
   public transform(
-    object: Record<LangCodes, string>,
+    object: Record<LangCodes, string> | null | undefined,
     manualLang?: LangCodes
   ): string | null {
+    if (!object) {
+      return null;
+    }
     return this.#asyncPipe.transform(
       this.#translocoService.langChanges$.pipe(
         map(currLang => object[manualLang || (currLang as LangCodes)])

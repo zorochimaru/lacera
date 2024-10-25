@@ -1,0 +1,98 @@
+<ng-container *transloco="let t; read: 'product.details'">
+  <div class="container">
+    <div class="wrapper">
+      @if (product(); as product) {
+        <div class="image-wrapper">
+          <swiper-container
+            #previewSwiper
+            [style.height.px]="image.offsetHeight"
+            class="preview-slider"
+            direction="vertical"
+            space-between="10"
+            slides-per-view="3.5">
+            @for (item of product.imageUrls; track $index; let i = $index) {
+              <swiper-slide>
+                <img
+                  class="preview-image"
+                  (click)="selectImage(i)"
+                  [src]="item"
+                  alt="" />
+              </swiper-slide>
+            }
+          </swiper-container>
+          <div class="slider-wrapper" #image>
+            <swiper-container #imageSwiper navigation slides-per-view="1">
+              @for (item of product.imageUrls; track $index) {
+                <swiper-slide>
+                  <img class="slider-image" [src]="item" alt="" />
+                </swiper-slide>
+              }
+            </swiper-container>
+          </div>
+        </div>
+
+        <div class="details-wrapper">
+          <div class="dataset-links">
+            <a>{{ category()?.name | currLang }} </a>
+            /
+            <a>{{ collection()?.name | currLang }} </a>
+            /
+            <a>{{ material()?.name | currLang }} </a>
+          </div>
+          <h2 class="name">{{ product.name }}</h2>
+          <p class="price">{{ product.price }} ₼</p>
+          <p class="quantity">{{ t("quantity") }}: {{ product.quantity }}</p>
+
+          @if (product.quantity) {
+            <div class="request-directions">
+              <span>{{ t("requestIn") }}:</span>
+
+              <div class="icons">
+                <a target="_blank" href="https://wa.me/994103881313">
+                  <img class="social-icon" src="assets/images/whatsapp.svg" />
+                </a>
+                <a
+                  href="https://www.instagram.com/lacerastudio/"
+                  target="_blank">
+                  <img class="social-icon" src="assets/images/instagram.svg" />
+                </a>
+                <a href="mailto:lacerastudio@gmail.com" target="_blank">
+                  <img class="social-icon" src="assets/images/email.svg" />
+                </a>
+              </div>
+            </div>
+          }
+
+          <hr />
+
+          <div class="details-info">
+            <p class="size">
+              <span class="info-title">{{ t("size") }}:</span>
+              <span class="info-value">{{ product.size }}</span>
+            </p>
+            <p class="category">
+              <span class="info-title">{{ t("category") }}:</span>
+              <span class="info-value">{{ category()?.name | currLang }}</span>
+            </p>
+            <p class="collection">
+              <span class="info-title">{{ t("collection") }}:</span>
+              <span class="info-value">
+                {{ collection()?.name | currLang }}
+              </span>
+            </p>
+            <p class="material">
+              <span class="info-title">{{ t("material") }}:</span>
+              <span class="info-value">{{ material()?.name | currLang }}</span>
+            </p>
+            <p class="description">
+              <span class="info-title">{{ t("description") }}:</span>
+              <span class="info-value">
+                {{ product.description | currLang }}
+              </span>
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</ng-container>

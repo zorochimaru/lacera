@@ -35,6 +35,7 @@
       "title": "Читайте Наш Блог"
     },
     "products": {
+      "more": "Показать ещё",
       "subTitle": "НАШИ ПРОДУКТЫ",
       "title": "Новая Коллекция"
     },
@@ -50,5 +51,23 @@
       "subTitle": "МАСТЕРСКАЯ",
       "title": "Современная И Уютная Мастерская"
     }
+  },
+  "product": {
+    "details": {
+      "category": "Категория",
+      "collection": "Коллекция",
+      "description": "Описание",
+      "material": "Материал",
+      "quantity": "Количество",
+      "requestIn": "Запросить в",
+      "size": "Размер"
+    }
+  },
+  "productsList": {
+    "all": "Все",
+    "category": "Категория",
+    "collection": "Коллекция",
+    "filter": "Фильтр",
+    "material": "Материал"
   }
 }

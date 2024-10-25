@@ -31,8 +31,9 @@
       "title": "Read Our Blog"
     },
     "products": {
+      "more": "Show more",
       "subTitle": "OUR PRODUCTS",
-      "title": "Coming Soon"
+      "title": "New collection"
     },
     "welcome": {
       "description": "Explore a captivating realm of craftsmanship, where every piece narrates a distinct tale",
@@ -46,5 +47,23 @@
       "subTitle": "WORKSHOPS",
       "title": "Modern And Cozy Workshop"
     }
+  },
+  "product": {
+    "details": {
+      "category": "Category",
+      "collection": "Collection",
+      "description": "Description",
+      "material": "Material",
+      "quantity": "Quantity",
+      "requestIn": "Request in",
+      "size": "Size"
+    }
+  },
+  "productsList": {
+    "all": "All",
+    "category": "Category",
+    "collection": "Collection",
+    "filter": "Filter",
+    "material": "Material"
   }
 }

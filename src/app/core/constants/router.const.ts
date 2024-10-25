@@ -2,6 +2,7 @@ export const routerLinks = {
   public: '/',
   private: 'private',
   adminPanel: 'admin-panel',
+  products: 'products',
   productList: 'product-list',
   productListCategory: 'category',
   productListMaterial: 'material',

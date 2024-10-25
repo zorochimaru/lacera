@@ -1,5 +1,5 @@
 .products-header {
-  grid-column: 5 / 9;
+  grid-column: 3 / 11;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -10,13 +10,29 @@
   }
 }
 
-.products-content {
+.more-btn {
+  grid-column: 4 / 10;
+}
+
+.card-btn {
+  background: transparent;
+  padding: 0;
+
+  &:active {
+    background: transparent;
+  }
+}
+
+.mobile-swiper-wrapper {
+  display: none;
+}
+
+.desktop-products-content {
   grid-column: 2 / 12;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 40px;
   position: relative;
+  gap: 6.666%;
 
   .product-card:last-of-type {
     position: relative;
@@ -57,7 +73,7 @@
     height: 200px;
     bottom: 15%;
     left: -8%;
-    z-index: 0;
+    z-index: 1;
     background: url('/assets/images/decor-figure.webp') no-repeat bottom left;
   }
 
@@ -76,13 +92,16 @@
 .product-card {
   margin-bottom: 30px;
   z-index: 1;
+  flex-grow: 0;
+  flex-basis: 20%;
+  display: flex;
+  flex-direction: column;
   background: transparent;
-  padding: 0;
+  transition: transform 0.3s ease-in-out;
+  color: var(--fg-muted);
 
   &:hover {
-    img {
-      transform: scale(1.025);
-    }
+    transform: scale(1.025);
 
     .product-description {
       color: var(--accent-fg-color);
@@ -90,19 +109,77 @@
   }
 
   img {
-    transition: transform 0.3s ease-in-out;
-    margin-bottom: 30px;
-    max-width: 350px;
-  }
-
-  .product-description {
-    display: flex;
-    justify-content: space-between;
-    font-size: 24px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    flex: 4;
+    object-fit: cover;
+    min-height: 80%;
   }
 
   .product-name {
     color: #8aa3a0;
     font-family: 'Montserrat-SemiBold', sans-serif;
+  }
+}
+
+.product-description {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 24px;
+  margin-top: auto;
+  padding: 20px;
+  flex: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  background-color: var(--bg-surface);
+}
+
+@media (max-width: 1024px) {
+  .desktop-products-content {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .product-card {
+    flex-basis: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-swiper-wrapper {
+    display: block;
+  }
+
+  .desktop-products-content {
+    display: none;
+  }
+
+  .product-description {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .product-name {
+    font-size: 16px;
+  }
+
+  .product-price {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .product-card img {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 425px) {
+  .desktop-products-content {
+    gap: 0;
+  }
+
+  .product-card {
+    flex-basis: 100%;
   }
 }

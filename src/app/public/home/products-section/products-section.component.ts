@@ -2,29 +2,51 @@ import { TitleCasePipe, UpperCasePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  DestroyRef,
   inject,
-  OnInit
+  OnInit,
+  signal
 } from '@angular/core';
-import { FirestoreCollections, FirestoreService } from '@core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterModule } from '@angular/router';
+import {
+  FirestoreCollections,
+  FirestoreService,
+  ProductFirestore,
+  routerLinks
+} from '@core';
 import { TranslocoModule } from '@jsverse/transloco';
+import { random } from 'lodash-es';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-products-section',
   standalone: true,
-  imports: [TranslocoModule, TitleCasePipe, UpperCasePipe],
+  imports: [TranslocoModule, TitleCasePipe, UpperCasePipe, RouterModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './products-section.component.html',
   styleUrl: './products-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsSectionComponent implements OnInit {
   readonly #firestoreService = inject(FirestoreService);
+  readonly #dr = inject(DestroyRef);
+
+  protected products = signal<ProductFirestore[]>([]);
+  protected routerLinks = routerLinks;
 
   public ngOnInit(): void {
     this.#firestoreService
-      .getList(FirestoreCollections.products, {
-        limit: 5,
-        orderBy: 'updated_at'
-      })
-      .subscribe();
+      .getList<ProductFirestore>(FirestoreCollections.products, { limit: 6 })
+      .pipe(
+        map(x =>
+          Array(6)
+            .fill(0)
+            .map(() => x[random(0, x.length - 1)])
+        ),
+        takeUntilDestroyed(this.#dr)
+      )
+      .subscribe(res => this.products.set(res));
   }
 }

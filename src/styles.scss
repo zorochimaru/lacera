@@ -83,6 +83,8 @@ button {
   border-radius: 10px;
   padding: 10px 30px;
   line-height: 24px;
+  color: var(--fg-dark);
+  text-align: center;
   font-family: 'Montserrat-SemiBold', sans-serif;
   cursor: pointer;
   transition:
@@ -130,6 +132,7 @@ button {
   grid-auto-rows: min-content;
   position: relative;
   padding-block: 5%;
+  overflow-x: clip;
 
   h2 {
     letter-spacing: 10px;
@@ -164,15 +167,6 @@ button {
 p {
   font-size: 18px;
   line-height: 30px;
-}
-
-.plain-btn {
-  background: transparent;
-  padding: 0;
-
-  &:active {
-    background: transparent;
-  }
 }
 
 @media (max-width: 768px) {

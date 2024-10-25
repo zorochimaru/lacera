@@ -1,0 +1,180 @@
+.wrapper {
+  display: flex;
+  gap: 60px;
+  margin-top: 40px;
+  margin-bottom: 100px;
+  min-height: 80svh;
+}
+
+.slider-wrapper {
+  width: 500px;
+}
+
+.preview-slider {
+  height: auto;
+
+  img {
+    cursor: pointer;
+  }
+}
+
+swiper-slide {
+  margin-block: auto;
+}
+
+.preview-image {
+  width: 100px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+
+  :active {
+    cursor: grabbing;
+  }
+}
+
+.preview-container {
+  width: 100px;
+}
+
+.details-wrapper {
+  flex: 1;
+  text-align: center;
+}
+
+.dataset-links {
+  margin-bottom: 60px;
+  color: var(--fg-muted);
+}
+
+.name {
+  font-size: 2rem;
+}
+
+.price {
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  font-size: 1.5rem;
+}
+
+.social-icon {
+  width: 40px;
+}
+
+.request-directions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  margin-top: 60px;
+
+  span {
+    flex-shrink: 0;
+  }
+
+  .icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.slider-wrapper:active {
+  cursor: grabbing;
+}
+
+hr {
+  margin-block: 60px;
+}
+
+.details-info {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  p {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .info-title {
+    width: 30%;
+  }
+
+  .info-value {
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .slider-wrapper {
+    width: 100%;
+  }
+
+  .preview-slider {
+    display: none;
+  }
+
+  .image-wrapper {
+    gap: 0;
+  }
+
+  .preview-image {
+    width: 80px;
+  }
+
+  .preview-container {
+    width: 80px;
+  }
+
+  .details-wrapper {
+    text-align: start;
+  }
+
+  .dataset-links {
+    margin-bottom: 30px;
+  }
+
+  .name {
+    font-size: 1.5rem;
+  }
+
+  .price {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  hr {
+    margin-block: 20px;
+  }
+
+  .request-directions {
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .details-info {
+    .info-title {
+      width: 40%;
+    }
+
+    .info-value {
+      width: 60%;
+    }
+  }
+}

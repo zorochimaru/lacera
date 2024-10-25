@@ -42,7 +42,7 @@
   position: absolute;
   right: 10px;
   bottom: 0;
-  background-color: var(--fg-color-light);
+  background-color: var(--fg-light);
   border-radius: 8px;
   border: none;
   outline: none;
@@ -50,7 +50,7 @@
   z-index: 2;
 
   &:hover {
-    color: var(--fg-color-light);
+    color: var(--fg-light);
     background-color: var(--btn-danger-bg);
   }
 }
@@ -159,7 +159,7 @@ select {
 
 .link {
   margin-bottom: 20px;
-  color: var(--fg-color-dark);
+  color: var(--fg-dark);
   font-size: 18px;
   font-weight: 600;
   position: relative;
@@ -196,7 +196,7 @@ select {
   background-color: var(--btn-danger-bg);
 
   &:hover {
-    color: var(--fg-color-light);
+    color: var(--fg-light);
   }
 }
 

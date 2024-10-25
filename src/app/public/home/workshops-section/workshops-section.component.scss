@@ -41,6 +41,11 @@
     flex-direction: column;
     grid-column: 2 / 8;
   }
+
+  .workshop-content {
+    text-align: center;
+    align-items: center;
+  }
 }
 
 @media (max-width: 576px) {

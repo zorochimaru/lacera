@@ -32,7 +32,7 @@ ul {
 
     &.active {
       background-color: var(--accent-color);
-      color: var(--fg-color-light);
+      color: var(--fg-light);
     }
 
     &:hover {
@@ -41,7 +41,7 @@ ul {
 
     &:active {
       background-color: var(--accent-color);
-      color: var(--fg-color-light);
+      color: var(--fg-light);
     }
   }
 }

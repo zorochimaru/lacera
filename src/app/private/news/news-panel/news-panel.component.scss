@@ -69,7 +69,7 @@ h3 {
 }
 
 .link {
-  color: var(--fg-color-dark);
+  color: var(--fg-dark);
   font-size: 18px;
   font-weight: 600;
 }
@@ -93,7 +93,7 @@ h3 {
   background-color: var(--btn-danger-bg);
 
   &:hover {
-    color: var(--fg-color-light);
+    color: var(--fg-light);
   }
 }
 

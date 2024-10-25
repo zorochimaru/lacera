@@ -35,6 +35,7 @@
       "title": "BİZİM BLOGUMUZU OXU"
     },
     "products": {
+      "more": "Daha göstər",
       "subTitle": "BİZİM MƏHSULLAR",
       "title": "Yeni Kolleksiya"
     },
@@ -50,5 +51,23 @@
       "subTitle": "EMALATXANA",
       "title": "Müasir Və Rahat Emalatxana"
     }
+  },
+  "product": {
+    "details": {
+      "category": "Kateqoriya",
+      "collection": "Missing value for 'product.details.collection'",
+      "description": "Təsvir",
+      "material": "Material",
+      "quantity": "Miqdar",
+      "requestIn": "Sifariş et",
+      "size": "Ölçü"
+    }
+  },
+  "productsList": {
+    "all": "Hamısı",
+    "category": "Kateqoriya",
+    "collection": "Kolleksiya",
+    "filter": "Filtr",
+    "material": "Material"
   }
 }

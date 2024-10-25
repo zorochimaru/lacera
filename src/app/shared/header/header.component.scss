@@ -1,8 +1,8 @@
 :host {
   position: fixed;
-  top: 5%;
+  top: 50px;
   right: 5%;
-  z-index: 3;
+  z-index: 5;
   padding: 10px;
   border-radius: 8px;
   transition: background-color 200ms ease-in-out;
@@ -13,7 +13,7 @@
 }
 
 a {
-  color: var(--fg-color-light);
+  color: var(--fg-light);
   cursor: pointer;
   text-decoration: none;
 }
@@ -37,11 +37,17 @@ ul {
 
   a {
     text-decoration: none;
+    font-family: 'AlumniSans', sans-serif;
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 768px) {
   :host {
+    position: absolute;
+    left: 0;
+    right: unset;
+
     &.scrolled {
       background-color: transparent;
     }

@@ -1,0 +1,11 @@
+header {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid rgba(var(--accent-color-rgb), 0.5);
+
+  img {
+    height: 80px;
+  }
+}
