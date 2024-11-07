@@ -10,7 +10,7 @@ import {
   viewChild
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { filter, forkJoin, switchMap, tap } from 'rxjs';
 import { SwiperContainer } from 'swiper/element';
@@ -22,7 +22,8 @@ import {
   DatasetViewerPipe,
   FirestoreCollections,
   ProductFirestore,
-  ProductsService
+  ProductsService,
+  routerLinks
 } from '../../../core';
 
 @Component({
@@ -32,7 +33,8 @@ import {
     CurrentLanguagePipe,
     DatasetViewerPipe,
     AsyncPipe,
-    TranslocoDirective
+    TranslocoDirective,
+    RouterModule
   ],
   providers: [ProductsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -56,6 +58,8 @@ export class ProductsDetailsComponent implements OnInit {
   protected categoryCollection = FirestoreCollections.categories;
   protected collectionCollection = FirestoreCollections.collections;
   protected materialsCollection = FirestoreCollections.materials;
+
+  protected routerLinks = routerLinks;
 
   public ngOnInit(): void {
     this.#route.params

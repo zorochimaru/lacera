@@ -149,6 +149,7 @@
 @media (max-width: 768px) {
   .mobile-swiper-wrapper {
     display: block;
+    grid-column: 2 / 12;
   }
 
   .desktop-products-content {
@@ -169,9 +170,9 @@
     text-align: center;
   }
 
-  .product-card img {
-    min-height: 200px;
-  }
+  // .product-card img {
+  //   max-width: 200px;
+  // }
 }
 
 @media (max-width: 425px) {

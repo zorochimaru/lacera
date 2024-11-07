@@ -50,6 +50,10 @@ swiper-slide {
 .dataset-links {
   margin-bottom: 60px;
   color: var(--fg-muted);
+
+  a {
+    color: var(--fg-muted);
+  }
 }
 
 .name {

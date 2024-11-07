@@ -6,6 +6,11 @@ a {
   color: var(--accent-fg-color);
 }
 
+.logo {
+  height: 50px;
+  margin-right: 20px;
+}
+
 nav ul {
   flex-grow: 1;
   display: flex;
@@ -27,6 +32,7 @@ nav {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #eee;
+  padding: 10px 20px;
 }
 
 .logout-btn {

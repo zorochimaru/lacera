@@ -1,30 +1,28 @@
-import { NgFor, NgStyle } from '@angular/common';
+import { NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostBinding,
   HostListener,
-  inject,
-  OnInit
+  inject
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 
 import { LangCodes, routerAnchorLinks, routerLinks } from '../../core';
+import { LanguageSelectComponent } from '../language-select';
 
 // TODO: Make navbar links dynamically
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [TranslocoModule, RouterModule, FormsModule, NgFor, NgStyle],
+  imports: [RouterModule, TranslocoModule, NgStyle, LanguageSelectComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
-  #translocoService = inject(TranslocoService);
+export class HeaderComponent {
   #elRef = inject(ElementRef);
 
   @HostBinding('class.scrolled') scrolled = false;
@@ -39,14 +37,4 @@ export class HeaderComponent implements OnInit {
   protected langCodes = Object.values(LangCodes);
   protected routerLinks = routerLinks;
   protected routerAnchorLinks = routerAnchorLinks;
-  protected selectedLang = '';
-
-  public ngOnInit(): void {
-    this.selectedLang = this.#translocoService.getActiveLang();
-  }
-
-  protected changeLanguage(lang: string): void {
-    this.#translocoService.setActiveLang(lang);
-    localStorage.setItem('selectedLang', lang);
-  }
 }

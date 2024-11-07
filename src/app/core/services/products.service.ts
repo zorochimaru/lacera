@@ -36,8 +36,8 @@ export class ProductsService {
     return this.#dateRange();
   }
 
-  public loadNextData(reset?: boolean) {
-    if (this.#hasMore) {
+  public loadNextData(reset?: boolean, filter?: [string, string]): void {
+    if (this.#hasMore || reset) {
       this.#fireStoreService
         .getListWithPagination<ProductFirestore>(
           FirestoreCollections.products,
@@ -45,6 +45,9 @@ export class ProductsService {
             limit: 10,
             orderDirection: 'desc',
             orderBy: 'createdAt',
+            customQuery: filter
+              ? [[filter?.[0], '==', filter?.[1]]]
+              : undefined,
             startAfter:
               !reset && this.#sourceData$.value.at(-1)
                 ? Timestamp.fromDate(this.#sourceData$.value.at(-1)!.createdAt)

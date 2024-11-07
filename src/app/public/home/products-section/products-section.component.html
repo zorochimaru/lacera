@@ -10,11 +10,7 @@
           <swiper-slide>
             <a
               class="product-card"
-              [routerLink]="[
-                routerLinks.products,
-                routerLinks.productList,
-                item.id
-              ]">
+              [routerLink]="[routerLinks.productList, item.id]">
               <img [src]="item.imageUrls[0]" alt="" />
               <div class="product-description">
                 <span class="product-name">{{ item.name }}</span>

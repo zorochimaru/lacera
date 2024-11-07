@@ -44,15 +44,6 @@
         </a>
       </li>
     </ul>
-    <div class="lang-list">
-      <select
-        id="lang"
-        [(ngModel)]="selectedLang"
-        (change)="changeLanguage(selectedLang)">
-        <option *ngFor="let lang of langCodes" [value]="lang">
-          {{ lang }}
-        </option>
-      </select>
-    </div>
+    <app-language-select></app-language-select>
   </nav>
 </ng-container>

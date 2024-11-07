@@ -33,11 +33,23 @@
 
         <div class="details-wrapper">
           <div class="dataset-links">
-            <a>{{ category()?.name | currLang }} </a>
+            <a
+              [routerLink]="['/', routerLinks.productList]"
+              [queryParams]="{ categoryId: product.categoryId }">
+              {{ category()?.name | currLang }}
+            </a>
             /
-            <a>{{ collection()?.name | currLang }} </a>
+            <a
+              [routerLink]="['/', routerLinks.productList]"
+              [queryParams]="{ collectionId: product.collectionId }"
+              >{{ collection()?.name | currLang }}
+            </a>
             /
-            <a>{{ material()?.name | currLang }} </a>
+            <a
+              [routerLink]="['/', routerLinks.productList]"
+              [queryParams]="{ materialId: product.materialId }"
+              >{{ material()?.name | currLang }}
+            </a>
           </div>
           <h2 class="name">{{ product.name }}</h2>
           <p class="price">{{ product.price }} ₼</p>

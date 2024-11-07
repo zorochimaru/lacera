@@ -5,15 +5,16 @@ import {
   inject,
   OnInit
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService, LangCodes, routerLinks } from '@core';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoService } from '@jsverse/transloco';
+
+import { LanguageSelectComponent } from '../../../shared';
 
 @Component({
   selector: 'app-private-header',
   standalone: true,
-  imports: [RouterLink, NgFor, RouterLinkActive, TranslocoModule, FormsModule],
+  imports: [RouterLink, NgFor, RouterLinkActive, LanguageSelectComponent],
   templateUrl: './private-header.component.html',
   styleUrl: './private-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

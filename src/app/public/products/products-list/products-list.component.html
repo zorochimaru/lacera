@@ -4,25 +4,28 @@
       <div class="filter">
         <div class="filter-item">
           <label for="filter">{{ t("filter") }}</label>
-          <select id="filter" class="filter-select">
+          <select
+            id="filter"
+            class="filter-select"
+            [formControl]="filterControl">
             <option value="">{{ t("all") }}</option>
             <optgroup label="{{ t('category') }}">
               @for (category of categories(); track $index) {
-                <option value="category-{{ category.id }}">
+                <option value="categoryId-{{ category.id }}">
                   {{ category.name | currLang }}
                 </option>
               }
             </optgroup>
             <optgroup label="{{ t('collection') }}">
               @for (collection of collections(); track $index) {
-                <option value="collection-{{ collection.id }}">
+                <option value="collectionId-{{ collection.id }}">
                   {{ collection.name | currLang }}
                 </option>
               }
             </optgroup>
             <optgroup label="{{ t('material') }}">
               @for (material of materials(); track $index) {
-                <option value="material-{{ material.id }}">
+                <option value="materialId-{{ material.id }}">
                   {{ material.name | currLang }}
                 </option>
               }
@@ -39,7 +42,7 @@
             alt="{{ product.name }}"
             class="product-image" />
           <h2 class="product-name">{{ product.name }}</h2>
-          <p class="product-price">{{ product.price }}</p>
+          <p class="product-price">{{ product.price }} ₼</p>
         </a>
       }
     </div>

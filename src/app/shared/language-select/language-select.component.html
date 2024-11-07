@@ -1,0 +1,10 @@
+<select
+  class="lang-select"
+  [(ngModel)]="selectedLang"
+  (change)="changeLanguage(selectedLang)">
+  @for (item of langCodes; track $index) {
+    <option [value]="item">
+      {{ item }}
+    </option>
+  }
+</select>

@@ -1,9 +1,5 @@
 <div class="wrapper" [class.disabled]="loading()">
   <aside class="filters-container">
-    <button type="button" class="btn create-btn" (click)="createNew()">
-      Create new
-    </button>
-
     <nav>
       <ul>
         @for (item of datasetList(); track $index) {
@@ -25,7 +21,11 @@
       <tr>
         <th>Name</th>
         <th>Created at</th>
-        <th></th>
+        <th style="display: flex; justify-content: flex-end">
+          <button type="button" class="btn btn-success" (click)="createNew()">
+            Create new
+          </button>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -37,7 +37,10 @@
             <button type="button" class="btn" (click)="editDataset(item, i)">
               Edit
             </button>
-            <button type="button" class="btn" (click)="deleteDataset(item.id)">
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteDataset(item.id)">
               Delete
             </button>
           </td>

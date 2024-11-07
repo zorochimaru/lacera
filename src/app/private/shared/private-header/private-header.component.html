@@ -1,4 +1,7 @@
 <nav>
+  <a [routerLink]="routerLinks.public">
+    <img class="logo" src="assets/images/logo.svg" />
+  </a>
   <ul>
     <li>
       <a [routerLink]="routerLinks.newsList" routerLinkActive="active">
@@ -17,13 +20,7 @@
     </li>
   </ul>
 
-  <div class="lang-list">
-    <select [(ngModel)]="selectedLang" (change)="changeLanguage(selectedLang)">
-      <option *ngFor="let lang of langCodes" [value]="lang">
-        {{ lang }}
-      </option>
-    </select>
-  </div>
+  <app-language-select></app-language-select>
 
   <button class="logout-btn" (click)="logOut()">Log out</button>
 </nav>
