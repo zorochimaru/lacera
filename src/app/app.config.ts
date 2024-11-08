@@ -8,6 +8,10 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import {
+  getRemoteConfig,
+  provideRemoteConfig
+} from '@angular/fire/remote-config';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
@@ -35,6 +39,7 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature =
 export const appConfig: ApplicationConfig = {
   providers: [
     provideEnvironmentNgxMask(),
+    provideRemoteConfig(() => getRemoteConfig()),
     provideExperimentalZonelessChangeDetection(),
     provideRouter(routes, inMemoryScrollingFeature),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

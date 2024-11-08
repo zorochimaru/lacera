@@ -1,4 +1,50 @@
 <app-header />
-<section *ngFor="let section of homeSections" [id]="section.anchorLink">
-  <ng-container *ngComponentOutlet="section.component"></ng-container>
-</section>
+
+@defer (on viewport; prefetch on idle) {
+  <section [id]="routerAnchorLinks.home.home">
+    <app-welcome-section />
+  </section>
+} @placeholder {
+  <div style="height: 100svh"></div>
+}
+
+@defer (on viewport) {
+  <section
+    *appIfFeatureFlag="remoteConfigParams.homeProducts; else customSets"
+    [id]="routerAnchorLinks.home.products">
+    <app-products-section />
+  </section>
+} @placeholder {
+  <div style="height: 100svh"></div>
+}
+
+<ng-template #customSets>
+  <section [id]="routerAnchorLinks.home.customSets">
+    <app-custom-sets-section />
+  </section>
+</ng-template>
+
+@defer (on viewport) {
+  <section [id]="routerAnchorLinks.home.aboutUs">
+    <app-about-us-section />
+  </section>
+} @placeholder {
+  <div style="height: 100svh"></div>
+}
+
+@defer (on viewport) {
+  <section [id]="routerAnchorLinks.home.workshops">
+    <app-workshops-section />
+  </section>
+} @placeholder {
+  <div style="height: 100svh"></div>
+}
+@defer (on viewport) {
+  <section
+    *appIfFeatureFlag="remoteConfigParams.homeNews"
+    [id]="routerAnchorLinks.home.news">
+    <app-news-section />
+  </section>
+} @placeholder {
+  <div style="height: 100svh"></div>
+}

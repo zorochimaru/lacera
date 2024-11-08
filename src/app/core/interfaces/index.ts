@@ -6,4 +6,5 @@ export * from './language-codes.enum';
 export * from './news';
 export * from './operations.enum';
 export * from './product';
+export * from './remote-config-params.enum';
 export * from './typed-forms.type';

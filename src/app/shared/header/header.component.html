@@ -8,6 +8,22 @@
           {{ t("homeLink") }}
         </a>
       </li>
+      <li *appIfFeatureFlag="remoteConfigParams.homeProducts; else customSets">
+        <a
+          [routerLink]="routerLinks.public"
+          [fragment]="routerAnchorLinks.home.products">
+          {{ t("productsLink") }}
+        </a>
+      </li>
+      <ng-template #customSets>
+        <li>
+          <a
+            [routerLink]="routerLinks.public"
+            [fragment]="routerAnchorLinks.home.customSets">
+            {{ t("customSetsLink") }}
+          </a>
+        </li>
+      </ng-template>
       <li>
         <a
           [routerLink]="routerLinks.public"
@@ -18,24 +34,17 @@
       <li>
         <a
           [routerLink]="routerLinks.public"
-          [fragment]="routerAnchorLinks.home.products">
-          {{ t("productsLink") }}
-        </a>
-      </li>
-      <li>
-        <a
-          [routerLink]="routerLinks.public"
           [fragment]="routerAnchorLinks.home.workshops">
           {{ t("workshopLink") }}
         </a>
       </li>
-      <!-- <li>
+      <li *appIfFeatureFlag="remoteConfigParams.homeNews">
         <a
           [routerLink]="routerLinks.public"
           [fragment]="routerAnchorLinks.home.news">
           {{ t("newsLink") }}
         </a>
-      </li> -->
+      </li>
       <li>
         <a
           [routerLink]="routerLinks.public"
