@@ -1,27 +1,36 @@
-<div class="container">
-  <table cdk-table [dataSource]="orders()">
-    <!-- User name Definition -->
-    <ng-container cdkColumnDef="username">
-      <th cdk-header-cell *cdkHeaderCellDef>User name</th>
-      <td cdk-cell *cdkCellDef="let row">{{ row.username }}</td>
-    </ng-container>
+<div class="wrapper">
+  <aside class="filters-container">
+    <div class="checkbox-input">
+      <input
+        type="checkbox"
+        id="completed"
+        class="form-control"
+        [formControl]="completedControl" />
+      <label for="completed">Completed </label>
+    </div>
+  </aside>
+  <div class="container">
+    <table cdk-table [dataSource]="orders() || []">
+      <!-- User name Definition -->
+      <ng-container cdkColumnDef="customerName">
+        <th cdk-header-cell *cdkHeaderCellDef>Name</th>
+        <td cdk-cell *cdkCellDef="let row">{{ row.customerName }}</td>
+      </ng-container>
 
-    <!-- Age Definition -->
-    <ng-container cdkColumnDef="age">
-      <th cdk-header-cell *cdkHeaderCellDef>Age</th>
-      <td cdk-cell *cdkCellDef="let row">{{ row.age }}</td>
-    </ng-container>
+      <!-- Age Definition -->
+      <ng-container cdkColumnDef="customerPhoneNumber">
+        <th cdk-header-cell *cdkHeaderCellDef>Phone Number</th>
+        <td cdk-cell *cdkCellDef="let row">{{ row.customerPhoneNumber }}</td>
+      </ng-container>
 
-    <!-- Title Definition -->
-    <ng-container cdkColumnDef="title">
-      <th cdk-header-cell *cdkHeaderCellDef>Title</th>
-      <td cdk-cell *cdkCellDef="let row">{{ row.title }}</td>
-    </ng-container>
-
-    <!-- Header and Row Declarations -->
-    <tr cdk-header-row *cdkHeaderRowDef="['username', 'age', 'title']"></tr>
-    <tr
-      cdk-row
-      *cdkRowDef="let row; columns: ['username', 'age', 'title']"></tr>
-  </table>
+      <!-- Header and Row Declarations -->
+      <tr
+        cdk-header-row
+        *cdkHeaderRowDef="['customerName', 'customerPhoneNumber']"></tr>
+      <tr
+        cdk-row
+        *cdkRowDef="let row; columns: ['customerName', 'customerPhoneNumber']"
+        (click)="openOrderDetails(row)"></tr>
+    </table>
+  </div>
 </div>

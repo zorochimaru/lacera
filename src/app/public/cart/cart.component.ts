@@ -1,7 +1,7 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { NgxMaskDirective } from 'ngx-mask';
 
@@ -25,7 +25,6 @@ export class CartComponent {
   readonly #cartService = inject(CartService);
   readonly #dialogRef = inject(DialogRef);
   readonly #router = inject(Router);
-  readonly #route = inject(ActivatedRoute);
 
   protected products = this.#cartService.products;
   protected totalPrice = this.#cartService.totalPrice();
@@ -50,7 +49,10 @@ export class CartComponent {
 
   protected checkout(): void {
     this.#cartService
-      .checkout(this.customerPhoneNumber.getRawValue())
+      .checkout(
+        this.customerName.getRawValue(),
+        this.customerPhoneNumber.getRawValue()
+      )
       .subscribe(() => {
         this.#dialogRef.close();
         this.#cartService.clearOrder();

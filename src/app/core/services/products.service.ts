@@ -73,6 +73,17 @@ export class ProductsService {
     );
   }
 
+  public getProductByIds(ids: string[]): Observable<ProductFirestore[]> {
+    return forkJoin(
+      ids.map(id =>
+        this.#fireStoreService.get<ProductFirestore>(
+          FirestoreCollections.products,
+          id
+        )
+      )
+    ).pipe(map(res => res.filter(item => item !== null) as ProductFirestore[]));
+  }
+
   public createProduct(news: Product): Observable<string> {
     return this.#fireStoreService.create<ProductFirestore>(
       FirestoreCollections.products,

@@ -45,6 +45,6 @@ export class LoginComponent implements OnInit {
   }
 
   #gotToAdminPanel(): void {
-    this.#router.navigate([routerLinks.private, routerLinks.newsList]);
+    this.#router.navigate([routerLinks.private, routerLinks.orders]);
   }
 }

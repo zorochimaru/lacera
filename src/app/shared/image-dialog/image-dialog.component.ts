@@ -12,7 +12,7 @@ import { IconComponent } from '../icon';
 })
 export class ImageDialogComponent {
   dialogRef = inject<DialogRef<string>>(DialogRef<string>);
-  data: { src: string } = inject(DIALOG_DATA);
+  data = inject<{ src: string }>(DIALOG_DATA);
 
   protected onClose(): void {
     this.dialogRef.close();

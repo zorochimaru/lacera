@@ -1,6 +1,8 @@
 export interface Order {
+  customerName: string;
   customerPhoneNumber: string;
-  orders: {
+  completed: boolean;
+  products: {
     productId: string;
     quantity: number;
   }[];

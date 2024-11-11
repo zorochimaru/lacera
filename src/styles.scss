@@ -115,6 +115,15 @@ button {
   }
 }
 
+.checkbox-input {
+  display: flex;
+  gap: 8px;
+
+  .form-control {
+    width: 30px;
+  }
+}
+
 .grid {
   min-height: 100svh;
   color: var(--accent-fg-color);

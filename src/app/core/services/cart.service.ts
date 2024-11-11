@@ -76,10 +76,15 @@ export class CartService {
     this.#products.set([]);
   }
 
-  public checkout(customerPhoneNumber: string): Observable<string> {
+  public checkout(
+    customerName: string,
+    customerPhoneNumber: string
+  ): Observable<string> {
     const order: Order = {
+      customerName,
       customerPhoneNumber,
-      orders: this.#products().map(item => ({
+      completed: false,
+      products: this.#products().map(item => ({
         productId: item.product.id,
         quantity: item.quantity
       }))

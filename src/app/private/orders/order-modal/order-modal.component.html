@@ -1,0 +1,44 @@
+<div class="order-modal">
+  <h2>Order Details</h2>
+  <div class="order-info">
+    <p><strong>Order ID:</strong> {{ order.id }}</p>
+    <p><strong>Customer Name:</strong> {{ order.customerName }}</p>
+    <p>
+      <strong>Customer Phone Number:</strong> {{ order.customerPhoneNumber }}
+    </p>
+    <p><strong>Order Date:</strong> {{ order.createdAt | date }}</p>
+  </div>
+  <div class="products-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>In Stock Quantity</th>
+          <th>Ordered Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of order.products; track product.productId) {
+          <tr>
+            <td>{{ getProduct(product.productId)?.name }}</td>
+            <td>{{ getProduct(product.productId)?.quantity }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ getProduct(product.productId)?.price }} ₼</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="order-total">
+    <p><strong>Total:</strong> {{ totalPrice() }} ₼</p>
+  </div>
+  <div class="actions">
+    <button (click)="close()" class="btn">Close</button>
+    @if (!order.completed) {
+      <button type="button" (click)="completeOrder()" class="btn btn-success">
+        Complete order
+      </button>
+    }
+  </div>
+</div>

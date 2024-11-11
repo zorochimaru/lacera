@@ -5,6 +5,7 @@ import { endOfDay, startOfDay } from 'date-fns';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import {
+  CustomQuery,
   DateRange,
   FirestoreCollections,
   FirestoreService,
@@ -35,14 +36,14 @@ export class OrdersService {
     return this.#dateRange();
   }
 
-  public loadNextData(reset?: boolean, filter?: [string, string]): void {
+  public loadNextData(reset?: boolean, filter?: CustomQuery[]): void {
     if (this.#hasMore || reset) {
       this.#fireStoreService
         .getListWithPagination<OrderFirestore>(FirestoreCollections.orders, {
           limit: 10,
           orderDirection: 'desc',
           orderBy: 'createdAt',
-          customQuery: filter ? [[filter?.[0], '==', filter?.[1]]] : undefined,
+          customQuery: filter,
           startAfter:
             !reset && this.#sourceData$.value.at(-1)
               ? Timestamp.fromDate(this.#sourceData$.value.at(-1)!.createdAt)

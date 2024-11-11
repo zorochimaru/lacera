@@ -15,7 +15,7 @@ import { LangCodes } from '../../../core';
 })
 export class EditDatasetDialogComponent implements OnInit {
   readonly #dr = inject(DestroyRef);
-  readonly #dialogData: Record<LangCodes, string> = inject(DIALOG_DATA);
+  readonly #dialogData = inject<Record<LangCodes, string>>(DIALOG_DATA);
   protected dialogRef = inject(DialogRef);
 
   protected activeDescriptionLanguage = signal<LangCodes>(LangCodes.az);
