@@ -1,27 +1,28 @@
 export const routerLinks = {
-  public: '/',
-  private: 'private',
   adminPanel: 'admin-panel',
-  products: 'products',
-  productList: 'product-list',
-  productListCategory: 'category',
-  productListMaterial: 'material',
   datasetList: 'dataset-list',
+  login: 'login',
   news: 'news',
   newsList: 'news-list',
   newsPanel: 'news-panel',
+  orders: 'orders',
+  private: 'private',
+  productList: 'product-list',
+  productListCategory: 'category',
+  productListMaterial: 'material',
   productPanel: 'product-panel',
-  login: 'login'
+  products: 'products',
+  public: '/'
 };
 
 export const routerAnchorLinks = {
   home: {
-    home: 'home',
     aboutUs: 'about-us',
-    products: 'products',
     contactUs: 'contacts-us',
     customSets: 'custom-sets',
+    home: 'home',
     news: 'news',
+    products: 'products',
     workshops: 'workshops'
   },
   shared: {

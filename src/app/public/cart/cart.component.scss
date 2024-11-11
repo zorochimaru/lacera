@@ -1,0 +1,72 @@
+.wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  background-color: var(--bg-surface);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h3 {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.checkbox-input {
+  display: flex;
+  gap: 8px;
+
+  .form-control {
+    width: 30px;
+  }
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.cart-item .name {
+  font-size: 1.5rem;
+}
+
+.cart-item .price {
+  font-size: 1.2rem;
+}
+
+.quantity-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.cart-item .quantity {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

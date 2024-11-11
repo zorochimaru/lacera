@@ -94,6 +94,7 @@ button {
 
   &:disabled {
     cursor: not-allowed;
+    opacity: 0.5;
   }
 
   &:active:not(:disabled) {
@@ -107,6 +108,10 @@ button {
 
   &.btn-success {
     background-color: var(--btn-success-bg);
+  }
+
+  &.btn-sm {
+    padding: 4px 12px;
   }
 }
 
@@ -142,6 +147,10 @@ button {
   padding: 10px 20px;
   border-radius: 8px;
   border: 1px solid var(--border-default);
+
+  &.ng-invalid.ng-touched {
+    border-color: var(--border-danger);
+  }
 }
 
 .form-container {

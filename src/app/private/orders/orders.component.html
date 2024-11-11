@@ -1,0 +1,27 @@
+<div class="container">
+  <table cdk-table [dataSource]="orders()">
+    <!-- User name Definition -->
+    <ng-container cdkColumnDef="username">
+      <th cdk-header-cell *cdkHeaderCellDef>User name</th>
+      <td cdk-cell *cdkCellDef="let row">{{ row.username }}</td>
+    </ng-container>
+
+    <!-- Age Definition -->
+    <ng-container cdkColumnDef="age">
+      <th cdk-header-cell *cdkHeaderCellDef>Age</th>
+      <td cdk-cell *cdkCellDef="let row">{{ row.age }}</td>
+    </ng-container>
+
+    <!-- Title Definition -->
+    <ng-container cdkColumnDef="title">
+      <th cdk-header-cell *cdkHeaderCellDef>Title</th>
+      <td cdk-cell *cdkCellDef="let row">{{ row.title }}</td>
+    </ng-container>
+
+    <!-- Header and Row Declarations -->
+    <tr cdk-header-row *cdkHeaderRowDef="['username', 'age', 'title']"></tr>
+    <tr
+      cdk-row
+      *cdkRowDef="let row; columns: ['username', 'age', 'title']"></tr>
+  </table>
+</div>

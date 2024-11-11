@@ -1,0 +1,78 @@
+<ng-container *transloco="let t; read: 'cart'">
+  <div class="wrapper">
+    <div class="left-panel">
+      <h2>{{ t("products") }}</h2>
+      <div class="cart-items">
+        @for (item of products(); track $index; let last = $last) {
+          <div class="cart-item">
+            <img [src]="item.product.imageUrls[0]" alt="" />
+            <div class="cart-item-info">
+              <h3>{{ item.product.name }}</h3>
+              <p>{{ t("price") }}: {{ item.product.price }} ₼</p>
+              <p>{{ t("quantity") }}: {{ item.quantity }}</p>
+              <p>{{ t("totalPrice") }}: {{ totalPrice }} ₼</p>
+            </div>
+            <button
+              type="button"
+              class="btn"
+              (click)="removeFromCart(item.product.id)">
+              <app-icon icon="delete"></app-icon>
+            </button>
+          </div>
+        } @empty {
+          <p>{{ t("emptyCart") }}</p>
+        }
+      </div>
+    </div>
+    <div class="right-panel">
+      <div>
+        <h3>{{ t("contactName") }}</h3>
+        <input
+          type="text"
+          class="form-control"
+          [formControl]="customerName"
+          [placeholder]="t('name')" />
+      </div>
+      <div>
+        <h3>{{ t("enterPhoneNumber") }}</h3>
+        <input
+          type="tel"
+          placeholder="+994 50 000 00 00"
+          prefix="+994"
+          mask=" 00 000 00 00"
+          placeHolderCharacter="*"
+          [showMaskTyped]="true"
+          [dropSpecialCharacters]="false"
+          class="form-control"
+          [formControl]="customerPhoneNumber" />
+      </div>
+
+      <div class="checkbox-input">
+        <input
+          type="checkbox"
+          class="form-control"
+          id="terms"
+          [formControl]="termsAcceptControl" />
+        <label for="terms">
+          {{ t("terms") }}
+          <br />
+          <a target="_blank" [routerLink]="routerLinks.login">{{
+            t("privacyPolicy")
+          }}</a>
+        </label>
+      </div>
+      <button
+        type="button"
+        class="btn"
+        [disabled]="
+          termsAcceptControl.invalid ||
+          customerName.invalid ||
+          customerPhoneNumber.invalid ||
+          !products().length
+        "
+        (click)="checkout()">
+        {{ t("checkout") }}
+      </button>
+    </div>
+  </div>
+</ng-container>

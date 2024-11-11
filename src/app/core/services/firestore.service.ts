@@ -238,16 +238,15 @@ export class FirestoreService {
     customId?: string
   ): Observable<string> {
     return this.#signedUser$.pipe(
-      filter(Boolean),
       take(1),
       switchMap(currUser => {
         const { id, ...rest } = data;
         const copy: Record<string, unknown> = {
           ...rest,
           createdAt: serverTimestamp(),
-          createdBy: currUser.uid,
+          createdBy: currUser?.uid || 'customer',
           updatedAt: serverTimestamp(),
-          updatedBy: currUser.uid
+          updatedBy: currUser?.uid || 'customer'
         };
 
         try {

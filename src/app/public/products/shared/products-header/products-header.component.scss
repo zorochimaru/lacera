@@ -10,7 +10,21 @@ header {
   }
 
   .logo-link,
-  app-language-select {
+  .right-panel {
     margin-left: auto;
+  }
+
+  .right-panel {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 200px;
+  }
+
+  .cart-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 }

@@ -1,4 +1,17 @@
 {
+  "cart": {
+    "checkout": "Sifariş et",
+    "contactName": "Soyad və Ad",
+    "emptyCart": "Sifariş  yoxsur",
+    "enterPhoneNumber": "Telefon nömrəsi",
+    "name": "Soyad Ad",
+    "price": "Qiymət",
+    "privacyPolicy": "Məxfilik siyasəti",
+    "products": "Məhsullar",
+    "quantity": "Miqdar",
+    "terms": "Şərtlərimizi qəbul etdiyinizi təsdiqləyin",
+    "totalPrice": "Ümumi qiymət"
+  },
   "footer": {
     "address": "4C Eldar Ağayev küçəsi, Bakı, Azərbaycan",
     "contactUs": "Bizimlə əlaqə saxlayın"
@@ -59,7 +72,7 @@
       "description": "Təsvir",
       "material": "Material",
       "quantity": "Miqdar",
-      "requestIn": "Sifariş et",
+      "request": "Sifariş et",
       "size": "Ölçü"
     }
   },

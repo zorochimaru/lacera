@@ -50,8 +50,13 @@ swiper-slide {
 .dataset-links {
   margin-bottom: 60px;
   color: var(--fg-muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
 
-  a {
+  a,
+  app-icon {
     color: var(--fg-muted);
   }
 }
@@ -83,11 +88,8 @@ swiper-slide {
     flex-shrink: 0;
   }
 
-  .icons {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
+  button {
+    flex-shrink: 0;
   }
 }
 
@@ -150,6 +152,7 @@ hr {
   }
 
   .dataset-links {
+    gap: 20px;
     margin-bottom: 30px;
   }
 

@@ -10,8 +10,8 @@
 
 @defer (on viewport) {
   <section
-    *appIfFeatureFlag="remoteConfigParams.homeProducts; else customSets"
-    [id]="routerAnchorLinks.home.products">
+    [id]="routerAnchorLinks.home.products"
+    *appIfFeatureFlag="remoteConfigParams.homeProducts; else customSets">
     <app-products-section />
   </section>
 } @placeholder {

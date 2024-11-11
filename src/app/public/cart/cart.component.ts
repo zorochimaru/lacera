@@ -1,0 +1,61 @@
+import { DialogRef } from '@angular/cdk/dialog';
+import { Component, inject } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { TranslocoDirective } from '@jsverse/transloco';
+import { NgxMaskDirective } from 'ngx-mask';
+
+import { CartService, routerLinks } from '../../core';
+import { IconComponent } from '../../shared';
+
+@Component({
+  selector: 'app-cart',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    TranslocoDirective,
+    RouterModule,
+    NgxMaskDirective,
+    IconComponent
+  ],
+  templateUrl: './cart.component.html',
+  styleUrl: './cart.component.scss'
+})
+export class CartComponent {
+  readonly #cartService = inject(CartService);
+  readonly #dialogRef = inject(DialogRef);
+  readonly #router = inject(Router);
+  readonly #route = inject(ActivatedRoute);
+
+  protected products = this.#cartService.products;
+  protected totalPrice = this.#cartService.totalPrice();
+  protected totalQuantity = this.#cartService.totalQuantity();
+
+  protected customerPhoneNumber = new FormControl('+994', {
+    nonNullable: true
+  });
+  protected customerName = new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required]
+  });
+  protected termsAcceptControl = new FormControl(false, {
+    validators: [Validators.requiredTrue],
+    nonNullable: true
+  });
+  protected routerLinks = routerLinks;
+
+  protected removeFromCart(productId: string): void {
+    this.#cartService.removeProductFromOrder(productId);
+  }
+
+  protected checkout(): void {
+    this.#cartService
+      .checkout(this.customerPhoneNumber.getRawValue())
+      .subscribe(() => {
+        this.#dialogRef.close();
+        this.#cartService.clearOrder();
+        this.#router.navigate(['/']);
+        // TODO: Show success message
+      });
+  }
+}

@@ -1,4 +1,17 @@
 {
+  "cart": {
+    "checkout": "Checkout",
+    "contactName": "Contact name",
+    "emptyCart": "Cart is empty",
+    "enterPhoneNumber": "Enter phone number",
+    "name": "Fullname",
+    "price": "Price",
+    "privacyPolicy": "Privacy Policy",
+    "products": "Products",
+    "quantity": "Quantity",
+    "terms": "Check to accept our terms and conditions",
+    "totalPrice": "Total price"
+  },
   "footer": {
     "address": "4C Eldar Agayev Street, Baku, Azerbaijan",
     "contactUs": "Contact us"
@@ -55,7 +68,7 @@
       "description": "Description",
       "material": "Material",
       "quantity": "Quantity",
-      "requestIn": "Request in",
+      "request": "Add to cart",
       "size": "Size"
     }
   },

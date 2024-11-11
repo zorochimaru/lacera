@@ -8,6 +8,11 @@ export const privateRoutes: Routes = [
       import('./private.component').then(c => c.PrivateComponent),
     children: [
       {
+        path: routerLinks.orders,
+        loadComponent: () =>
+          import('./orders/orders.component').then(c => c.OrdersComponent)
+      },
+      {
         path: `${routerLinks.productList}/${routerLinks.productPanel}`,
         loadComponent: () =>
           import('./product/product-panel/product-panel.component').then(

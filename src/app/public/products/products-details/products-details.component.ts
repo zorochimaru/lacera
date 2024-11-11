@@ -1,6 +1,7 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import {
   Component,
+  computed,
   CUSTOM_ELEMENTS_SCHEMA,
   DestroyRef,
   ElementRef,
@@ -10,12 +11,15 @@ import {
   viewChild
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { NgxMaskDirective } from 'ngx-mask';
 import { filter, forkJoin, switchMap, tap } from 'rxjs';
 import { SwiperContainer } from 'swiper/element';
 
 import {
+  CartService,
   CurrentLanguagePipe,
   DatasetItemFirestore,
   DatasetService,
@@ -25,6 +29,7 @@ import {
   ProductsService,
   routerLinks
 } from '../../../core';
+import { IconComponent } from '../../../shared';
 
 @Component({
   selector: 'app-products-details',
@@ -34,7 +39,11 @@ import {
     DatasetViewerPipe,
     AsyncPipe,
     TranslocoDirective,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    IconComponent,
+    JsonPipe
   ],
   providers: [ProductsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -44,6 +53,7 @@ import {
 export class ProductsDetailsComponent implements OnInit {
   readonly #route = inject(ActivatedRoute);
   readonly #productsService = inject(ProductsService);
+  readonly #cartService = inject(CartService);
   readonly #datasetService = inject(DatasetService);
   readonly #dr = inject(DestroyRef);
 
@@ -54,6 +64,26 @@ export class ProductsDetailsComponent implements OnInit {
   protected category = signal<DatasetItemFirestore | null>(null);
   protected collection = signal<DatasetItemFirestore | null>(null);
   protected material = signal<DatasetItemFirestore | null>(null);
+
+  protected productMaxAvailableQuantity = computed(() => {
+    const productInCart = this.#cartService
+      .products()
+      .find(p => p.product.id === this.product()?.id);
+    return productInCart
+      ? this.product()?.quantity! - productInCart.quantity
+      : this.product()?.quantity || 0;
+  });
+
+  protected orderLimitReached = computed(() => {
+    const productInCart = this.#cartService
+      .products()
+      .find(p => p.product.id === this.product()?.id);
+    return productInCart && productInCart.quantity >= this.product()?.quantity!;
+  });
+
+  protected readonly quantityControl = new FormControl(1, {
+    nonNullable: true
+  });
 
   protected categoryCollection = FirestoreCollections.categories;
   protected collectionCollection = FirestoreCollections.collections;
@@ -96,5 +126,12 @@ export class ProductsDetailsComponent implements OnInit {
 
   protected selectImage(i: number): void {
     this.imageSwiper()?.nativeElement?.swiper?.slideTo(i);
+  }
+
+  protected addToCart(product: ProductFirestore): void {
+    this.#cartService.addProductToOrder(
+      product,
+      this.quantityControl.getRawValue()
+    );
   }
 }

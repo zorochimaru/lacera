@@ -33,6 +33,10 @@
 
         <div class="details-wrapper">
           <div class="dataset-links">
+            <button type="button" class="btn-unstyled" routerLink="..">
+              <app-icon icon="west" />
+            </button>
+            /
             <a
               [routerLink]="['/', routerLinks.productList]"
               [queryParams]="{ categoryId: product.categoryId }">
@@ -57,21 +61,24 @@
 
           @if (product.quantity) {
             <div class="request-directions">
-              <span>{{ t("requestIn") }}:</span>
+              <span>{{ t("request") }}:</span>
+              <input
+                type="number"
+                mask="00"
+                min="1"
+                [max]="productMaxAvailableQuantity()"
+                style="text-align: center"
+                class="form-control"
+                [validation]="false"
+                [formControl]="quantityControl" />
 
-              <div class="icons">
-                <a target="_blank" href="https://wa.me/994103881313">
-                  <img class="social-icon" src="assets/images/whatsapp.svg" />
-                </a>
-                <a
-                  href="https://www.instagram.com/lacerastudio/"
-                  target="_blank">
-                  <img class="social-icon" src="assets/images/instagram.svg" />
-                </a>
-                <a href="mailto:lacerastudio@gmail.com" target="_blank">
-                  <img class="social-icon" src="assets/images/email.svg" />
-                </a>
-              </div>
+              <button
+                type="button"
+                [disabled]="quantityControl.invalid || orderLimitReached()"
+                class="btn"
+                (click)="addToCart(product)">
+                <app-icon icon="add_shopping_cart" width="56px"></app-icon>
+              </button>
             </div>
           }
 

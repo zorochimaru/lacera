@@ -1,4 +1,5 @@
 export * from './auth.service';
+export * from './cart.service';
 export * from './dataset.service';
 export * from './feature-flag.service';
 export * from './firestore.service';
