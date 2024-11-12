@@ -12,14 +12,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'app-news-section',
   standalone: true,
-  imports: [
-    NgIf,
-    AsyncPipe,
-    RouterModule,
-    NgOptimizedImage,
-    DatePipe,
-    TranslocoModule
-  ],
+  imports: [AsyncPipe, RouterModule, DatePipe, TranslocoModule],
   providers: [NewsService],
   templateUrl: './news-section.component.html',
   styleUrl: './news-section.component.scss',
