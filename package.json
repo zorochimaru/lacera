@@ -1,6 +1,6 @@
 {
   "name": "lacera",
-  "version": "0.0.52",
+  "version": "0.0.53",
   "scripts": {
     "start": "npm run make-sprite && ng serve -o",
     "build": "ng build",

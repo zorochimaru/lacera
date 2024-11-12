@@ -5,7 +5,16 @@ import {
   RemoteConfig,
   Value
 } from '@angular/fire/remote-config';
-import { from, map, Observable, of, shareReplay, switchMap, take } from 'rxjs';
+import {
+  from,
+  map,
+  Observable,
+  of,
+  shareReplay,
+  switchMap,
+  take,
+  tap
+} from 'rxjs';
 
 import { RemoteConfigParams } from '../interfaces';
 
@@ -17,9 +26,11 @@ export class RemoteConfigService {
   readonly #configReady$: Observable<boolean>;
   constructor() {
     this.#configReady$ = from(fetchAndActivate(this.#ffService)).pipe(
+      tap(
+        () => (this.#ffService.settings.minimumFetchIntervalMillis = 3600000)
+      ),
       shareReplay(1)
     );
-    this.#ffService.settings.minimumFetchIntervalMillis = 3600000;
   }
 
   public getString(key: RemoteConfigParams): Observable<string> {
