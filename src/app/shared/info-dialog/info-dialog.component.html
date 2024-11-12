@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <h1>{{ data.title }}</h1>
+  <app-icon
+    width="96px"
+    height="96px"
+    [icon]="data.icon"
+    [class.success]="data.type === 'success'"
+    [class.error]="data.type === 'error'"></app-icon>
+  <p>{{ data.message }}</p>
+</div>

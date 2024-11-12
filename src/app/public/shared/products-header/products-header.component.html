@@ -2,11 +2,11 @@
   <a class="logo-link" [routerLink]="routerLinks.public">
     <img class="logo" src="assets/images/logo.svg" />
   </a>
-
   <div class="right-panel">
     @if (totalQuantity(); as totalQuantity) {
       <button
         type="button"
+        [@quantityChange]="totalQuantity"
         (click)="openCartDialog()"
         class="cart-quantity btn-unstyled">
         <span>

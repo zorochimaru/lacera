@@ -57,7 +57,11 @@
           </div>
           <h2 class="name">{{ product.name }}</h2>
           <p class="price">{{ product.price }} ₼</p>
-          <p class="quantity">{{ t("quantity") }}: {{ product.quantity }}</p>
+          @if (product.quantity) {
+            <p class="quantity">{{ t("quantity") }}: {{ product.quantity }}</p>
+          } @else {
+            <p class="quantity">{{ t("outOfStock") }}</p>
+          }
 
           @if (product.quantity) {
             <div class="request-directions">

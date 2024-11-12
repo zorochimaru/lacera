@@ -6,6 +6,7 @@ export const routerLinks = {
   newsList: 'news-list',
   newsPanel: 'news-panel',
   orders: 'orders',
+  privacyPolicy: 'privacy-policy',
   private: 'private',
   productList: 'product-list',
   productListCategory: 'category',

@@ -1,5 +1,14 @@
 <div class="order-modal">
-  <h2>Order Details</h2>
+  <div class="title">
+    <h2>Order Details</h2>
+    @if (order.completed) {
+      <app-icon
+        width="32px"
+        height="32px"
+        icon="check_circle"
+        [style.color]="'var(--btn-success-bg)'"></app-icon>
+    }
+  </div>
   <div class="order-info">
     <p><strong>Order ID:</strong> {{ order.id }}</p>
     <p><strong>Customer Name:</strong> {{ order.customerName }}</p>
@@ -20,7 +29,7 @@
       </thead>
       <tbody>
         @for (product of order.products; track product.productId) {
-          <tr>
+          <tr (click)="openProductInNewTab(product.productId)">
             <td>{{ getProduct(product.productId)?.name }}</td>
             <td>{{ getProduct(product.productId)?.quantity }}</td>
             <td>{{ product.quantity }}</td>
@@ -36,6 +45,9 @@
   <div class="actions">
     <button (click)="close()" class="btn">Close</button>
     @if (!order.completed) {
+      <button type="button" class="btn btn-danger" (click)="cancelOrder()">
+        Cancel order
+      </button>
       <button type="button" (click)="completeOrder()" class="btn btn-success">
         Complete order
       </button>

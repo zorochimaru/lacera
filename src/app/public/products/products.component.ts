@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { ProductsHeaderComponent } from './shared';
+import { ProductsHeaderComponent } from '../shared';
 
 @Component({
   selector: 'app-products',

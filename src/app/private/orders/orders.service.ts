@@ -83,6 +83,10 @@ export class OrdersService {
     );
   }
 
+  public deleteOrder(id: string): Observable<void> {
+    return this.#fireStoreService.delete(FirestoreCollections.orders, id);
+  }
+
   public searchOrdersByDate(): void {
     this.#hasMore = true;
     this.#fireStoreService

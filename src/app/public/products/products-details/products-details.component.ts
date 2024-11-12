@@ -1,4 +1,3 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
 import {
   Component,
   computed,
@@ -23,7 +22,6 @@ import {
   CurrentLanguagePipe,
   DatasetItemFirestore,
   DatasetService,
-  DatasetViewerPipe,
   FirestoreCollections,
   ProductFirestore,
   ProductsService,
@@ -36,14 +34,11 @@ import { IconComponent } from '../../../shared';
   standalone: true,
   imports: [
     CurrentLanguagePipe,
-    DatasetViewerPipe,
-    AsyncPipe,
     TranslocoDirective,
     RouterModule,
     ReactiveFormsModule,
     NgxMaskDirective,
-    IconComponent,
-    JsonPipe
+    IconComponent
   ],
   providers: [ProductsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

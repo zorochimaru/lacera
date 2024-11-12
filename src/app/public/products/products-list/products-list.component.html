@@ -40,6 +40,7 @@
           <img
             [src]="product.imageUrls[0]"
             alt="{{ product.name }}"
+            [class.out-of-stock]="!product.quantity"
             class="product-image" />
           <h2 class="product-name">{{ product.name }}</h2>
           <p class="product-price">{{ product.price }} ₼</p>

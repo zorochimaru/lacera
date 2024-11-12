@@ -1,12 +1,12 @@
-import { DialogRef } from '@angular/cdk/dialog';
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { NgxMaskDirective } from 'ngx-mask';
 
 import { CartService, routerLinks } from '../../core';
-import { IconComponent } from '../../shared';
+import { IconComponent, InfoDialogComponent } from '../../shared';
 
 @Component({
   selector: 'app-cart',
@@ -25,6 +25,8 @@ export class CartComponent {
   readonly #cartService = inject(CartService);
   readonly #dialogRef = inject(DialogRef);
   readonly #router = inject(Router);
+  readonly #dialog = inject(Dialog);
+  readonly #transloco = inject(TranslocoService);
 
   protected products = this.#cartService.products;
   protected totalPrice = this.#cartService.totalPrice();
@@ -48,16 +50,42 @@ export class CartComponent {
   }
 
   protected checkout(): void {
+    this.#dialogRef.close();
+
     this.#cartService
       .checkout(
         this.customerName.getRawValue(),
         this.customerPhoneNumber.getRawValue()
       )
-      .subscribe(() => {
-        this.#dialogRef.close();
-        this.#cartService.clearOrder();
-        this.#router.navigate(['/']);
-        // TODO: Show success message
+      .subscribe({
+        next: () => {
+          this.#dialogRef.close();
+          this.#cartService.clearOrder();
+          this.#router.navigate(['/']).then(() => {
+            this.#dialog.open(InfoDialogComponent, {
+              data: {
+                title: this.#transloco.translate(
+                  'common.successMessage'
+                ) /** t("common.successMessage") */,
+                message:
+                  this.#transloco.translate('cart.orderNumber') /** t() */,
+                icon: 'check_circle',
+                type: 'success'
+              }
+            });
+          });
+        },
+        error: () => {
+          this.#dialog.open(InfoDialogComponent, {
+            data: {
+              title: this.#transloco.translate(
+                'common.errorMessage'
+              ) /** t("common.errorMessage") */,
+              icon: 'error',
+              type: 'error'
+            }
+          });
+        }
       });
   }
 }

@@ -128,7 +128,7 @@ export class ProductPanelComponent implements OnInit {
     materialId: this.#fb.nonNullable.control('', Validators.required),
     quantity: this.#fb.nonNullable.control(0, [
       Validators.required,
-      Validators.min(1)
+      Validators.min(0)
     ]),
     size: this.#fb.nonNullable.control('', Validators.required)
   });

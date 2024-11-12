@@ -44,9 +44,20 @@ export class OrdersComponent implements OnInit {
               ...order,
               completed: true
             })
-            .subscribe(() => {
-              // TODO: Add success notification
-            });
+            .subscribe(() =>
+              this.#ordersService.loadNextData(true, [
+                ['completed', '==', this.completedControl.getRawValue()]
+              ])
+            );
+        }
+        if (res === false) {
+          this.#ordersService
+            .deleteOrder(order.id)
+            .subscribe(() =>
+              this.#ordersService.loadNextData(true, [
+                ['completed', '==', this.completedControl.getRawValue()]
+              ])
+            );
         }
       });
   }

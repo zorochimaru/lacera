@@ -24,6 +24,10 @@
     flex: 4;
     object-fit: cover;
     min-height: 80%;
+
+    &.out-of-stock {
+      filter: grayscale(1);
+    }
   }
 
   .product-name {

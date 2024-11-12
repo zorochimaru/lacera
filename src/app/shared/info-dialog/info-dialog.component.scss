@@ -1,0 +1,18 @@
+.success {
+  color: var(--btn-success-bg);
+}
+
+.error {
+  color: var(--btn-danger-bg);
+}
+
+.wrapper {
+  background-color: var(--bg-surface);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}

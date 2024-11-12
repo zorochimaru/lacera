@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { routerLinks } from '@core';
+import { remoteConfigGuard, RemoteConfigParams, routerLinks } from '@core';
 
 export const publicRoutes: Routes = [
   {
@@ -14,6 +14,10 @@ export const publicRoutes: Routes = [
       },
       {
         path: `${routerLinks.news}/:id`,
+        canMatch: [remoteConfigGuard],
+        data: {
+          rcKey: RemoteConfigParams.homeNews
+        },
         loadComponent: () =>
           import('./news-details/news-details.component').then(
             c => c.NewsDetailsComponent
@@ -21,7 +25,18 @@ export const publicRoutes: Routes = [
       },
       {
         path: routerLinks.productList,
-        loadChildren: () => import('./products/products.routes')
+        loadChildren: () => import('./products/products.routes'),
+        canMatch: [remoteConfigGuard],
+        data: {
+          rcKey: RemoteConfigParams.homeProducts
+        }
+      },
+      {
+        path: routerLinks.privacyPolicy,
+        loadComponent: () =>
+          import('./privacy-policy/privacy-policy.component').then(
+            c => c.PrivacyPolicyComponent
+          )
       }
     ]
   }
