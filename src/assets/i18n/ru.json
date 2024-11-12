@@ -1,17 +1,11 @@
 {
-  "\"common": {
-    "errorMessage\"": "Missing value for '\"common.errorMessage\"'",
-    "errorTitle\"": "Missing value for '\"common.errorTitle\"'",
-    "successMessage\"": "Missing value for '\"common.successMessage\"'",
-    "successTitle\"": "Missing value for '\"common.successTitle\"'"
-  },
   "cart": {
     "checkout": "Оформить заказ",
     "contactName": "Имя",
     "emptyCart": "Корзина пуста",
     "enterPhoneNumber": "Введите номер телефона",
     "name": "Полное имя",
-    "orderNumber": "Номер заказа",
+    "orderNumber": "Номер заказа {{id}}",
     "price": "Цена",
     "privacyPolicy": "Политика конфиденциальности",
     "products": "Продукты",

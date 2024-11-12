@@ -1,17 +1,11 @@
 {
-  "\"common": {
-    "errorMessage\"": "Missing value for '\"common.errorMessage\"'",
-    "errorTitle\"": "Missing value for '\"common.errorTitle\"'",
-    "successMessage\"": "Missing value for '\"common.successMessage\"'",
-    "successTitle\"": "Missing value for '\"common.successTitle\"'"
-  },
   "cart": {
     "checkout": "Checkout",
     "contactName": "Contact name",
     "emptyCart": "Cart is empty",
     "enterPhoneNumber": "Enter phone number",
     "name": "Fullname",
-    "orderNumber": "Missing value for 'cart.orderNumber'",
+    "orderNumber": "Order number: {{id}}",
     "price": "Price",
     "privacyPolicy": "Privacy Policy",
     "products": "Products",

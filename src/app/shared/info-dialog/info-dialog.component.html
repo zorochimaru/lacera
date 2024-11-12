@@ -6,5 +6,7 @@
     [icon]="data.icon"
     [class.success]="data.type === 'success'"
     [class.error]="data.type === 'error'"></app-icon>
-  <p>{{ data.message }}</p>
+  @if (data.message) {
+    <p>{{ data.message }}</p>
+  }
 </div>

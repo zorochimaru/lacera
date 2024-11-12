@@ -58,7 +58,7 @@ export class CartComponent {
         this.customerPhoneNumber.getRawValue()
       )
       .subscribe({
-        next: () => {
+        next: docId => {
           this.#dialogRef.close();
           this.#cartService.clearOrder();
           this.#router.navigate(['/']).then(() => {
@@ -66,9 +66,10 @@ export class CartComponent {
               data: {
                 title: this.#transloco.translate(
                   'common.successMessage'
-                ) /** t("common.successMessage") */,
-                message:
-                  this.#transloco.translate('cart.orderNumber') /** t() */,
+                ) /** t(common.successMessage) */,
+                message: this.#transloco.translate('cart.orderNumber', {
+                  id: docId
+                }) /** t(cart.orderNumber) */,
                 icon: 'check_circle',
                 type: 'success'
               }
@@ -80,7 +81,7 @@ export class CartComponent {
             data: {
               title: this.#transloco.translate(
                 'common.errorMessage'
-              ) /** t("common.errorMessage") */,
+              ) /** t(common.errorMessage) */,
               icon: 'error',
               type: 'error'
             }

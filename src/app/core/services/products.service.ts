@@ -91,7 +91,10 @@ export class ProductsService {
     );
   }
 
-  public updateProduct(id: string, news: ProductFirestore): Observable<void> {
+  public updateProduct(
+    id: string,
+    news: Partial<ProductFirestore>
+  ): Observable<void> {
     return this.#fireStoreService.update<ProductFirestore>(
       FirestoreCollections.products,
       id,

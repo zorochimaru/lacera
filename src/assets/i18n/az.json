@@ -1,17 +1,11 @@
 {
-  "common": {
-    "errorMessage": "Missing value for 'common.errorMessage'",
-    "errorTitle": "Missing value for 'common.errorTitle'",
-    "successMessage": "Missing value for 'common.successMessage'",
-    "successTitle": "Missing value for 'common.successTitle'"
-  },
   "cart": {
     "checkout": "Sifariş et",
     "contactName": "Soyad və Ad",
     "emptyCart": "Sifariş  yoxsur",
     "enterPhoneNumber": "Telefon nömrəsi",
     "name": "Soyad Ad",
-    "orderNumber": "Missing value for 'cart.orderNumber'",
+    "orderNumber": "Sifarişin nömrəsi: {{id}}",
     "price": "Qiymət",
     "privacyPolicy": "Məxfilik siyasəti",
     "products": "Məhsullar",

@@ -1,4 +1,4 @@
-import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 
 import { IconComponent } from '../icon';
@@ -12,7 +12,7 @@ import { IconComponent } from '../icon';
 })
 export class InfoDialogComponent {
   protected data = inject<{
-    message: string;
+    message?: string;
     title: string;
     icon: string;
     type: string;

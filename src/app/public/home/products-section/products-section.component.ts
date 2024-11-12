@@ -17,8 +17,6 @@ import {
   routerLinks
 } from '@core';
 import { TranslocoModule } from '@jsverse/transloco';
-import { random } from 'lodash-es';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'app-products-section',
@@ -39,14 +37,7 @@ export class ProductsSectionComponent implements OnInit {
   public ngOnInit(): void {
     this.#firestoreService
       .getList<ProductFirestore>(FirestoreCollections.products, { limit: 6 })
-      .pipe(
-        map(x =>
-          Array(6)
-            .fill(0)
-            .map(() => x[random(0, x.length - 1)])
-        ),
-        takeUntilDestroyed(this.#dr)
-      )
+      .pipe(takeUntilDestroyed(this.#dr))
       .subscribe(res => this.products.set(res));
   }
 }

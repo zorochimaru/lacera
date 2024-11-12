@@ -1,10 +1,11 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { CdkTableModule } from '@angular/cdk/table';
-import { Component, inject, OnInit } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { forkJoin, switchMap } from 'rxjs';
 
-import { OrderFirestore } from '../../core';
+import { OrderFirestore, ProductsService } from '../../core';
 import { OrderModalComponent } from './order-modal/order-modal.component';
 import { OrdersService } from './orders.service';
 
@@ -12,13 +13,15 @@ import { OrdersService } from './orders.service';
   selector: 'app-orders',
   standalone: true,
   imports: [CdkTableModule, ReactiveFormsModule],
-  providers: [OrdersService],
+  providers: [OrdersService, ProductsService],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss'
 })
 export class OrdersComponent implements OnInit {
   readonly #ordersService = inject(OrdersService);
+  readonly #productsService = inject(ProductsService);
   readonly #dialog = inject(Dialog);
+  readonly #dr = inject(DestroyRef);
 
   protected readonly orders = toSignal(this.#ordersService.sourceData$);
 
@@ -44,6 +47,25 @@ export class OrdersComponent implements OnInit {
               ...order,
               completed: true
             })
+            .pipe(
+              switchMap(() => {
+                return this.#productsService.getProductByIds(
+                  order.products.map(p => p.productId)
+                );
+              }),
+              switchMap(products => {
+                const requests = products.map(product =>
+                  this.#productsService.updateProduct(product.id, {
+                    quantity:
+                      product.quantity -
+                      order.products.find(p => p.productId === product.id)!
+                        .quantity
+                  })
+                );
+                return forkJoin(requests);
+              }),
+              takeUntilDestroyed(this.#dr)
+            )
             .subscribe(() =>
               this.#ordersService.loadNextData(true, [
                 ['completed', '==', this.completedControl.getRawValue()]
