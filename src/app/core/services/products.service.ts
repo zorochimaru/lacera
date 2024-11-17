@@ -13,6 +13,8 @@ import {
 import { endOfDay, startOfDay } from 'date-fns';
 import { BehaviorSubject, forkJoin, map, Observable } from 'rxjs';
 
+import { NotifyOnStockFirestore } from '../interfaces/notify-on-stock';
+
 @Injectable()
 export class ProductsService {
   readonly #fireStoreService = inject(FirestoreService);
@@ -134,5 +136,30 @@ export class ProductsService {
         return result;
       })
     );
+  }
+
+  public notifyOnStock(
+    productId: string,
+    customerPhoneNumber: string,
+    customerName: string
+  ): Observable<string> {
+    return this.#fireStoreService.create<NotifyOnStockFirestore>(
+      FirestoreCollections.notifyOnStock,
+      { productId, customerPhoneNumber, customerName }
+    );
+  }
+
+  public checkIfAlreadyHasNotification(
+    productId: string,
+    customerPhoneNumber: string
+  ): Observable<boolean> {
+    return this.#fireStoreService
+      .getList<NotifyOnStockFirestore>(FirestoreCollections.notifyOnStock, {
+        customQuery: [
+          ['customerPhoneNumber', '==', customerPhoneNumber],
+          ['productId', '==', productId]
+        ]
+      })
+      .pipe(map(res => res.length > 0));
   }
 }

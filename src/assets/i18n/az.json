@@ -14,6 +14,7 @@
     "totalPrice": "Ümumi qiymət"
   },
   "common": {
+    "error": "Xəta",
     "errorMessage": "Sorğunuzu emal edərkən xəta baş verdi. Zəhmət olmasa, yenidən cəhd edin.",
     "successMessage": "Sifarişiniz uğurla yerləşdirildi!"
   },
@@ -71,6 +72,10 @@
       "title": "Müasir Və Rahat Emalatxana"
     }
   },
+  "order": {
+    "notificationAlreadyExists": "Bu nömrə ilə bu məhsul haqqında bildiriş artıq mövcuddur!",
+    "orderNumber": "Bildiriş nömrəsi"
+  },
   "privacyPolicy": {
     "description": "Bu məxfilik siyasəti sizin şəxsi məlumatlarınızın necə toplandığını, istifadə edildiyini və qorunduğunu izah edir. Xidmətlərimizdən istifadə etməklə siz adınız və telefon nömrənizin sifarişlərinizin işlənməsi, müştəri dəstəyi təmin edilməsi və məhsul və xidmətlərimiz barədə yeniliklər göndərilməsi üçün toplanmasına və istifadəsinə razılıq verirsiniz. Biz məlumatlarınızın təhlükəsizliyini təmin etməyə sadiqik və bu məlumatı sizin açıq razılığınız olmadan üçüncü tərəflərlə paylaşmayacağıq. Biz hesab yaratdığınızda, sifariş verdiyinizdə və ya dəstək üçün bizə müraciət etdiyinizdə bizə birbaşa təqdim etdiyiniz şəxsi məlumatları toplayırıq. Bu məlumat adınız və telefon nömrənizi əhatə edə bilər. Bu məlumatı sifarişlərinizi yerinə yetirmək, sizinlə əlaqə saxlamaq və xidmətlərimizi təkmilləşdirmək üçün istifadə edirik. Biz şəxsi məlumatlarınızın təhlükəsizliyini qorumaq üçün müxtəlif təhlükəsizlik tədbirləri həyata keçiririk. Şəxsi məlumatlarınız təhlükəsiz şəbəkələrdə saxlanılır və yalnız xüsusi giriş hüququ olan məhdud sayda şəxs üçün əlçatandır, onlar bu məlumatı məxfi saxlamağa borcludurlar. Bundan əlavə, təqdim etdiyiniz hər hansı həssas məlumat SSL (Secure Socket Layer) texnologiyası ilə şifrələnir. Biz xidmətimizdə fəaliyyəti izləmək və müəyyən məlumatları saxlamaq üçün kukilər və oxşar izləmə texnologiyalarından istifadə edə bilərik. Kukilər, anonim unikal identifikator daxil ola bilən kiçik həcmli məlumat fayllarıdır. Brauzerinizi bütün kukiləri rədd etməyə və ya kuki göndərildiyi barədə xəbərdarlıq verməyə təyin edə bilərsiniz. Lakin, əgər kukiləri qəbul etməsəniz, xidmətimizin bəzi hissələrindən istifadə edə bilməyəcəksiniz. Biz istifadəçiləri əvvəlcədən xəbərdar etmədikcə şəxsi məlumatlarınızı kənar şəxslərə satmırıq, ticarət etmirik və ya ötürmürük. Buraya bizimlə veb saytın idarə edilməsində, işimizin aparılmasında və ya istifadəçilərimizin xidmətində kömək edən veb sayt hostinqi tərəfdaşları və digər tərəflər daxil deyil, bu tərəflər bu məlumatı məxfi saxlamağa razı olduğu müddətcə. Biz həmçinin qanunlara riayət etmək, sayt siyasətimizi təmin etmək və ya özümüzün və ya başqalarının hüquqlarını, mülkiyyətini və ya təhlükəsizliyini qorumaq üçün lazım olduqda məlumat açıqlaya bilərik. Saytımızdan istifadə etməklə siz məxfilik siyasətimizə razılıq verirsiniz. Əgər məxfilik siyasətimizi dəyişdirmək qərarına gəlsək, bu dəyişiklikləri bu səhifədə yerləşdirəcəyik. Siyasət dəyişikliyi dəyişiklik tarixindən sonra toplanan məlumatlara tətbiq ediləcəkdir. Bu siyasət sonuncu dəfə 12 noyabr 2024-cü il tarixində dəyişdirilib. Bu məxfilik siyasəti ilə bağlı suallarınız varsa, aşağıdakı məlumatlardan istifadə edərək bizimlə əlaqə saxlaya bilərsiniz: 4C Eldar Ağayev küçəsi, Bakı, Azərbaycan Telefon: +994 10 388 13 13",
     "title": "Məxfilik Siyasəti"
@@ -81,6 +86,7 @@
       "collection": "Kolleksiya",
       "description": "Təsvir",
       "material": "Material",
+      "notifyMe": "Olanda xəbər ver",
       "outOfStock": "Stokda yoxdur",
       "quantity": "Miqdar",
       "request": "Sifariş et",

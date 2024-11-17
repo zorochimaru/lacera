@@ -6,8 +6,18 @@
   min-height: 80svh;
 }
 
+.out-of-stock {
+  margin-bottom: 30px;
+}
+
 .slider-wrapper {
   width: 500px;
+}
+
+.notify-btn {
+  display: flex;
+  gap: 8px;
+  margin-inline: auto;
 }
 
 .preview-slider {

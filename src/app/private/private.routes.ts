@@ -13,6 +13,13 @@ export const privateRoutes: Routes = [
           import('./orders/orders.component').then(c => c.OrdersComponent)
       },
       {
+        path: routerLinks.notificationsList,
+        loadComponent: () =>
+          import('./notifications/notifications.component').then(
+            c => c.NotificationsComponent
+          )
+      },
+      {
         path: `${routerLinks.productList}/${routerLinks.productPanel}`,
         loadComponent: () =>
           import('./product/product-panel/product-panel.component').then(

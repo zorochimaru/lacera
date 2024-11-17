@@ -1,3 +1,4 @@
+import { Dialog } from '@angular/cdk/dialog';
 import {
   Component,
   computed,
@@ -12,9 +13,9 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { NgxMaskDirective } from 'ngx-mask';
-import { filter, forkJoin, switchMap, tap } from 'rxjs';
+import { filter, forkJoin, map, of, switchMap, tap } from 'rxjs';
 import { SwiperContainer } from 'swiper/element';
 
 import {
@@ -27,7 +28,12 @@ import {
   ProductsService,
   routerLinks
 } from '../../../core';
-import { IconComponent } from '../../../shared';
+import {
+  IconComponent,
+  InfoDialog,
+  InfoDialogComponent
+} from '../../../shared';
+import { NotifyOnStockDialogComponent } from './notify-on-stock-dialog/notify-on-stock-dialog.component';
 
 @Component({
   selector: 'app-products-details',
@@ -51,6 +57,8 @@ export class ProductsDetailsComponent implements OnInit {
   readonly #cartService = inject(CartService);
   readonly #datasetService = inject(DatasetService);
   readonly #dr = inject(DestroyRef);
+  readonly #dialog = inject(Dialog);
+  readonly #transloco = inject(TranslocoService);
 
   protected previewSwiper = viewChild('previewSwiper');
   protected imageSwiper = viewChild<ElementRef<SwiperContainer>>('imageSwiper');
@@ -128,5 +136,64 @@ export class ProductsDetailsComponent implements OnInit {
       product,
       this.quantityControl.getRawValue()
     );
+  }
+
+  protected notifyOnStock(product: ProductFirestore): void {
+    this.#dialog
+      .open<{ customerPhoneNumber: string; customerName: string }>(
+        NotifyOnStockDialogComponent,
+        {
+          data: { product }
+        }
+      )
+      .closed.pipe(
+        filter(Boolean),
+        switchMap(res => {
+          return this.#productsService
+            .checkIfAlreadyHasNotification(product.id, res.customerPhoneNumber)
+            .pipe(map(alreadyHas => (alreadyHas ? null : res)));
+        }),
+        switchMap(res => {
+          if (!res) {
+            return of(null);
+          }
+          return this.#productsService.notifyOnStock(
+            product.id,
+            res.customerPhoneNumber,
+            res.customerName
+          );
+        }),
+        takeUntilDestroyed(this.#dr)
+      )
+      .subscribe(docId => {
+        if (!docId) {
+          this.#dialog.open<InfoDialog>(InfoDialogComponent, {
+            data: {
+              title:
+                this.#transloco.translate(
+                  'common.error'
+                ) /** t(common.error) */,
+              message: this.#transloco.translate(
+                'order.notificationAlreadyExists'
+              ) /** t(order.notificationAlreadyExists) */,
+              icon: 'error',
+              type: 'error'
+            }
+          });
+        } else {
+          this.#dialog.open<InfoDialog>(InfoDialogComponent, {
+            data: {
+              title: this.#transloco.translate(
+                'common.successMessage'
+              ) /** t(common.successMessage) */,
+              message: this.#transloco.translate('order.orderNumber', {
+                id: docId
+              }) /** t(order.orderNumber) */,
+              icon: 'check_circle',
+              type: 'success'
+            }
+          });
+        }
+      });
   }
 }

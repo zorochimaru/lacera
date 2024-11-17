@@ -59,11 +59,7 @@
           <p class="price">{{ product.price }} ₼</p>
           @if (product.quantity) {
             <p class="quantity">{{ t("quantity") }}: {{ product.quantity }}</p>
-          } @else {
-            <p class="quantity">{{ t("outOfStock") }}</p>
-          }
 
-          @if (product.quantity) {
             <div class="request-directions">
               <span>{{ t("request") }}:</span>
               <input
@@ -84,6 +80,16 @@
                 <app-icon icon="add_shopping_cart" width="56px"></app-icon>
               </button>
             </div>
+          } @else {
+            <p class="quantity out-of-stock">{{ t("outOfStock") }}</p>
+
+            <button
+              type="button"
+              class="btn notify-btn"
+              (click)="notifyOnStock(product)">
+              {{ t("notifyMe") }}
+              <app-icon icon="notifications"></app-icon>
+            </button>
           }
 
           <hr />

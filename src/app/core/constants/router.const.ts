@@ -1,6 +1,7 @@
 export const routerLinks = {
   adminPanel: 'admin-panel',
   datasetList: 'dataset-list',
+  notificationsList: 'notifications-list',
   login: 'login',
   news: 'news',
   newsList: 'news-list',

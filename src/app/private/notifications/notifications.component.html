@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <aside class="filters-container">
+    <div class="checkbox-input">
+      <input
+        type="checkbox"
+        id="completed"
+        class="form-control"
+        [formControl]="completedControl" />
+      <label for="completed">Completed </label>
+    </div>
+  </aside>
+  <div class="container">
+    <table cdk-table [dataSource]="notifications() || []">
+      <!-- User name Definition -->
+      <ng-container cdkColumnDef="customerName">
+        <th cdk-header-cell *cdkHeaderCellDef>Name</th>
+        <td cdk-cell *cdkCellDef="let row">{{ row.customerName }}</td>
+      </ng-container>
+
+      <!-- Age Definition -->
+      <ng-container cdkColumnDef="customerPhoneNumber">
+        <th cdk-header-cell *cdkHeaderCellDef>Phone Number</th>
+        <td cdk-cell *cdkCellDef="let row">{{ row.customerPhoneNumber }}</td>
+      </ng-container>
+
+      <!-- Header and Row Declarations -->
+      <tr
+        cdk-header-row
+        *cdkHeaderRowDef="['customerName', 'customerPhoneNumber']"></tr>
+      <tr
+        cdk-row
+        *cdkRowDef="let row; columns: ['customerName', 'customerPhoneNumber']"
+        (click)="openNotificationDetails(row)"></tr>
+    </table>
+  </div>
+</div>

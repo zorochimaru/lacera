@@ -5,5 +5,6 @@ export enum FirestoreCollections {
   materials = 'materials',
   news = 'news',
   orders = 'orders',
-  products = 'products'
+  products = 'products',
+  notifyOnStock = 'notifyOnStock'
 }

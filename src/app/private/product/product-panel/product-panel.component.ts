@@ -1,6 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
-  afterRender,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -26,9 +25,12 @@ import {
   filter,
   finalize,
   forkJoin,
+  map,
+  Observable,
   of,
   startWith,
-  switchMap
+  switchMap,
+  tap
 } from 'rxjs';
 import { register } from 'swiper/element/bundle';
 
@@ -135,40 +137,48 @@ export class ProductPanelComponent implements OnInit {
 
   protected langCodes = LangCodes;
   #imagesToRemove: string[] = [];
-  constructor() {
-    afterRender(() => {
-      if (!this.productId()) {
-        this.form.controls.collectionId.setValue(this.collections()[0].id);
-        this.form.controls.categoryId.setValue(this.categories()[0].id);
-        this.form.controls.materialId.setValue(this.materials()[0].id);
-      }
-    });
-  }
-  public ngOnInit(): void {
-    this.#fetchDatasets();
-    this.productId.set(this.#route.snapshot.queryParams['id']);
-    if (this.productId()) {
-      this.#firebaseService
-        .get<ProductFirestore>(FirestoreCollections.products, this.productId())
-        .pipe(filter(Boolean), takeUntilDestroyed(this.#dr))
-        .subscribe(res => {
-          this.form.patchValue(res);
-          this.images.set(
-            res.imageUrls.map((url, i) => ({ preview: url, isCover: i === 0 }))
-          );
-          this.setPreviewImage(0);
-          const length = res.size.split(' x ')[0];
-          const width = res.size.split(' x ')[1];
-          const height = res.size.split(' x ')[2];
 
-          this.lengthControl.setValue(Number(length));
-          this.widthControl.setValue(Number(width) || 0);
-          this.heightControl.setValue(Number(height) || 0);
-          this.descriptionControl.setValue(
-            res.description[this.activeDescriptionLanguage()]
-          );
-        });
-    }
+  public ngOnInit(): void {
+    this.#fetchDatasets()
+      .pipe(
+        switchMap(() => this.#route.queryParams),
+        map(params => {
+          this.productId.set(params['id']);
+          return params['id'];
+        }),
+        tap(id => {
+          if (id) {
+            this.#firebaseService
+              .get<ProductFirestore>(FirestoreCollections.products, id)
+              .pipe(filter(Boolean), takeUntilDestroyed(this.#dr))
+              .subscribe(res => {
+                this.form.patchValue(res);
+                this.images.set(
+                  res.imageUrls.map((url, i) => ({
+                    preview: url,
+                    isCover: i === 0
+                  }))
+                );
+                this.setPreviewImage(0);
+                const length = res.size.split(' x ')[0];
+                const width = res.size.split(' x ')[1];
+                const height = res.size.split(' x ')[2];
+
+                this.lengthControl.setValue(Number(length));
+                this.widthControl.setValue(Number(width) || 0);
+                this.heightControl.setValue(Number(height) || 0);
+                this.descriptionControl.setValue(
+                  res.description[this.activeDescriptionLanguage()]
+                );
+              });
+          } else {
+            this.form.controls.collectionId.setValue(this.collections()[0].id);
+            this.form.controls.categoryId.setValue(this.categories()[0].id);
+            this.form.controls.materialId.setValue(this.materials()[0].id);
+          }
+        })
+      )
+      .subscribe();
 
     combineLatest([
       this.lengthControl.valueChanges.pipe(startWith(0)),
@@ -346,11 +356,14 @@ export class ProductPanelComponent implements OnInit {
     return files.every(file => file.size <= this.#limitFileSizeBytes);
   }
 
-  #fetchDatasets(): void {
-    this.#productsService.getDatasets().subscribe(res => {
-      this.collections.set(res[FirestoreCollections.collections]);
-      this.categories.set(res[FirestoreCollections.categories]);
-      this.materials.set(res[FirestoreCollections.materials]);
-    });
+  #fetchDatasets(): Observable<void> {
+    return this.#productsService.getDatasets().pipe(
+      tap(res => {
+        this.collections.set(res[FirestoreCollections.collections]);
+        this.categories.set(res[FirestoreCollections.categories]);
+        this.materials.set(res[FirestoreCollections.materials]);
+      }),
+      map(() => void 0)
+    );
   }
 }
