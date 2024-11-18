@@ -10,7 +10,7 @@
         <a [routerLink]="[routerLinks.news, item.id]" class="news-card">
           <div class="card-info">
             <time>{{ item.createdAt | date }}</time>
-            <h3>{{ item.title }}</h3>
+            <h3>{{ item.title | currLang }}</h3>
             <a>{{ t("readMore") }}</a>
           </div>
         </a>

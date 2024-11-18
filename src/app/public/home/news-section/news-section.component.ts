@@ -1,4 +1,4 @@
-import { AsyncPipe, DatePipe, NgIf, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,13 +6,19 @@ import {
   OnInit
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NewsService, routerLinks } from '@core';
+import { CurrentLanguagePipe, NewsService, routerLinks } from '@core';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-news-section',
   standalone: true,
-  imports: [AsyncPipe, RouterModule, DatePipe, TranslocoModule],
+  imports: [
+    AsyncPipe,
+    RouterModule,
+    CurrentLanguagePipe,
+    DatePipe,
+    TranslocoModule
+  ],
   providers: [NewsService],
   templateUrl: './news-section.component.html',
   styleUrl: './news-section.component.scss',
