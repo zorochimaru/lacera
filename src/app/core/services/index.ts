@@ -5,6 +5,7 @@ export * from './feature-flag.service';
 export * from './firestore.service';
 export * from './if-feature-flag.directive';
 export * from './news.service';
+export * from './notifications.service';
 export * from './products.service';
 export * from './remote-config.service';
 export * from './upload.service';

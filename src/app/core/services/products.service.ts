@@ -138,17 +138,6 @@ export class ProductsService {
     );
   }
 
-  public notifyOnStock(
-    productId: string,
-    customerPhoneNumber: string,
-    customerName: string
-  ): Observable<string> {
-    return this.#fireStoreService.create<NotifyOnStockFirestore>(
-      FirestoreCollections.notifyOnStock,
-      { productId, customerPhoneNumber, customerName }
-    );
-  }
-
   public checkIfAlreadyHasNotification(
     productId: string,
     customerPhoneNumber: string

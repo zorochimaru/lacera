@@ -1,5 +1,6 @@
 export interface NotifyOnStock {
-  productId: string;
-  customerPhoneNumber: string;
   customerName: string;
+  customerPhoneNumber: string;
+  completed: boolean;
+  productId: string;
 }

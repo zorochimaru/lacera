@@ -1,22 +1,14 @@
 <app-header />
 
-@defer (on viewport; prefetch on idle) {
-  <section [id]="routerAnchorLinks.home.home">
-    <app-welcome-section />
-  </section>
-} @placeholder {
-  <div style="height: 100svh"></div>
-}
+<section [id]="routerAnchorLinks.home.home">
+  <app-welcome-section />
+</section>
 
-@defer (on viewport) {
-  <section
-    [id]="routerAnchorLinks.home.products"
-    *appIfFeatureFlag="remoteConfigParams.homeProducts; else customSets">
-    <app-products-section />
-  </section>
-} @placeholder {
-  <div style="height: 100svh"></div>
-}
+<section
+  [id]="routerAnchorLinks.home.products"
+  *appIfFeatureFlag="remoteConfigParams.homeProducts; else customSets">
+  <app-products-section />
+</section>
 
 <ng-template #customSets>
   <section [id]="routerAnchorLinks.home.customSets">
@@ -24,27 +16,16 @@
   </section>
 </ng-template>
 
-@defer (on viewport) {
-  <section [id]="routerAnchorLinks.home.aboutUs">
-    <app-about-us-section />
-  </section>
-} @placeholder {
-  <div style="height: 100svh"></div>
-}
+<section [id]="routerAnchorLinks.home.aboutUs">
+  <app-about-us-section />
+</section>
 
-@defer (on viewport) {
-  <section [id]="routerAnchorLinks.home.workshops">
-    <app-workshops-section />
-  </section>
-} @placeholder {
-  <div style="height: 100svh"></div>
-}
-@defer (on viewport) {
-  <section
-    *appIfFeatureFlag="remoteConfigParams.homeNews"
-    [id]="routerAnchorLinks.home.news">
-    <app-news-section />
-  </section>
-} @placeholder {
-  <div style="height: 100svh"></div>
-}
+<section [id]="routerAnchorLinks.home.workshops">
+  <app-workshops-section />
+</section>
+
+<section
+  *appIfFeatureFlag="remoteConfigParams.homeNews"
+  [id]="routerAnchorLinks.home.news">
+  <app-news-section />
+</section>

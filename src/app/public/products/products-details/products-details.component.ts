@@ -24,6 +24,7 @@ import {
   DatasetItemFirestore,
   DatasetService,
   FirestoreCollections,
+  NotificationsService,
   ProductFirestore,
   ProductsService,
   routerLinks
@@ -46,7 +47,7 @@ import { NotifyOnStockDialogComponent } from './notify-on-stock-dialog/notify-on
     NgxMaskDirective,
     IconComponent
   ],
-  providers: [ProductsService],
+  providers: [ProductsService, NotificationsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './products-details.component.html',
   styleUrl: './products-details.component.scss'
@@ -54,6 +55,7 @@ import { NotifyOnStockDialogComponent } from './notify-on-stock-dialog/notify-on
 export class ProductsDetailsComponent implements OnInit {
   readonly #route = inject(ActivatedRoute);
   readonly #productsService = inject(ProductsService);
+  readonly #notificationsService = inject(NotificationsService);
   readonly #cartService = inject(CartService);
   readonly #datasetService = inject(DatasetService);
   readonly #dr = inject(DestroyRef);
@@ -157,11 +159,12 @@ export class ProductsDetailsComponent implements OnInit {
           if (!res) {
             return of(null);
           }
-          return this.#productsService.notifyOnStock(
-            product.id,
-            res.customerPhoneNumber,
-            res.customerName
-          );
+          return this.#notificationsService.createNotification({
+            customerPhoneNumber: res.customerPhoneNumber,
+            customerName: res.customerName,
+            completed: false,
+            productId: product.id
+          });
         }),
         takeUntilDestroyed(this.#dr)
       )

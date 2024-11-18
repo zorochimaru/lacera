@@ -1,1 +1,56 @@
-<p>notification-modal works!</p>
+<div class="order-modal">
+  <div class="title">
+    <h2>Notification Details</h2>
+    @if (notification.completed) {
+      <app-icon
+        width="32px"
+        height="32px"
+        icon="check_circle"
+        [style.color]="'var(--btn-success-bg)'"></app-icon>
+    }
+  </div>
+  <div class="order-info">
+    <p><strong>Notification ID:</strong> {{ notification.id }}</p>
+    <p><strong>Customer Name:</strong> {{ notification.customerName }}</p>
+    <p>
+      <strong>Customer Phone Number:</strong>
+      {{ notification.customerPhoneNumber }}
+    </p>
+    <p><strong>Order Date:</strong> {{ notification.createdAt | date }}</p>
+  </div>
+  <div class="products-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (product(); as product) {
+          <tr (click)="openProductInNewTab(product.id)">
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }} ₼</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="actions">
+    <button (click)="close()" class="btn">Close</button>
+    @if (!notification.completed) {
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="deleteNotification()">
+        Delete notification
+      </button>
+      <button
+        type="button"
+        (click)="completeNotification()"
+        class="btn btn-success">
+        Complete notification
+      </button>
+    }
+  </div>
+</div>
