@@ -5,7 +5,10 @@
       <h1>{{ t("title") | titlecase }}</h1>
     </div>
     <div class="mobile-swiper-wrapper">
-      <swiper-container slides-per-view="2.5" space-between="20">
+      <swiper-container
+        slides-per-view="1.5"
+        space-between="20"
+        auto-height="true">
         @for (item of products(); track $index; let i = $index) {
           <swiper-slide>
             <a

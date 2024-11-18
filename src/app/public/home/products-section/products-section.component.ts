@@ -36,7 +36,7 @@ export class ProductsSectionComponent implements OnInit {
 
   public ngOnInit(): void {
     this.#firestoreService
-      .getList<ProductFirestore>(FirestoreCollections.products, { limit: 6 })
+      .getList<ProductFirestore>(FirestoreCollections.products, { limit: 8 })
       .pipe(takeUntilDestroyed(this.#dr))
       .subscribe(res => this.products.set(res));
   }

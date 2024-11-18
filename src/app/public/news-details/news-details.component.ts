@@ -1,5 +1,5 @@
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
-import { AsyncPipe, DatePipe, NgIf, NgOptimizedImage } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -7,17 +7,16 @@ import { CurrentLanguagePipe, NewsService, routerLinks } from '@core';
 import { switchMap } from 'rxjs';
 
 import { ImageDialogComponent } from '../../shared';
+import { ProductsHeaderComponent } from '../shared';
 
 @Component({
   selector: 'app-news-details',
   standalone: true,
   imports: [
-    AsyncPipe,
-    NgIf,
     RouterModule,
     CurrentLanguagePipe,
+    ProductsHeaderComponent,
     DatePipe,
-    NgOptimizedImage,
     DialogModule
   ],
   providers: [NewsService],

@@ -143,6 +143,11 @@
 
   .product-card {
     flex-basis: 45%;
+    height: 99%;
+  }
+
+  swiper-slide {
+    height: 400px !important;
   }
 }
 
