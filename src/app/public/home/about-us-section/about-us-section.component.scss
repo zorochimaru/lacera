@@ -19,6 +19,7 @@
 
 .about-us-img-container {
   position: relative;
+  container: test / inline-size;
 
   &::before {
     content: '';
@@ -72,6 +73,18 @@
 
   h1 {
     margin-bottom: 10%;
+  }
+}
+
+@container test (min-width: 600px) {
+  .about-us-img-container {
+    &::before {
+      left: -15%;
+    }
+
+    &::after {
+      right: 5%;
+    }
   }
 }
 

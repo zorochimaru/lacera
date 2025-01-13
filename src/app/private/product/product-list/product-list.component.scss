@@ -67,6 +67,7 @@
 .list-container {
   display: flex;
   flex-wrap: wrap;
+  align-self: flex-start;
   padding: 20px;
   gap: 20px;
 }

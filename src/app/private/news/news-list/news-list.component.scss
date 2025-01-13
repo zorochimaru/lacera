@@ -26,6 +26,7 @@
 
 .list-container {
   display: flex;
+  align-self: flex-start;
   min-width: 500px;
   flex-direction: column;
   gap: 16px;
