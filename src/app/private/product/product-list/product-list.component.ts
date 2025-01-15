@@ -24,8 +24,7 @@ import { endOfDay, startOfDay } from 'date-fns';
     ReactiveFormsModule,
     NgOptimizedImage,
     RouterLink,
-    IntersectionListenerDirective,
-    CurrentLanguagePipe
+    IntersectionListenerDirective
   ],
   providers: [ProductsService],
   templateUrl: './product-list.component.html',

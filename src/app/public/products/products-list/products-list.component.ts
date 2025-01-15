@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -9,6 +10,7 @@ import {
   CurrentLanguagePipe,
   DatasetService,
   FirestoreCollections,
+  IntersectionListenerDirective,
   ProductsService,
   routerLinks
 } from '../../../core';
@@ -20,7 +22,9 @@ import {
     TranslocoDirective,
     CurrentLanguagePipe,
     ReactiveFormsModule,
-    RouterModule
+    NgOptimizedImage,
+    RouterModule,
+    IntersectionListenerDirective
   ],
   providers: [ProductsService],
   templateUrl: './products-list.component.html',
@@ -99,5 +103,11 @@ export class ProductsListComponent implements OnInit {
         });
       }
     });
+  }
+
+  protected loadMore(isLast: boolean): void {
+    if (isLast) {
+      this.#productsService.loadNextData();
+    }
   }
 }

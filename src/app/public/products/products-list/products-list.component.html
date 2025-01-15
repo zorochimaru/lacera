@@ -35,13 +35,19 @@
       </div>
     </div>
     <div class="products-list">
-      @for (product of products(); track $index) {
-        <a class="product-card" [routerLink]="product.id">
-          <img
-            [src]="product.imageUrls[0]"
-            alt="{{ product.name }}"
-            [class.out-of-stock]="!product.quantity"
-            class="product-image" />
+      @for (product of products(); track $index; let last = $last) {
+        <a
+          class="product-card"
+          [routerLink]="product.id"
+          (appIntersectionListener)="loadMore(last)">
+          <div class="product-image">
+            <img
+              fill
+              priority
+              [ngSrc]="product.imageUrls[0]"
+              alt="{{ product.name }}"
+              [class.out-of-stock]="!product.quantity" />
+          </div>
           <h2 class="product-name">{{ product.name }}</h2>
           <p class="product-price">{{ product.price }} ₼</p>
         </a>

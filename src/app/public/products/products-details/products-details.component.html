@@ -3,24 +3,25 @@
     <div class="wrapper">
       @if (product(); as product) {
         <div class="image-wrapper">
-          <swiper-container
-            #previewSwiper
-            [style.height.px]="image.offsetHeight"
-            class="preview-slider"
-            direction="vertical"
-            space-between="10"
-            slides-per-view="3.5">
-            @for (item of product.imageUrls; track $index; let i = $index) {
-              <swiper-slide>
-                <img
-                  class="preview-image"
-                  (click)="selectImage(i)"
-                  [src]="item"
-                  alt="" />
-              </swiper-slide>
-            }
-          </swiper-container>
-          <div class="slider-wrapper" #image>
+          @if (product.imageUrls.length > 1) {
+            <swiper-container
+              class="preview-slider"
+              direction="vertical"
+              space-between="10"
+              slides-per-view="3.5">
+              @for (item of product.imageUrls; track $index; let i = $index) {
+                <swiper-slide>
+                  <img
+                    class="preview-image"
+                    (click)="selectImage(i)"
+                    [src]="item"
+                    alt="" />
+                </swiper-slide>
+              }
+            </swiper-container>
+          }
+
+          <div class="slider-wrapper" #previewImage>
             <swiper-container #imageSwiper navigation slides-per-view="1">
               @for (item of product.imageUrls; track $index) {
                 <swiper-slide>

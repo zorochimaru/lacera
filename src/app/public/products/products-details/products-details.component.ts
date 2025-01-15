@@ -62,7 +62,6 @@ export class ProductsDetailsComponent implements OnInit {
   readonly #dialog = inject(Dialog);
   readonly #transloco = inject(TranslocoService);
 
-  protected previewSwiper = viewChild('previewSwiper');
   protected imageSwiper = viewChild<ElementRef<SwiperContainer>>('imageSwiper');
 
   protected product = signal<ProductFirestore | null>(null);

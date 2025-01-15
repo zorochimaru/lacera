@@ -12,7 +12,7 @@
 
 .slider-wrapper {
   width: 500px;
-  height: 80svh;
+  height: 750px;
 }
 
 .notify-btn {
@@ -22,14 +22,14 @@
 }
 
 .preview-slider {
-  height: auto;
+  height: 750px;
 
   img {
     cursor: pointer;
   }
 }
 
-swiper-slide {
+.slider-wrapper swiper-slide {
   margin-block: auto;
 }
 
@@ -41,7 +41,7 @@ swiper-slide {
 
 .image-wrapper {
   display: flex;
-  align-items: stretch;
+  height: 750px;
   gap: 10px;
 
   :active {
