@@ -1,7 +1,8 @@
 @use 'animations';
 
 .grid {
-  background: url('/assets/images/bg-template-accent.png');
+  background: url(/assets/images/bg-template.png), var(--accent-color);
+  background-blend-mode: multiply;
 }
 
 .logo {

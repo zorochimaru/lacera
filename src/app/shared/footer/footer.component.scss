@@ -1,5 +1,6 @@
 footer {
-  background-color: var(--accent-color);
+  background: url(/assets/images/bg-template.png), var(--accent-color);
+  background-blend-mode: multiply;
   color: var(--fg-light);
   text-align: center;
   position: relative;
