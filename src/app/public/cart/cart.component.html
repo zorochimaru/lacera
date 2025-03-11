@@ -5,7 +5,7 @@
       <div class="cart-items">
         @for (item of products(); track $index; let last = $last) {
           <div class="cart-item">
-            <img [src]="item.product.imageUrls[0]" alt="" />
+            <img [src]="item.product.images![0].previewUrl" alt="" />
             <div class="cart-item-info">
               <h3>{{ item.product.name }}</h3>
               <p>{{ t("price") }}: {{ item.product.price }} ₼</p>

@@ -7,8 +7,7 @@ export interface Product {
   description: Record<LangCodes, string>;
   categoryId: string;
   collectionId: string;
-  imageUrls: string[];
-  images?: ImageWithPreview[];
+  images: ImageWithPreview[];
   price: number;
   materialId: string;
   size: string;

@@ -1,6 +1,6 @@
 {
   "name": "lacera",
-  "version": "0.0.63",
+  "version": "0.0.64",
   "scripts": {
     "start": "npm run make-sprite && ng serve -o",
     "build": "ng build",
@@ -36,8 +36,8 @@
     "firebase-admin": "^13.2.0",
     "lodash-es": "^4.17.21",
     "ngx-mask": "^18.0.0",
+    "pica": "^9.0.1",
     "rxjs": "~7.8.0",
-    "sharp": "^0.33.5",
     "swiper": "^11.1.14",
     "ts-node": "^10.9.2",
     "tslib": "^2.3.0",
@@ -55,6 +55,7 @@
     "@jsverse/transloco-keys-manager": "^4.1.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jasmine": "~5.1.0",
+    "@types/pica": "^9.0.5",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^8.57.0",

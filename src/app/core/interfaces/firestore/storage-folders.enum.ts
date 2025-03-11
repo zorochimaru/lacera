@@ -1,4 +1,5 @@
 export enum StorageFolders {
   news = 'news',
-  products = 'products'
+  products = 'products',
+  productThumbnails = 'products/thumbnails'
 }

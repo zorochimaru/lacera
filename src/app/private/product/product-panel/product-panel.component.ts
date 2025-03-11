@@ -25,6 +25,7 @@ import {
   filter,
   finalize,
   forkJoin,
+  from,
   map,
   Observable,
   of,
@@ -39,20 +40,22 @@ import {
   DatasetItemFirestore,
   FirestoreCollections,
   FirestoreService,
+  ImageWithPreview,
   LangCodes,
   Product,
   ProductFirestore,
   ProductsService,
   StorageFolders,
   TypedForm,
-  UploadResult,
   UploadService
 } from '../../../core';
 import { IconComponent } from '../../../shared';
+import { resizeImage } from '../../../utils';
 
 register();
 
 interface ProductImage {
+  previewThumbnail: string;
   preview: string;
   isCover: boolean;
   file?: File;
@@ -83,7 +86,7 @@ export class ProductPanelComponent implements OnInit {
   readonly #dr = inject(DestroyRef);
   readonly #router = inject(Router);
 
-  protected accept = 'image/webp';
+  protected extension = 'image/webp';
   #limitFileSizeBytes = 2 * 1024 * 1024; // Max file size 2MB
 
   protected materials = signal<DatasetItemFirestore[]>([]);
@@ -119,7 +122,7 @@ export class ProductPanelComponent implements OnInit {
       ru: '',
       en: ''
     }),
-    imageUrls: this.#fb.nonNullable.control([] as string[]),
+    images: this.#fb.nonNullable.control([] as ImageWithPreview[]),
     categoryId: this.#fb.nonNullable.control('', Validators.required),
     collectionId: this.#fb.nonNullable.control('', Validators.required),
     price: this.#fb.nonNullable.control(0, [
@@ -153,8 +156,9 @@ export class ProductPanelComponent implements OnInit {
               .subscribe(res => {
                 this.form.patchValue(res);
                 this.images.set(
-                  res.imageUrls.map((url, i) => ({
-                    preview: url,
+                  res.images.map((item, i) => ({
+                    previewThumbnail: item.previewUrl,
+                    preview: item.fullSizeUrl,
                     isCover: i === 0
                   }))
                 );
@@ -227,6 +231,7 @@ export class ProductPanelComponent implements OnInit {
       return;
     }
     this.#imagesToRemove.push(deletedImage.preview);
+    this.#imagesToRemove.push(deletedImage.previewThumbnail);
     images.splice(index, 1);
     this.images.set(images);
     this.previewImage.set(images[0]?.preview);
@@ -254,7 +259,8 @@ export class ProductPanelComponent implements OnInit {
       const newImagesPayload = fileArray.map(file => ({
         file,
         isCover: false,
-        preview: URL.createObjectURL(file)
+        preview: URL.createObjectURL(file),
+        previewThumbnail: URL.createObjectURL(file)
       }));
       this.images.update(oldValue => [...oldValue, ...newImagesPayload]);
 
@@ -294,8 +300,28 @@ export class ProductPanelComponent implements OnInit {
     this.loading.set(true);
     const imageRequests = this.images().map(img =>
       img.file
-        ? this.#upload.upload(img.file, StorageFolders.products)
-        : of({ progress: 100, url: img.preview })
+        ? this.#upload.upload(img.file, StorageFolders.products).pipe(
+            filter(res => res.progress === 100),
+            switchMap(res => {
+              return forkJoin([
+                of(res),
+                from(resizeImage(img.file!, 500, 750)).pipe(
+                  switchMap(f =>
+                    this.#upload.upload(
+                      f,
+                      StorageFolders.productThumbnails,
+                      `thumb-${Date.now()}.webp`
+                    )
+                  )
+                )
+              ]);
+            }),
+            map(([originalLink, thumbnailLink]) => ({
+              fullSizeUrl: originalLink.url,
+              previewUrl: thumbnailLink.url
+            }))
+          )
+        : of({ fullSizeUrl: img.preview, previewUrl: img.previewThumbnail })
     );
 
     const removeImageRequests = this.#imagesToRemove.map(url =>
@@ -304,12 +330,14 @@ export class ProductPanelComponent implements OnInit {
 
     forkJoin([...removeImageRequests, ...imageRequests])
       .pipe(
-        switchMap(res => {
+        map(res => {
           const uploadedUrls = res
             .slice(removeImageRequests.length)
-            .filter((x): x is UploadResult => x !== undefined)
-            .map(x => x.url);
-          payloadForm.imageUrls = uploadedUrls;
+            .filter((x): x is ImageWithPreview => x !== undefined);
+          return uploadedUrls;
+        }),
+        switchMap(urls => {
+          payloadForm.images = urls;
 
           if (this.productId()) {
             return this.#firebaseService.update<ProductFirestore>(
@@ -338,7 +366,12 @@ export class ProductPanelComponent implements OnInit {
     this.loading.set(true);
     const removeImageRequests = this.images()
       .filter(img => !img.file)
-      .map(img => this.#upload.remove(img.preview));
+      .map(img =>
+        forkJoin([
+          this.#upload.remove(img.preview),
+          this.#upload.remove(img.previewThumbnail)
+        ])
+      );
     const removeProductRequest = this.#firebaseService.delete(
       FirestoreCollections.products,
       this.productId()

@@ -1,41 +1,54 @@
-export const resizeImage = (
-  file: File | Blob,
-  maxWidth = 1500,
-  maxHeight = 800
-): Promise<Blob> => {
-  return new Promise((resolve, reject) => {
+import pica from 'pica';
+
+export async function resizeImage(
+  file: File,
+  maxWidth: number,
+  maxHeight: number
+): Promise<Blob> {
+  return new Promise(async (resolve, reject) => {
     const img = new Image();
     img.src = URL.createObjectURL(file);
-    img.onload = () => {
+
+    img.onload = async () => {
+      const { width, height } = getNewSize(
+        img.width,
+        img.height,
+        maxWidth,
+        maxHeight
+      );
+
       const canvas = document.createElement('canvas');
-      let width = img.width;
-      let height = img.height;
-
-      if (width > maxWidth || height > maxHeight) {
-        const aspectRatio = width / height;
-        if (width > height) {
-          width = maxWidth;
-          height = maxWidth / aspectRatio;
-        } else {
-          height = maxHeight;
-          width = maxHeight * aspectRatio;
-        }
-      }
-
       canvas.width = width;
       canvas.height = height;
-      const ctx = canvas.getContext('2d');
-      ctx?.drawImage(img, 0, 0, width, height);
 
-      canvas.toBlob(
-        blob => {
-          if (blob) resolve(blob);
-          else reject(new Error('Error on creating preview'));
-        },
-        'image/jpeg',
-        0.7
-      );
+      try {
+        await pica().resize(img, canvas);
+        canvas.toBlob(
+          blob => {
+            if (blob) resolve(blob);
+            else reject(new Error('Ошибка сжатия изображения'));
+          },
+          'image/webp',
+          0.8
+        );
+      } catch (error) {
+        reject(error);
+      }
     };
-    img.onerror = reject;
+
+    img.onerror = () => reject(new Error('Ошибка загрузки изображения'));
   });
-};
+}
+
+function getNewSize(
+  imgWidth: number,
+  imgHeight: number,
+  maxWidth: number,
+  maxHeight: number
+) {
+  const scale = Math.min(maxWidth / imgWidth, maxHeight / imgHeight);
+  return {
+    width: Math.round(imgWidth * scale),
+    height: Math.round(imgHeight * scale)
+  };
+}

@@ -3,7 +3,7 @@
     <div class="wrapper">
       @if (product(); as product) {
         <div class="image-wrapper">
-          @if (product.imageUrls.length > 1) {
+          @if (product.images!.length > 1) {
             <swiper-container
               class="preview-slider"
               direction="vertical"
