@@ -14,7 +14,7 @@
             <a
               class="product-card"
               [routerLink]="[routerLinks.productList, item.id]">
-              <img [src]="item.imageUrls[0]" alt="" />
+              <img [src]="item.images![0].previewUrl" alt="" />
               <div class="product-description">
                 <span class="product-name">{{ item.name }}</span>
                 <span class="product-price">{{ item.price }} ₼</span>
@@ -29,7 +29,7 @@
         <a
           class="product-card"
           [routerLink]="[routerLinks.productList, item.id]">
-          <img [src]="item.imageUrls[0]" alt="" />
+          <img [src]="item.images![0].previewUrl" alt="" />
           <div class="product-description">
             <span class="product-name">{{ item.name }}</span>
             <span style="text-align: center">{{ item.price }} AZN</span>

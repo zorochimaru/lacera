@@ -44,7 +44,7 @@
             <img
               fill
               priority
-              [ngSrc]="product.imageUrls[0]"
+              [ngSrc]="product.images![0].previewUrl"
               alt="{{ product.name }}"
               [class.out-of-stock]="!product.quantity" />
           </div>
