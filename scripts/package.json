@@ -1,0 +1,24 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "scripts": {
+    "update-products": "ts-node update-products.ts"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "env-cmd": "^10.1.0",
+    "firebase-admin": "^13.2.0",
+    "lodash": "^4.17.21",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
+

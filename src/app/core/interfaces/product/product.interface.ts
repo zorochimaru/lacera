@@ -1,3 +1,4 @@
+import { ImageWithPreview } from '../firestore';
 import { LangCodes } from '../language-codes.enum';
 
 export interface Product {
@@ -7,6 +8,7 @@ export interface Product {
   categoryId: string;
   collectionId: string;
   imageUrls: string[];
+  images?: ImageWithPreview[];
   price: number;
   materialId: string;
   size: string;

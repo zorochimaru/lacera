@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "lib": ["DOM", "ES2023"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": false,
+    "strict": true,
+    "resolveJsonModule": true
+  },
+  "ts-node": {
+    "files": true
+  }
+}
+

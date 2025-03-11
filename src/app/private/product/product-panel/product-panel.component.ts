@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -64,7 +64,6 @@ interface ProductImage {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NgOptimizedImage,
     NgxMaskDirective,
     IconComponent,
     CurrentLanguagePipe
@@ -293,7 +292,6 @@ export class ProductPanelComponent implements OnInit {
     payloadForm.name = payloadForm.name.trim().toLocaleUpperCase();
     this.form.disable();
     this.loading.set(true);
-    console.log(payloadForm);
     const imageRequests = this.images().map(img =>
       img.file
         ? this.#upload.upload(img.file, StorageFolders.products)
