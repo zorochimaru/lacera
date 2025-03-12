@@ -39,7 +39,6 @@ export class NotificationsService {
   }
 
   public loadNextData(reset?: boolean, filter?: CustomQuery[]): void {
-    console.log(filter);
     if (this.#hasMore || reset) {
       this.#fireStoreService
         .getListWithPagination<NotifyOnStockFirestore>(
