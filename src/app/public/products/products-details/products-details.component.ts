@@ -35,6 +35,7 @@ import {
   InfoDialogComponent
 } from '../../../shared';
 import { NotifyOnStockDialogComponent } from './notify-on-stock-dialog/notify-on-stock-dialog.component';
+import { ZoomedPreviewComponent } from './zoomed-preview/zoomed-preview.component';
 
 @Component({
   selector: 'app-products-details',
@@ -45,7 +46,8 @@ import { NotifyOnStockDialogComponent } from './notify-on-stock-dialog/notify-on
     RouterModule,
     ReactiveFormsModule,
     NgxMaskDirective,
-    IconComponent
+    IconComponent,
+    ZoomedPreviewComponent
   ],
   providers: [ProductsService, NotificationsService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -139,13 +141,19 @@ export class ProductsDetailsComponent implements OnInit {
     );
   }
 
+  protected showZoomedPreview(product: ProductFirestore, index: number): void {
+    this.#dialog.open<{ customerPhoneNumber: string; customerName: string }>(
+      ZoomedPreviewComponent,
+      {
+        data: { product, activeIndex: index }
+      }
+    );
+  }
+
   protected notifyOnStock(product: ProductFirestore): void {
     this.#dialog
       .open<{ customerPhoneNumber: string; customerName: string }>(
-        NotifyOnStockDialogComponent,
-        {
-          data: { product }
-        }
+        NotifyOnStockDialogComponent
       )
       .closed.pipe(
         filter(Boolean),

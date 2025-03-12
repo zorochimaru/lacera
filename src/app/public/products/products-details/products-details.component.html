@@ -23,9 +23,13 @@
 
           <div class="slider-wrapper" #previewImage>
             <swiper-container #imageSwiper navigation slides-per-view="1">
-              @for (item of product.images; track $index) {
+              @for (item of product.images; track $index; let i = $index) {
                 <swiper-slide>
-                  <img class="slider-image" [src]="item.previewUrl" alt="" />
+                  <img
+                    class="slider-image"
+                    (click)="showZoomedPreview(product, i)"
+                    [src]="item.previewUrl"
+                    alt="" />
                 </swiper-slide>
               }
             </swiper-container>

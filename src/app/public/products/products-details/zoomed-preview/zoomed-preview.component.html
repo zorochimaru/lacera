@@ -1,0 +1,34 @@
+<div class="products-preview-container">
+  <button type="button" class="close-btn" (click)="close()">
+    <app-icon icon="close"></app-icon>
+  </button>
+  <swiper-container
+    #imageSwiper
+    style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+    class="mySwiper"
+    thumbs-swiper=".mySwiper2"
+    space-between="10"
+    zoom="true"
+    navigation="true">
+    @for (image of images(); track $index) {
+      <swiper-slide lazy="true">
+        <div class="swiper-zoom-container">
+          <img [src]="image.fullSizeUrl" />
+        </div>
+      </swiper-slide>
+    }
+  </swiper-container>
+
+  <swiper-container
+    class="mySwiper2"
+    space-between="10"
+    slides-per-view="3.5"
+    free-mode="true"
+    watch-slides-progress="true">
+    @for (image of images(); track $index) {
+      <swiper-slide>
+        <img [src]="image.previewUrl" />
+      </swiper-slide>
+    }
+  </swiper-container>
+</div>
