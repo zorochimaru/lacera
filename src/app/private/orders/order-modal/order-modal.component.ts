@@ -12,12 +12,11 @@ import {
 import { IconComponent } from '../../../shared';
 
 @Component({
-  selector: 'app-order-modal',
-  standalone: true,
-  imports: [DatePipe, IconComponent, RouterModule],
-  providers: [ProductsService],
-  templateUrl: './order-modal.component.html',
-  styleUrl: './order-modal.component.scss'
+    selector: 'app-order-modal',
+    imports: [DatePipe, IconComponent, RouterModule],
+    providers: [ProductsService],
+    templateUrl: './order-modal.component.html',
+    styleUrl: './order-modal.component.scss'
 })
 export class OrderModalComponent implements OnInit {
   readonly #dialogRef = inject(DialogRef);

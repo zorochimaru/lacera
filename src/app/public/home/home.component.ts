@@ -20,22 +20,20 @@ interface HomeSection {
   remoteConfig?: FeatureFlags;
 }
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    IfFeatureFlagDirective,
-
-    AboutUsSectionComponent,
-    CustomSetsSectionComponent,
-    HeaderComponent,
-    NewsSectionComponent,
-    ProductsSectionComponent,
-    WelcomeSectionComponent,
-    WorkshopsSectionComponent
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-home',
+    imports: [
+        IfFeatureFlagDirective,
+        AboutUsSectionComponent,
+        CustomSetsSectionComponent,
+        HeaderComponent,
+        NewsSectionComponent,
+        ProductsSectionComponent,
+        WelcomeSectionComponent,
+        WorkshopsSectionComponent
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
   protected routerAnchorLinks = routerAnchorLinks;

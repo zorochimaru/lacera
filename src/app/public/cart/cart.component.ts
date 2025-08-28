@@ -9,17 +9,16 @@ import { CartService, routerLinks } from '../../core';
 import { IconComponent, InfoDialogComponent } from '../../shared';
 
 @Component({
-  selector: 'app-cart',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    TranslocoDirective,
-    RouterModule,
-    NgxMaskDirective,
-    IconComponent
-  ],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+    selector: 'app-cart',
+    imports: [
+        ReactiveFormsModule,
+        TranslocoDirective,
+        RouterModule,
+        NgxMaskDirective,
+        IconComponent
+    ],
+    templateUrl: './cart.component.html',
+    styleUrl: './cart.component.scss'
 })
 export class CartComponent {
   readonly #cartService = inject(CartService);

@@ -5,11 +5,10 @@ import { IconComponent } from '../icon';
 import { InfoDialog } from './info-dialog.interface';
 
 @Component({
-  selector: 'app-info-dialog',
-  standalone: true,
-  imports: [IconComponent],
-  templateUrl: './info-dialog.component.html',
-  styleUrl: './info-dialog.component.scss'
+    selector: 'app-info-dialog',
+    imports: [IconComponent],
+    templateUrl: './info-dialog.component.html',
+    styleUrl: './info-dialog.component.scss'
 })
 export class InfoDialogComponent {
   protected data = inject<InfoDialog>(DIALOG_DATA);

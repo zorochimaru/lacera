@@ -14,12 +14,11 @@ import { ImageWithPreview } from '../../../../core';
 import { IconComponent } from '../../../../shared';
 
 @Component({
-  selector: 'app-zoomed-preview',
-  standalone: true,
-  imports: [IconComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './zoomed-preview.component.html',
-  styleUrl: './zoomed-preview.component.scss'
+    selector: 'app-zoomed-preview',
+    imports: [IconComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './zoomed-preview.component.html',
+    styleUrl: './zoomed-preview.component.scss'
 })
 export class ZoomedPreviewComponent implements AfterViewInit {
   readonly #data = inject(DIALOG_DATA);

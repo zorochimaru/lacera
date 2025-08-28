@@ -17,21 +17,20 @@ import { LanguageSelectComponent } from '../language-select';
 
 // TODO: Make navbar links dynamically
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [
-    RouterModule,
-    TranslocoModule,
-    LanguageSelectComponent,
-    IfFeatureFlagDirective
-  ],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.scrolled]': 'scrolled',
-    '(document:scroll)': 'onWindowScroll($event)'
-  }
+    selector: 'app-header',
+    imports: [
+        RouterModule,
+        TranslocoModule,
+        LanguageSelectComponent,
+        IfFeatureFlagDirective
+    ],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        '[class.scrolled]': 'scrolled',
+        '(document:scroll)': 'onWindowScroll($event)'
+    }
 })
 export class HeaderComponent {
   #elRef = inject(ElementRef);

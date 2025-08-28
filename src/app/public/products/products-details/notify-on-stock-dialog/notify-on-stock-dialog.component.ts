@@ -8,16 +8,15 @@ import { NgxMaskDirective } from 'ngx-mask';
 import { routerLinks } from '../../../../core';
 
 @Component({
-  selector: 'app-notify-on-stock-dialog',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    TranslocoDirective,
-    RouterLink,
-    NgxMaskDirective
-  ],
-  templateUrl: './notify-on-stock-dialog.component.html',
-  styleUrl: './notify-on-stock-dialog.component.scss'
+    selector: 'app-notify-on-stock-dialog',
+    imports: [
+        ReactiveFormsModule,
+        TranslocoDirective,
+        RouterLink,
+        NgxMaskDirective
+    ],
+    templateUrl: './notify-on-stock-dialog.component.html',
+    styleUrl: './notify-on-stock-dialog.component.scss'
 })
 export class NotifyOnStockDialogComponent {
   readonly #dialogRef = inject(DialogRef);

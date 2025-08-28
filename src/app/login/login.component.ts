@@ -10,13 +10,12 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService, routerLinks, TypedForm } from '@core';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-  providers: [AuthService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-login',
+    imports: [CommonModule, ReactiveFormsModule, RouterModule],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss',
+    providers: [AuthService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
   readonly #fb = inject(FormBuilder);

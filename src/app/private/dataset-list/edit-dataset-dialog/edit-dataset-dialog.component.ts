@@ -7,11 +7,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { LangCodes } from '../../../core';
 
 @Component({
-  selector: 'app-edit-dataset-dialog',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './edit-dataset-dialog.component.html',
-  styleUrl: './edit-dataset-dialog.component.scss'
+    selector: 'app-edit-dataset-dialog',
+    imports: [ReactiveFormsModule],
+    templateUrl: './edit-dataset-dialog.component.html',
+    styleUrl: './edit-dataset-dialog.component.scss'
 })
 export class EditDatasetDialogComponent implements OnInit {
   readonly #dr = inject(DestroyRef);

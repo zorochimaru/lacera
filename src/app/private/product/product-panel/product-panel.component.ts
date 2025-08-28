@@ -62,20 +62,19 @@ interface ProductImage {
 }
 
 @Component({
-  selector: 'app-product-panel',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgxMaskDirective,
-    IconComponent,
-    CurrentLanguagePipe
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ProductsService],
-  templateUrl: './product-panel.component.html',
-  styleUrl: './product-panel.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-product-panel',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgxMaskDirective,
+        IconComponent,
+        CurrentLanguagePipe
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    providers: [ProductsService],
+    templateUrl: './product-panel.component.html',
+    styleUrl: './product-panel.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductPanelComponent implements OnInit {
   readonly #fb = inject(FormBuilder);

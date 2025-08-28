@@ -10,18 +10,17 @@ import { ImageDialogComponent } from '../../shared';
 import { ProductsHeaderComponent } from '../shared';
 
 @Component({
-  selector: 'app-news-details',
-  standalone: true,
-  imports: [
-    RouterModule,
-    CurrentLanguagePipe,
-    ProductsHeaderComponent,
-    DatePipe,
-    DialogModule
-  ],
-  providers: [NewsService],
-  templateUrl: './news-details.component.html',
-  styleUrl: './news-details.component.scss'
+    selector: 'app-news-details',
+    imports: [
+        RouterModule,
+        CurrentLanguagePipe,
+        ProductsHeaderComponent,
+        DatePipe,
+        DialogModule
+    ],
+    providers: [NewsService],
+    templateUrl: './news-details.component.html',
+    styleUrl: './news-details.component.scss'
 })
 export class NewsDetailsComponent {
   readonly #route = inject(ActivatedRoute);

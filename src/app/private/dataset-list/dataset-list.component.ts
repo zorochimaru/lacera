@@ -14,11 +14,10 @@ import {
 import { EditDatasetDialogComponent } from './edit-dataset-dialog/edit-dataset-dialog.component';
 
 @Component({
-  selector: 'app-dataset-list',
-  standalone: true,
-  imports: [RouterModule, DatePipe, DialogModule, CurrentLanguagePipe],
-  templateUrl: './dataset-list.component.html',
-  styleUrl: './dataset-list.component.scss'
+    selector: 'app-dataset-list',
+    imports: [RouterModule, DatePipe, DialogModule, CurrentLanguagePipe],
+    templateUrl: './dataset-list.component.html',
+    styleUrl: './dataset-list.component.scss'
 })
 export class DatasetListComponent implements OnInit {
   readonly #dialog = inject(Dialog);

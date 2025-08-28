@@ -16,19 +16,18 @@ import {
 } from '../../../core';
 
 @Component({
-  selector: 'app-products-list',
-  standalone: true,
-  imports: [
-    TranslocoDirective,
-    CurrentLanguagePipe,
-    ReactiveFormsModule,
-    NgOptimizedImage,
-    RouterModule,
-    IntersectionListenerDirective
-  ],
-  providers: [ProductsService],
-  templateUrl: './products-list.component.html',
-  styleUrl: './products-list.component.scss'
+    selector: 'app-products-list',
+    imports: [
+        TranslocoDirective,
+        CurrentLanguagePipe,
+        ReactiveFormsModule,
+        NgOptimizedImage,
+        RouterModule,
+        IntersectionListenerDirective
+    ],
+    providers: [ProductsService],
+    templateUrl: './products-list.component.html',
+    styleUrl: './products-list.component.scss'
 })
 export class ProductsListComponent implements OnInit {
   readonly #route = inject(ActivatedRoute);

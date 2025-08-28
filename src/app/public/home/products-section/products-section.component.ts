@@ -19,13 +19,12 @@ import {
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-products-section',
-  standalone: true,
-  imports: [TranslocoModule, TitleCasePipe, UpperCasePipe, RouterModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  templateUrl: './products-section.component.html',
-  styleUrl: './products-section.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-products-section',
+    imports: [TranslocoModule, TitleCasePipe, UpperCasePipe, RouterModule],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './products-section.component.html',
+    styleUrl: './products-section.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsSectionComponent implements OnInit {
   readonly #firestoreService = inject(FirestoreService);

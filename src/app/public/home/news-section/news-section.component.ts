@@ -10,19 +10,18 @@ import { CurrentLanguagePipe, NewsService, routerLinks } from '@core';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-news-section',
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    RouterModule,
-    CurrentLanguagePipe,
-    DatePipe,
-    TranslocoModule
-  ],
-  providers: [NewsService],
-  templateUrl: './news-section.component.html',
-  styleUrl: './news-section.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-news-section',
+    imports: [
+        AsyncPipe,
+        RouterModule,
+        CurrentLanguagePipe,
+        DatePipe,
+        TranslocoModule
+    ],
+    providers: [NewsService],
+    templateUrl: './news-section.component.html',
+    styleUrl: './news-section.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsSectionComponent implements OnInit {
   readonly #newsService = inject(NewsService);

@@ -5,11 +5,10 @@ import { TranslocoService } from '@jsverse/transloco';
 import { LangCodes } from '../../core';
 
 @Component({
-  selector: 'app-language-select',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './language-select.component.html',
-  styleUrl: './language-select.component.scss'
+    selector: 'app-language-select',
+    imports: [FormsModule],
+    templateUrl: './language-select.component.html',
+    styleUrl: './language-select.component.scss'
 })
 export class LanguageSelectComponent {
   readonly #translocoService = inject(TranslocoService);

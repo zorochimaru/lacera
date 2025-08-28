@@ -17,19 +17,18 @@ import {
 import { endOfDay, startOfDay } from 'date-fns';
 
 @Component({
-  selector: 'app-product-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    NgOptimizedImage,
-    RouterLink,
-    IntersectionListenerDirective
-  ],
-  providers: [ProductsService],
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-product-list',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        NgOptimizedImage,
+        RouterLink,
+        IntersectionListenerDirective
+    ],
+    providers: [ProductsService],
+    templateUrl: './product-list.component.html',
+    styleUrl: './product-list.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent implements OnInit {
   readonly #productsService = inject(ProductsService);

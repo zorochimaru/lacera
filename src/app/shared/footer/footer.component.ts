@@ -5,12 +5,11 @@ import { routerAnchorLinks, routerLinks } from '@core';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [TranslocoModule, TitleCasePipe, RouterModule],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-footer',
+    imports: [TranslocoModule, TitleCasePipe, RouterModule],
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
   protected routerLinks = routerLinks;

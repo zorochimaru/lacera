@@ -12,12 +12,11 @@ import { TranslocoService } from '@jsverse/transloco';
 import { LanguageSelectComponent } from '../../../shared';
 
 @Component({
-  selector: 'app-private-header',
-  standalone: true,
-  imports: [RouterLink, NgFor, RouterLinkActive, LanguageSelectComponent],
-  templateUrl: './private-header.component.html',
-  styleUrl: './private-header.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-private-header',
+    imports: [RouterLink, NgFor, RouterLinkActive, LanguageSelectComponent],
+    templateUrl: './private-header.component.html',
+    styleUrl: './private-header.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PrivateHeaderComponent implements OnInit {
   readonly #authService = inject(AuthService);

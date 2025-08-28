@@ -34,12 +34,11 @@ import {
 
 // TODO: add thumbnails urls for gallery images
 @Component({
-  selector: 'app-news-panel',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgOptimizedImage],
-  templateUrl: './news-panel.component.html',
-  styleUrl: './news-panel.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-news-panel',
+    imports: [CommonModule, ReactiveFormsModule, NgOptimizedImage],
+    templateUrl: './news-panel.component.html',
+    styleUrl: './news-panel.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsPanelComponent implements OnInit {
   readonly #fb = inject(FormBuilder);

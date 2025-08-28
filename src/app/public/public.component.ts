@@ -3,14 +3,9 @@ import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '@shared';
 
 @Component({
-  standalone: true,
-
-  imports: [RouterOutlet, FooterComponent],
-
-  templateUrl: './public.component.html',
-
-  styleUrl: './public.component.scss',
-
-  changeDetection: ChangeDetectionStrategy.OnPush
+    imports: [RouterOutlet, FooterComponent],
+    templateUrl: './public.component.html',
+    styleUrl: './public.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PublicComponent {}

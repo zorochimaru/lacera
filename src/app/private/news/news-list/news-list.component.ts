@@ -18,19 +18,18 @@ import { endOfDay, startOfDay } from 'date-fns';
 import { NewsService } from '../../../core/services/news.service';
 
 @Component({
-  selector: 'app-news-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterLink,
-    IntersectionListenerDirective,
-    CurrentLanguagePipe
-  ],
-  providers: [NewsService],
-  templateUrl: './news-list.component.html',
-  styleUrl: './news-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-news-list',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterLink,
+        IntersectionListenerDirective,
+        CurrentLanguagePipe
+    ],
+    providers: [NewsService],
+    templateUrl: './news-list.component.html',
+    styleUrl: './news-list.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsListComponent implements OnInit {
   readonly #newsService = inject(NewsService);

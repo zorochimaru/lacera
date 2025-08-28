@@ -19,11 +19,10 @@ interface SVGImage {
 }
 
 @Component({
-  selector: 'app-stared-overlay',
-  standalone: true,
-  imports: [],
-  templateUrl: './stared-overlay.component.html',
-  styleUrl: './stared-overlay.component.scss'
+    selector: 'app-stared-overlay',
+    imports: [],
+    templateUrl: './stared-overlay.component.html',
+    styleUrl: './stared-overlay.component.scss'
 })
 export class StaredOverlayComponent implements AfterViewInit {
   readonly #http = inject(HttpClient);
