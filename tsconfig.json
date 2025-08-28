@@ -4,9 +4,15 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@core": ["./src/app/core"],
-      "@utils": ["./src/app/utils"],
-      "@shared": ["./src/app/shared"]
+      "@core": [
+        "./src/app/core"
+      ],
+      "@utils": [
+        "./src/app/utils"
+      ],
+      "@shared": [
+        "./src/app/shared"
+      ]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -19,12 +25,15 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": ["ES2023", "dom"]
+    "lib": [
+      "ES2023",
+      "dom"
+    ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

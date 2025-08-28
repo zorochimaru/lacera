@@ -61,16 +61,20 @@
       </div>
     </div>
     <div class="thumbnail-container">
-      <div
-        *ngFor="let imageUrl of form.controls.imageUrls.valueChanges | async">
-        <button
-          type="button"
-          class="delete-thumbnail-btn"
-          (click)="deleteImage(imageUrl)">
-          Delete
-        </button>
-        <img width="100" height="100" [src]="imageUrl" alt="" />
-      </div>
+      @for (
+        imageUrl of form.controls.imageUrls.valueChanges | async;
+        track $index
+      ) {
+        <div>
+          <button
+            type="button"
+            class="delete-thumbnail-btn"
+            (click)="deleteImage(imageUrl)">
+            Delete
+          </button>
+          <img width="100" height="100" [src]="imageUrl" alt="" />
+        </div>
+      }
     </div>
     <button
       type="submit"
@@ -78,13 +82,14 @@
       [disabled]="loading() || form.invalid">
       Submit
     </button>
-    <button
-      *ngIf="newsId"
-      type="button"
-      class="btn btn-danger"
-      (click)="deleteNews()"
-      [disabled]="loading()">
-      Delete
-    </button>
+    @if (newsId) {
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="deleteNews()"
+        [disabled]="loading()">
+        Delete
+      </button>
+    }
   </form>
 </div>

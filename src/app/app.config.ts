@@ -2,7 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   isDevMode,
-  provideExperimentalZonelessChangeDetection
+  provideZonelessChangeDetection
 } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
@@ -40,7 +40,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideEnvironmentNgxMask(),
     provideRemoteConfig(() => getRemoteConfig()),
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideRouter(routes, inMemoryScrollingFeature),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
