@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -34,11 +34,11 @@ import {
 
 // TODO: add thumbnails urls for gallery images
 @Component({
-    selector: 'app-news-panel',
-    imports: [CommonModule, ReactiveFormsModule, NgOptimizedImage],
-    templateUrl: './news-panel.component.html',
-    styleUrl: './news-panel.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-news-panel',
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './news-panel.component.html',
+  styleUrl: './news-panel.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewsPanelComponent implements OnInit {
   readonly #fb = inject(FormBuilder);

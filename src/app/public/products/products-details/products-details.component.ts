@@ -38,20 +38,19 @@ import { NotifyOnStockDialogComponent } from './notify-on-stock-dialog/notify-on
 import { ZoomedPreviewComponent } from './zoomed-preview/zoomed-preview.component';
 
 @Component({
-    selector: 'app-products-details',
-    imports: [
-        CurrentLanguagePipe,
-        TranslocoDirective,
-        RouterModule,
-        ReactiveFormsModule,
-        NgxMaskDirective,
-        IconComponent,
-        ZoomedPreviewComponent
-    ],
-    providers: [ProductsService, NotificationsService],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    templateUrl: './products-details.component.html',
-    styleUrl: './products-details.component.scss'
+  selector: 'app-products-details',
+  imports: [
+    CurrentLanguagePipe,
+    TranslocoDirective,
+    RouterModule,
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    IconComponent
+  ],
+  providers: [ProductsService, NotificationsService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  templateUrl: './products-details.component.html',
+  styleUrl: './products-details.component.scss'
 })
 export class ProductsDetailsComponent implements OnInit {
   readonly #route = inject(ActivatedRoute);
