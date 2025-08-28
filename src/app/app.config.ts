@@ -13,7 +13,6 @@ import {
   provideRemoteConfig
 } from '@angular/fire/remote-config';
 import { getStorage, provideStorage } from '@angular/fire/storage';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   InMemoryScrollingFeature,
   InMemoryScrollingOptions,
@@ -48,7 +47,6 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
     provideHttpClient(),
-    provideAnimations(),
     provideTransloco({
       config: {
         availableLangs: [LangCodes.en, LangCodes.az, LangCodes.ru],

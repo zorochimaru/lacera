@@ -6,9 +6,10 @@
     @if (totalQuantity(); as totalQuantity) {
       <button
         type="button"
-        [@quantityChange]="totalQuantity"
+        class="cart-quantity btn-unstyled"
         (click)="openCartDialog()"
-        class="cart-quantity btn-unstyled">
+        [class.animate-scale]="cartUpdated()"
+        (animationend)="cartUpdated.set(false)">
         <span>
           {{ totalQuantity }}
         </span>
