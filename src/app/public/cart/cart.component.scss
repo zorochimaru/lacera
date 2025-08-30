@@ -1,3 +1,15 @@
+:host {
+  ::ng-deep {
+    .tel-control {
+      display: flex;
+
+      .iti--inline-dropdown {
+        flex: 1;
+      }
+    }
+  }
+}
+
 .wrapper {
   min-width: 800px;
   display: flex;

@@ -17,19 +17,32 @@
         <td cdk-cell *cdkCellDef="let row">{{ row.customerName }}</td>
       </ng-container>
 
-      <!-- Age Definition -->
+      <!-- Phone Number Definition -->
       <ng-container cdkColumnDef="customerPhoneNumber">
         <th cdk-header-cell *cdkHeaderCellDef>Phone Number</th>
         <td cdk-cell *cdkCellDef="let row">{{ row.customerPhoneNumber }}</td>
       </ng-container>
 
+      <!-- Email Definition -->
+      <ng-container cdkColumnDef="customerEmail">
+        <th cdk-header-cell *cdkHeaderCellDef>Email</th>
+        <td cdk-cell *cdkCellDef="let row">{{ row.customerEmail }}</td>
+      </ng-container>
+
       <!-- Header and Row Declarations -->
       <tr
         cdk-header-row
-        *cdkHeaderRowDef="['customerName', 'customerPhoneNumber']"></tr>
+        *cdkHeaderRowDef="[
+          'customerName',
+          'customerPhoneNumber',
+          'customerEmail'
+        ]"></tr>
       <tr
         cdk-row
-        *cdkRowDef="let row; columns: ['customerName', 'customerPhoneNumber']"
+        *cdkRowDef="
+          let row;
+          columns: ['customerName', 'customerPhoneNumber', 'customerEmail']
+        "
         (click)="openOrderDetails(row)"></tr>
     </table>
   </div>

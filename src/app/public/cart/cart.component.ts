@@ -44,14 +44,17 @@ export class CartComponent {
     control: AbstractControl
   ): ValidationErrors | null => {
     const email = control.get('customerEmail')?.value;
+    const phone = control.get('customerPhoneNumber')?.value;
 
-    const isEmailValid =
-      email &&
-      email.includes('@') &&
-      email.includes('.') &&
-      email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    // Quick check - if we have a valid phone, don't validate further
+    if (this.isPhoneValid && phone && phone.length > 5) {
+      return null;
+    }
 
-    if (!this.isPhoneValid && !isEmailValid) {
+    // Only check email if phone is not valid
+    const isEmailValid = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!isEmailValid) {
       return { contactRequired: true };
     }
 
@@ -82,6 +85,11 @@ export class CartComponent {
 
   protected removeFromCart(productId: string): void {
     this.#cartService.removeProductFromOrder(productId);
+  }
+
+  protected handleValidityChange(isValid: boolean): void {
+    this.isPhoneValid = isValid;
+    // Form validation will be triggered automatically when needed
   }
 
   protected checkout(): void {

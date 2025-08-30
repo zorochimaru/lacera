@@ -1,7 +1,7 @@
 export interface Order {
   customerName: string;
   customerPhoneNumber: string;
-  customerPhoneEmail: string;
+  customerEmail: string;
   completed: boolean;
   products: {
     productId: string;

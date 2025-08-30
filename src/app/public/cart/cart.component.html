@@ -37,24 +37,20 @@
         <div>
           <h3>{{ t("enterPhoneNumber") }}</h3>
           <intl-tel-input
+            class="tel-control"
             formControlName="customerPhoneNumber"
+            (validityChange)="handleValidityChange($event)"
             [inputProps]="{
               class: 'form-control',
               placeholder: '+994 50 000 00 00'
             }"
             [initOptions]="{
-              initialCountry: 'az'
+              initialCountry: 'az',
+              formatOnDisplay: true,
+              strictMode: true,
+              nationalMode: false,
+              autoPlaceholder: 'aggressive'
             }" />
-          <!-- <input
-            type="tel"
-            placeholder="+994 50 000 00 00"
-            prefix="+994"
-            mask=" 00 000 00 00"
-            placeHolderCharacter="*"
-            [showMaskTyped]="true"
-            [dropSpecialCharacters]="false"
-            class="form-control"
-            formControlName="customerPhoneNumber" /> -->
         </div>
         <div>
           <h3>{{ t("enterEmail") }}</h3>

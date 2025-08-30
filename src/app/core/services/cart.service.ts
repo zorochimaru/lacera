@@ -78,7 +78,7 @@ export class CartService {
   public checkout(
     customerName: string,
     customerPhoneNumber?: string,
-    customerPhoneEmail?: string
+    customerEmail?: string
   ): Observable<string> {
     const baseOrder = {
       customerName,
@@ -94,7 +94,7 @@ export class CartService {
       {
         ...baseOrder,
         customerPhoneNumber: customerPhoneNumber || '',
-        customerPhoneEmail: customerPhoneEmail || ''
+        customerEmail: customerEmail || ''
       }
     );
   }
