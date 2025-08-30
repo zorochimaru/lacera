@@ -10,7 +10,6 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { IntlTelInputComponent } from 'intl-tel-input/angularWithUtils';
-import 'intl-tel-input/styles';
 
 import { CartService, routerLinks } from '../../core';
 import { IconComponent, InfoDialogComponent } from '../../shared';

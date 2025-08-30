@@ -22,6 +22,13 @@
   }
 }
 
+.iti {
+  --iti-path-flags-1x: url(assets/images/iti/flags.webp);
+  --iti-path-flags-2x: url(assets/images/iti/flags@2x.webp);
+  --iti-path-globe-1x: url(assets/images/iti/globe.webp);
+  --iti-path-globe-2x: url(assets/images/iti/globe@2x.webp);
+}
+
 html {
   scroll-behavior: smooth;
 }
