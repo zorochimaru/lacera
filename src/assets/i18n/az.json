@@ -1,8 +1,10 @@
 {
   "cart": {
     "checkout": "Sifariş et",
+    "contactError": "Zəhmət olmasa, etibarlı telefon nömrəsi və ya email ünvanı təqdim edin",
     "contactName": "Soyad və Ad",
     "emptyCart": "Sifariş  yoxsur",
+    "enterEmail": "Email daxil edin",
     "enterPhoneNumber": "Telefon nömrəsi",
     "name": "Soyad Ad",
     "orderNumber": "Sifarişin nömrəsi: {{id}}",

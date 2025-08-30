@@ -10,11 +10,11 @@ import { OrderModalComponent } from './order-modal/order-modal.component';
 import { OrdersService } from './orders.service';
 
 @Component({
-    selector: 'app-orders',
-    imports: [CdkTableModule, ReactiveFormsModule],
-    providers: [OrdersService, ProductsService],
-    templateUrl: './orders.component.html',
-    styleUrl: './orders.component.scss'
+  selector: 'app-orders',
+  imports: [CdkTableModule, ReactiveFormsModule],
+  providers: [OrdersService, ProductsService],
+  templateUrl: './orders.component.html',
+  styleUrl: './orders.component.scss'
 })
 export class OrdersComponent implements OnInit {
   readonly #ordersService = inject(OrdersService);

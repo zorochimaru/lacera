@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 
 import {
   FirestoreCollections,
-  Order,
   OrderFirestore,
   ProductFirestore
 } from '../interfaces';
@@ -78,11 +77,11 @@ export class CartService {
 
   public checkout(
     customerName: string,
-    customerPhoneNumber: string
+    customerPhoneNumber?: string,
+    customerPhoneEmail?: string
   ): Observable<string> {
-    const order: Order = {
+    const baseOrder = {
       customerName,
-      customerPhoneNumber,
       completed: false,
       products: this.#products().map(item => ({
         productId: item.product.id,
@@ -92,7 +91,11 @@ export class CartService {
 
     return this.#fireStoreService.create<OrderFirestore>(
       FirestoreCollections.orders,
-      order
+      {
+        ...baseOrder,
+        customerPhoneNumber: customerPhoneNumber || '',
+        customerPhoneEmail: customerPhoneEmail || ''
+      }
     );
   }
 }

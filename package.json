@@ -34,6 +34,7 @@
     "@types/lodash-es": "^4.17.12",
     "date-fns": "^4.1.0",
     "firebase-admin": "^13.4.0",
+    "intl-tel-input": "^25.7.0",
     "lodash-es": "^4.17.21",
     "ngx-mask": "^20.0.3",
     "pica": "^9.0.1",

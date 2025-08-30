@@ -1,4 +1,4 @@
-<ng-container *transloco="let t; read: 'cart'">
+<ng-container *transloco="let t; prefix: 'cart'">
   <div class="wrapper">
     <div class="left-panel">
       <h2>{{ t("products") }}</h2>
@@ -25,54 +25,67 @@
       </div>
     </div>
     <div class="right-panel">
-      <div>
-        <h3>{{ t("contactName") }}</h3>
-        <input
-          type="text"
-          class="form-control"
-          [formControl]="customerName"
-          [placeholder]="t('name')" />
-      </div>
-      <div>
-        <h3>{{ t("enterPhoneNumber") }}</h3>
-        <input
-          type="tel"
-          placeholder="+994 50 000 00 00"
-          prefix="+994"
-          mask=" 00 000 00 00"
-          placeHolderCharacter="*"
-          [showMaskTyped]="true"
-          [dropSpecialCharacters]="false"
-          class="form-control"
-          [formControl]="customerPhoneNumber" />
-      </div>
-
-      <div class="checkbox-input">
-        <input
-          type="checkbox"
-          class="form-control"
-          id="terms"
-          [formControl]="termsAcceptControl" />
-        <label for="terms">
-          {{ t("terms") }}
-          <br />
-          <a target="_blank" [routerLink]="routerLinks.privacyPolicy">{{
-            t("privacyPolicy")
-          }}</a>
-        </label>
-      </div>
-      <button
-        type="button"
-        class="btn"
-        [disabled]="
-          termsAcceptControl.invalid ||
-          customerName.invalid ||
-          customerPhoneNumber.invalid ||
-          !products().length
-        "
-        (click)="checkout()">
-        {{ t("checkout") }}
-      </button>
+      <form [formGroup]="contactForm">
+        <div>
+          <h3>{{ t("contactName") }}</h3>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="customerName"
+            [placeholder]="t('name')" />
+        </div>
+        <div>
+          <h3>{{ t("enterPhoneNumber") }}</h3>
+          <intl-tel-input
+            formControlName="customerPhoneNumber"
+            [inputProps]="{
+              class: 'form-control',
+              placeholder: '+994 50 000 00 00'
+            }"
+            [initOptions]="{
+              initialCountry: 'az'
+            }" />
+          <!-- <input
+            type="tel"
+            placeholder="+994 50 000 00 00"
+            prefix="+994"
+            mask=" 00 000 00 00"
+            placeHolderCharacter="*"
+            [showMaskTyped]="true"
+            [dropSpecialCharacters]="false"
+            class="form-control"
+            formControlName="customerPhoneNumber" /> -->
+        </div>
+        <div>
+          <h3>{{ t("enterEmail") }}</h3>
+          <input
+            type="email"
+            placeholder="example@mail.com"
+            class="form-control"
+            formControlName="customerEmail" />
+        </div>
+        <div class="checkbox-input">
+          <input
+            type="checkbox"
+            class="form-control"
+            id="terms"
+            formControlName="termsAccept" />
+          <label for="terms">
+            {{ t("terms") }}
+            <br />
+            <a target="_blank" [routerLink]="routerLinks.privacyPolicy">{{
+              t("privacyPolicy")
+            }}</a>
+          </label>
+        </div>
+        <button
+          type="button"
+          class="btn"
+          [disabled]="contactForm.invalid || !products().length"
+          (click)="checkout()">
+          {{ t("checkout") }}
+        </button>
+      </form>
     </div>
   </div>
 </ng-container>
