@@ -5,9 +5,27 @@
   background-color: var(--bg-surface);
   padding: 20px;
   border-radius: 10px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 }
 
 h3 {
   font-weight: 600;
   margin-bottom: 8px;
+}
+
+:host {
+  ::ng-deep {
+    .tel-control {
+      display: flex;
+
+      .iti--inline-dropdown {
+        flex: 1;
+      }
+    }
+  }
 }
