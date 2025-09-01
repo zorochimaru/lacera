@@ -140,11 +140,13 @@ export class ProductsService {
 
   public checkIfAlreadyHasNotification(
     productId: string,
-    customerPhoneNumber: string
+    customerPhoneNumber: string,
+    customerEmail: string
   ): Observable<boolean> {
     return this.#fireStoreService
       .getList<NotifyOnStockFirestore>(FirestoreCollections.notifyOnStock, {
         customQuery: [
+          ['customerEmail', '==', customerEmail],
           ['customerPhoneNumber', '==', customerPhoneNumber],
           ['productId', '==', productId]
         ]

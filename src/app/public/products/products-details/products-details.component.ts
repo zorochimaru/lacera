@@ -25,6 +25,7 @@ import {
   DatasetService,
   FirestoreCollections,
   NotificationsService,
+  NotifyOnStock,
   ProductFirestore,
   ProductsService,
   routerLinks
@@ -159,21 +160,28 @@ export class ProductsDetailsComponent implements OnInit {
 
   protected notifyOnStock(product: ProductFirestore): void {
     this.#dialog
-      .open<{ customerPhoneNumber: string; customerName: string }>(
-        NotifyOnStockDialogComponent
-      )
+      .open<{
+        customerPhoneNumber: string;
+        customerName: string;
+        customerEmail: string;
+      }>(NotifyOnStockDialogComponent)
       .closed.pipe(
         filter(Boolean),
         switchMap(res => {
           return this.#productsService
-            .checkIfAlreadyHasNotification(product.id, res.customerPhoneNumber)
+            .checkIfAlreadyHasNotification(
+              product.id,
+              res.customerPhoneNumber,
+              res.customerEmail
+            )
             .pipe(map(alreadyHas => (alreadyHas ? null : res)));
         }),
         filter(Boolean),
         switchMap(res => {
-          const notification = {
+          const notification: NotifyOnStock = {
             customerPhoneNumber: res.customerPhoneNumber,
             customerName: res.customerName,
+            customerEmail: res.customerEmail,
             completed: false,
             productId: product.id
           };

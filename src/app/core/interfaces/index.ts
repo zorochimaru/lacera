@@ -4,6 +4,7 @@ export * from './environment.interface';
 export * from './firestore';
 export * from './language-codes.enum';
 export * from './news';
+export * from './notify-on-stock';
 export * from './operations.enum';
 export * from './order';
 export * from './product';

@@ -9,11 +9,11 @@ import { NotifyOnStockFirestore } from '../../core/interfaces/notify-on-stock';
 import { NotificationModalComponent } from './notification-modal/notification-modal.component';
 
 @Component({
-    selector: 'app-notifications',
-    imports: [CdkTableModule, ReactiveFormsModule],
-    providers: [NotificationsService],
-    templateUrl: './notifications.component.html',
-    styleUrl: './notifications.component.scss'
+  selector: 'app-notifications',
+  imports: [CdkTableModule, ReactiveFormsModule],
+  providers: [NotificationsService],
+  templateUrl: './notifications.component.html',
+  styleUrl: './notifications.component.scss'
 })
 export class NotificationsComponent implements OnInit {
   readonly #notificationsService = inject(NotificationsService);

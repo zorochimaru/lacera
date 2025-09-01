@@ -9,11 +9,11 @@ import { NotifyOnStockFirestore } from '../../../core/interfaces/notify-on-stock
 import { IconComponent } from '../../../shared';
 
 @Component({
-    selector: 'app-notification-modal',
-    imports: [DatePipe, IconComponent, RouterModule],
-    providers: [ProductsService],
-    templateUrl: './notification-modal.component.html',
-    styleUrl: './notification-modal.component.scss'
+  selector: 'app-notification-modal',
+  imports: [DatePipe, IconComponent, RouterModule],
+  providers: [ProductsService],
+  templateUrl: './notification-modal.component.html',
+  styleUrl: './notification-modal.component.scss'
 })
 export class NotificationModalComponent implements OnInit {
   readonly #dialogRef = inject(DialogRef);

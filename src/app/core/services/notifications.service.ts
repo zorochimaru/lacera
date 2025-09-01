@@ -9,12 +9,10 @@ import {
   CustomQuery,
   DateRange,
   FirestoreCollections,
-  FirestoreService
-} from '../../core';
-import {
+  FirestoreService,
   NotifyOnStock,
   NotifyOnStockFirestore
-} from '../../core/interfaces/notify-on-stock';
+} from '../../core';
 
 @Injectable()
 export class NotificationsService {
