@@ -28,6 +28,7 @@ export class NotifyOnStockDialogComponent {
   readonly #dialogRef = inject(DialogRef);
   readonly #fb = inject(FormBuilder);
 
+  protected routerLinks = routerLinks;
   protected isPhoneValid = false;
 
   protected contactValidator = (
@@ -70,8 +71,6 @@ export class NotifyOnStockDialogComponent {
     },
     { validators: [this.contactValidator] }
   );
-
-  protected routerLinks = routerLinks;
 
   protected handleValidityChange(isValid: boolean): void {
     this.isPhoneValid = isValid;

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { DestroyRef, inject, Injectable, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Timestamp } from '@angular/fire/firestore';
@@ -19,6 +20,7 @@ import {
 export class NotificationsService {
   readonly #fireStoreService = inject(FirestoreService);
   readonly #dr = inject(DestroyRef);
+  readonly #http = inject(HttpClient);
 
   readonly #sourceData$ = new BehaviorSubject<NotifyOnStockFirestore[]>([]);
   public sourceData$ = this.#sourceData$.asObservable();
@@ -36,6 +38,15 @@ export class NotificationsService {
 
   public getDateRange(): DateRange | null {
     return this.#dateRange();
+  }
+
+  public sendManagerNotification(
+    notification: NotifyOnStock
+  ): Observable<string> {
+    return this.#http.post<string>(
+      'https://lacera-notifications-manager.vercel.app/api/notify',
+      notification
+    );
   }
 
   public loadNextData(reset?: boolean, filter?: CustomQuery[]): void {

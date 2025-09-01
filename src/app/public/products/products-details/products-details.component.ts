@@ -15,7 +15,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { NgxMaskDirective } from 'ngx-mask';
-import { filter, forkJoin, map, of, switchMap, tap } from 'rxjs';
+import { filter, forkJoin, map, switchMap, tap } from 'rxjs';
 import { SwiperContainer } from 'swiper/element';
 
 import {
@@ -169,48 +169,53 @@ export class ProductsDetailsComponent implements OnInit {
             .checkIfAlreadyHasNotification(product.id, res.customerPhoneNumber)
             .pipe(map(alreadyHas => (alreadyHas ? null : res)));
         }),
+        filter(Boolean),
         switchMap(res => {
-          if (!res) {
-            return of(null);
-          }
-          return this.#notificationsService.createNotification({
+          const notification = {
             customerPhoneNumber: res.customerPhoneNumber,
             customerName: res.customerName,
             completed: false,
             productId: product.id
-          });
+          };
+
+          return forkJoin([
+            this.#notificationsService.createNotification(notification),
+            this.#notificationsService.sendManagerNotification(notification)
+          ]);
         }),
+        tap(docId => {
+          if (!docId) {
+            this.#dialog.open<InfoDialog>(InfoDialogComponent, {
+              data: {
+                title:
+                  this.#transloco.translate(
+                    'common.error'
+                  ) /** t(common.error) */,
+                message: this.#transloco.translate(
+                  'order.notificationAlreadyExists'
+                ) /** t(order.notificationAlreadyExists) */,
+                icon: 'error',
+                type: 'error'
+              }
+            });
+          } else {
+            this.#dialog.open<InfoDialog>(InfoDialogComponent, {
+              data: {
+                title: this.#transloco.translate(
+                  'common.successMessage'
+                ) /** t(common.successMessage) */,
+                message: this.#transloco.translate('order.orderNumber', {
+                  id: docId
+                }) /** t(order.orderNumber) */,
+                icon: 'check_circle',
+                type: 'success'
+              }
+            });
+          }
+        }),
+
         takeUntilDestroyed(this.#dr)
       )
-      .subscribe(docId => {
-        if (!docId) {
-          this.#dialog.open<InfoDialog>(InfoDialogComponent, {
-            data: {
-              title:
-                this.#transloco.translate(
-                  'common.error'
-                ) /** t(common.error) */,
-              message: this.#transloco.translate(
-                'order.notificationAlreadyExists'
-              ) /** t(order.notificationAlreadyExists) */,
-              icon: 'error',
-              type: 'error'
-            }
-          });
-        } else {
-          this.#dialog.open<InfoDialog>(InfoDialogComponent, {
-            data: {
-              title: this.#transloco.translate(
-                'common.successMessage'
-              ) /** t(common.successMessage) */,
-              message: this.#transloco.translate('order.orderNumber', {
-                id: docId
-              }) /** t(order.orderNumber) */,
-              icon: 'check_circle',
-              type: 'success'
-            }
-          });
-        }
-      });
+      .subscribe();
   }
 }
