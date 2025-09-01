@@ -191,7 +191,7 @@ export class ProductsDetailsComponent implements OnInit {
             this.#notificationsService.sendManagerNotification(notification)
           ]);
         }),
-        tap(docId => {
+        tap(([docId]) => {
           if (!docId) {
             this.#dialog.open<InfoDialog>(InfoDialogComponent, {
               data: {

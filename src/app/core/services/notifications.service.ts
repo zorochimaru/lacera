@@ -40,8 +40,8 @@ export class NotificationsService {
 
   public sendManagerNotification(
     notification: NotifyOnStock
-  ): Observable<string> {
-    return this.#http.post<string>(
+  ): Observable<{ ok: boolean }> {
+    return this.#http.post<{ ok: boolean }>(
       'https://lacera-notifications-manager.vercel.app/api/notify',
       notification
     );
