@@ -63,6 +63,8 @@ export class ProductsDetailsComponent implements OnInit {
   readonly #transloco = inject(TranslocoService);
 
   protected imageSwiper = viewChild<ElementRef<SwiperContainer>>('imageSwiper');
+  protected previewSwiper =
+    viewChild<ElementRef<SwiperContainer>>('previewSwiper');
 
   protected product = signal<ProductFirestore | null>(null);
   protected category = signal<DatasetItemFirestore | null>(null);
@@ -126,6 +128,13 @@ export class ProductsDetailsComponent implements OnInit {
         takeUntilDestroyed(this.#dr)
       )
       .subscribe();
+  }
+
+  protected nextSlide(): void {
+    const newPersonIndex =
+      this.imageSwiper()?.nativeElement?.swiper?.activeIndex;
+
+    this.previewSwiper()?.nativeElement?.swiper?.slideTo(newPersonIndex || 0);
   }
 
   protected selectImage(i: number): void {
