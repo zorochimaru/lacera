@@ -1,5 +1,6 @@
 {
   "cart": {
+    "amount": "Amount",
     "checkout": "Checkout",
     "contactError": "Please provide either a valid phone number or email address",
     "contactName": "Contact name",

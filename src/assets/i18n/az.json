@@ -1,5 +1,6 @@
 {
   "cart": {
+    "amount": "Miqdar",
     "checkout": "Sifariş et",
     "contactError": "Zəhmət olmasa, etibarlı telefon nömrəsi və ya email ünvanı təqdim edin",
     "contactName": "Soyad və Ad",
