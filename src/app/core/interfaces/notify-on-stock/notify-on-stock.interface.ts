@@ -3,5 +3,7 @@ export interface NotifyOnStock {
   customerPhoneNumber: string;
   customerEmail: string;
   completed: boolean;
-  productId: string;
+  productNames: string[];
+  productIds: string[];
+  amount: number;
 }

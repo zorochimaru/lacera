@@ -139,7 +139,7 @@ export class ProductsService {
   }
 
   public checkIfAlreadyHasNotification(
-    productId: string,
+    productNames: string,
     customerPhoneNumber: string,
     customerEmail: string
   ): Observable<boolean> {
@@ -148,7 +148,7 @@ export class ProductsService {
         customQuery: [
           ['customerEmail', '==', customerEmail],
           ['customerPhoneNumber', '==', customerPhoneNumber],
-          ['productId', '==', productId]
+          ['productNames', 'array-contains', productNames]
         ]
       })
       .pipe(map(res => res.length > 0));

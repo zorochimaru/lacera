@@ -164,13 +164,14 @@ export class ProductsDetailsComponent implements OnInit {
         customerPhoneNumber: string;
         customerName: string;
         customerEmail: string;
+        amount: number;
       }>(NotifyOnStockDialogComponent)
       .closed.pipe(
         filter(Boolean),
         switchMap(res => {
           return this.#productsService
             .checkIfAlreadyHasNotification(
-              product.id,
+              product.name,
               res.customerPhoneNumber,
               res.customerEmail
             )
@@ -179,11 +180,13 @@ export class ProductsDetailsComponent implements OnInit {
         filter(Boolean),
         switchMap(res => {
           const notification: NotifyOnStock = {
+            amount: res.amount,
             customerPhoneNumber: res.customerPhoneNumber,
             customerName: res.customerName,
             customerEmail: res.customerEmail,
             completed: false,
-            productId: product.id
+            productNames: [product.name],
+            productIds: [product.id]
           };
 
           return forkJoin([

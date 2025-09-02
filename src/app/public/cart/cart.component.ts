@@ -10,8 +10,14 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { IntlTelInputComponent } from 'intl-tel-input/angularWithUtils';
+import { forkJoin } from 'rxjs';
 
-import { CartService, routerLinks } from '../../core';
+import {
+  CartService,
+  NotificationsService,
+  NotifyOnStock,
+  routerLinks
+} from '../../core';
 import { IconComponent, InfoDialogComponent } from '../../shared';
 
 @Component({
@@ -23,6 +29,7 @@ import { IconComponent, InfoDialogComponent } from '../../shared';
     IconComponent,
     IntlTelInputComponent
   ],
+  providers: [NotificationsService],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -33,6 +40,7 @@ export class CartComponent {
   readonly #dialog = inject(Dialog);
   readonly #fb = inject(FormBuilder);
   readonly #transloco = inject(TranslocoService);
+  readonly #notificationsService = inject(NotificationsService);
 
   protected products = this.#cartService.products;
   protected totalPrice = this.#cartService.totalPrice();
@@ -100,38 +108,55 @@ export class CartComponent {
       return;
     }
 
-    this.#cartService
-      .checkout(customerName, customerPhoneNumber, customerEmail)
-      .subscribe({
-        next: docId => {
-          this.#dialogRef.close();
-          this.#cartService.clearOrder();
-          this.#router.navigate(['/']).then(() => {
-            this.#dialog.open(InfoDialogComponent, {
-              data: {
-                title: this.#transloco.translate(
-                  'common.successMessage'
-                ) /** t(common.successMessage) */,
-                message: this.#transloco.translate('cart.orderNumber', {
-                  id: docId
-                }) /** t(cart.orderNumber) */,
-                icon: 'check_circle',
-                type: 'success'
-              }
-            });
-          });
-        },
-        error: () => {
+    const notification: NotifyOnStock = {
+      amount: this.products()
+        .map(x => x.quantity)
+        .reduce((a, b) => a + b, 0),
+      customerPhoneNumber: customerPhoneNumber,
+      customerName: customerName,
+      customerEmail: customerEmail,
+      completed: false,
+      productNames: this.products().map(p => p.product.name),
+      productIds: this.products().map(p => p.product.id)
+    };
+
+    forkJoin([
+      this.#cartService.checkout(
+        customerName,
+        customerPhoneNumber,
+        customerEmail
+      ),
+      this.#notificationsService.sendManagerNotification(notification)
+    ]).subscribe({
+      next: ([docId]) => {
+        this.#dialogRef.close();
+        this.#cartService.clearOrder();
+        this.#router.navigate(['/']).then(() => {
           this.#dialog.open(InfoDialogComponent, {
             data: {
               title: this.#transloco.translate(
-                'common.errorMessage'
-              ) /** t(common.errorMessage) */,
-              icon: 'error',
-              type: 'error'
+                'common.successMessage'
+              ) /** t(common.successMessage) */,
+              message: this.#transloco.translate('cart.orderNumber', {
+                id: docId
+              }) /** t(cart.orderNumber) */,
+              icon: 'check_circle',
+              type: 'success'
             }
           });
-        }
-      });
+        });
+      },
+      error: () => {
+        this.#dialog.open(InfoDialogComponent, {
+          data: {
+            title: this.#transloco.translate(
+              'common.errorMessage'
+            ) /** t(common.errorMessage) */,
+            icon: 'error',
+            type: 'error'
+          }
+        });
+      }
+    });
   }
 }

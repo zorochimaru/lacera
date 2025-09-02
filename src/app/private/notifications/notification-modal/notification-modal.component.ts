@@ -29,7 +29,7 @@ export class NotificationModalComponent implements OnInit {
 
   public ngOnInit(): void {
     this.#productsService
-      .getProductById(this.notification.productId)
+      .getProductById(this.notification.productIds[0])
       .pipe(takeUntilDestroyed(this.#dr))
       .subscribe(res => {
         this.product.set(res);

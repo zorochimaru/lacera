@@ -11,19 +11,16 @@
   </aside>
   <div class="container">
     <table cdk-table [dataSource]="orders() || []">
-      <!-- User name Definition -->
       <ng-container cdkColumnDef="customerName">
         <th cdk-header-cell *cdkHeaderCellDef>Name</th>
         <td cdk-cell *cdkCellDef="let row">{{ row.customerName }}</td>
       </ng-container>
 
-      <!-- Phone Number Definition -->
       <ng-container cdkColumnDef="customerPhoneNumber">
         <th cdk-header-cell *cdkHeaderCellDef>Phone Number</th>
         <td cdk-cell *cdkCellDef="let row">{{ row.customerPhoneNumber }}</td>
       </ng-container>
 
-      <!-- Email Definition -->
       <ng-container cdkColumnDef="customerEmail">
         <th cdk-header-cell *cdkHeaderCellDef>Email</th>
         <td cdk-cell *cdkCellDef="let row">{{ row.customerEmail }}</td>

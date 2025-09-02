@@ -10,6 +10,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { IntlTelInputComponent } from 'intl-tel-input/angularWithUtils';
+import { NgxMaskDirective } from 'ngx-mask';
 
 import { routerLinks } from '../../../../core';
 
@@ -19,7 +20,8 @@ import { routerLinks } from '../../../../core';
     ReactiveFormsModule,
     TranslocoDirective,
     RouterLink,
-    IntlTelInputComponent
+    IntlTelInputComponent,
+    NgxMaskDirective
   ],
   templateUrl: './notify-on-stock-dialog.component.html',
   styleUrl: './notify-on-stock-dialog.component.scss'
@@ -54,6 +56,10 @@ export class NotifyOnStockDialogComponent {
 
   protected contactForm = this.#fb.group(
     {
+      amount: this.#fb.control(1, {
+        nonNullable: true,
+        validators: [Validators.min(1), Validators.max(1000)]
+      }),
       customerPhoneNumber: this.#fb.control('+994', {
         nonNullable: true
       }),
@@ -78,13 +84,15 @@ export class NotifyOnStockDialogComponent {
   }
 
   protected placeNotification(): void {
-    const { customerName, customerPhoneNumber, customerEmail } =
-      this.contactForm.getRawValue();
+    const { termsAccept, ...rest } = this.contactForm.getRawValue();
+
+    if (!termsAccept) {
+      alert('You must accept the terms and conditions');
+      return;
+    }
 
     this.#dialogRef.close({
-      customerPhoneNumber,
-      customerName,
-      customerEmail
+      ...rest
     });
   }
 }
