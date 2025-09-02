@@ -21,7 +21,9 @@
       {{ notification.customerEmail }}
     </p>
     <p><strong>Order Date:</strong> {{ notification.createdAt | date }}</p>
+    <p><strong>Wanted amount:</strong> {{ notification.amount }}</p>
   </div>
+
   <div class="products-list">
     <table>
       <thead>
